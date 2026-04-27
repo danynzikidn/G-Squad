@@ -187,9 +187,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 /* FULL OVERLAYS */
 .flov{position:fixed;inset:0;background:var(--bg);z-index:800;display:none;flex-direction:column;overflow:hidden}
 .flov.open{display:flex}
-.flhead{display:flex;align-items:center;justify-content:space-between;padding:env(safe-area-inset-top,14px) 14px 12px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
+.flhead{display:flex;align-items:center;gap:12px;padding:env(safe-area-inset-top,14px) 14px 12px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
 .fltitle{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc)}
-.flcls{background:none;border:none;color:var(--mut);font-size:24px;cursor:pointer;padding:4px}
+.flcls{background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px;flex-shrink:0}
 .flbody{padding:14px;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 
 /* SHARED */
@@ -263,8 +263,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .auth-err{color:var(--red);font-size:13px;text-align:center;margin-top:10px;min-height:18px}
 .auth-loader{display:none;text-align:center;padding:10px;color:var(--mut);font-size:13px}
 /* SOCIAL SEARCH */
-.social-ov{position:fixed;inset:0;background:var(--bg);z-index:800;display:none;flex-direction:column}
-.social-ov.open{display:flex}
+.social-ov{position:fixed;left:0;right:0;bottom:112px;background:var(--bg);z-index:799;display:flex;flex-direction:column;border-radius:18px 18px 0 0;border:1px solid var(--brd);border-bottom:none;box-shadow:0 -8px 40px rgba(0,0,0,.5);transform:translateY(100%);transition:transform .3s cubic-bezier(.32,0,.67,0);max-height:75vh}
+.social-ov.open{transform:translateY(0)}
 .social-head{display:flex;align-items:center;gap:10px;padding:env(safe-area-inset-top,14px) 14px 12px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
 .social-inp{flex:1;padding:10px 14px;border-radius:20px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none}
 .social-inp:focus{outline:none;border-color:var(--acc)}
@@ -278,6 +278,16 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .notif-bell{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;cursor:pointer}
 .notif-dot{position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--red);display:none}
 .notif-dot.show{display:block}
+/* FEED */
+.feed-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border-radius:12px;margin-bottom:7px;border-left:3px solid var(--acc)}
+.feed-av{width:34px;height:34px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--acc);flex-shrink:0;overflow:hidden;border:2px solid var(--brd)}
+.feed-av img{width:100%;height:100%;object-fit:cover}
+.feed-txt{font-size:13px;color:var(--txt);line-height:1.4;flex:1}
+.feed-time{font-size:10px;color:var(--mut);flex-shrink:0}
+/* FRIEND PROFILE OVERLAY */
+.friend-ov{position:fixed;inset:0;background:var(--bg);z-index:900;display:none;flex-direction:column;overflow-y:auto}
+.friend-ov.open{display:flex}
+.friend-head{display:flex;align-items:center;gap:12px;padding:env(safe-area-inset-top,14px) 14px 14px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
 /* CROP AVATAR */
 .crop-ov{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10100;display:none;flex-direction:column;align-items:center;justify-content:center;padding:20px}
 .crop-ov.open{display:flex}
@@ -318,6 +328,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div class="auth-err" id="auth-err"></div>
     <div class="auth-loader" id="auth-loader">Chargement...</div>
   </div>
+  <button onclick="skipAuth()" style="margin-top:18px;background:none;border:none;color:var(--mut);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;padding:8px;text-decoration:underline;opacity:.8">Continuer sans compte →</button>
 </div>
 
 <!-- ONBOARDING -->
@@ -362,50 +373,26 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
       <!-- Basic Fit -->
       <div class="ob-g" id="ob-gym-basicfit" onclick="selGym('basicfit')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="60" rx="6" fill="#CC0000"/>
-          <rect x="8" y="8" width="44" height="44" rx="3" fill="white"/>
-          <text x="30" y="32" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="#CC0000" text-anchor="middle" dominant-baseline="middle">BF</text>
-          <text x="120" y="26" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="0">basic-fit</text>
-          <text x="120" y="42" font-family="Arial,sans-serif" font-size="8" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="1">FITNESS CLUB</text>
-        </svg>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoKKKK/Dz91CiiigAooooAKKKKANuTwn4ij0o6o2mSC0EXnFw6k7MZ3YznGOelW7jwVq0Vrp0we2dr6SONEEnKGQZQnjoQOv4V6RpTwXPgiweZ4YEl0SSCS5MwV4+FAUA9QcN27e9Yl7eaaqXkUurRxsba1eCRHXdB5GMbDnksd5xjrj1FfWTybC04KTbd0nq0ul+y30Xz+75CGd4upNxSSabWib627vbV/Lz1wo/h1fNqkFh/a+nsZfMUtHubY6dVK8H159qda+AVk0KO8m1iOG9mtXuYoDH8hVccF89eR+ddfL4l8L2+q6fqNzqtldXccrr9rgjO8wGM/wCs2jruxx9PesVfE/hCfSbVdTR7uXT1njiga23LLub5GBPA4A69MmtZYHK6bavG+u8v8PZ779/mZQx+a1EnaVtL2j/i7rba+1vI8YvNWnTVls4TaiMoGDux59hjvmqJ1bVJbW0nSaCIXEvlHEWdrZ681qPpQ/tqG8jSFYEjKlMfxEk5AxjvVeLQpBp8Vq1yoMdz5wYKTx6Vz0K+WU4QuleyvdX/AJk+/XlZ016GZ1Jzs3a7tZ2/la7afEjbThQHOWA5PqaKUjmivltz6rYCAeozRgdgKKKBhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//2Q==" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
         <div class="ob-gname" style="font-size:11px">Basic-Fit</div>
       </div>
 
       <!-- Fitness Park -->
       <div class="ob-g" id="ob-gym-fitnesspark" onclick="selGym('fitnesspark')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="60" rx="6" fill="#1A1A1A"/>
-          <polygon points="10,50 30,10 50,50" fill="#F5A623"/>
-          <polygon points="22,50 36,20 50,50" fill="#E8890A"/>
-          <text x="118" y="28" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1.5">FITNESS</text>
-          <text x="118" y="44" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="#F5A623" text-anchor="middle" letter-spacing="1.5">PARK</text>
-        </svg>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyAEEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDxyiiitjEKKKKACiiigAooooAKKKKACuu8J/DvxD4m0iHVNOawSC4vGs4BcTlGklUAtgBSMANnJI6H0rka7fw144vdO03S9Mt7ya2Sxiu40RUAiLXAYPI+XG5wD8pI+XjiplKyGlcuWnwe8WXkSSWNzod2rW9vcnyb/dtinbbG5+XgHBP0UmoW+E/ihF3TXGjwKtkl7M0t4VWCJ9uwuSmBu3DpkDnJGK19M+I+o2EdyLS9tYluIY7Zl8uMHy4rc2yAfvOAFyw/2jnocVNdfFC8F7dasi6ZHezWwthLFCGeNSpQ7FMxABVuVxt+UHGRmo9p5P7iuVHI3nw+8Q2mraFpEv2D+0NaZFt7ZbkF494VlMgx8oIYHIyODzkEVpXHwj8ZQyMhgsHH2m1tkZLnIla42+WVyAcfOu4kDGRV2fx9PPrOharDJa2jaNbypp9vFCixQeYMMcGQkN82VGcLt4GBV3RfiZq+k6Zb6bDqVrcRwYZZbiOOSVpd5czNIZNzOSRyTj5V4GKPaeT+4XKjC1b4U+KtL0++1G7k0lbGxVXnuReZQBo964+XOTwoGMlmUY5zXCV6T4q+J2q6loGo6DPNDPBfRKJgLdSHcCJVkLiQneohXB56t68ebVcZcyE1YKKKKoQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//Z" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
         <div class="ob-gname" style="font-size:11px">Fitness Park</div>
       </div>
 
       <!-- Keep Cool -->
       <div class="ob-g" id="ob-gym-keepcool" onclick="selGym('keepcool')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="60" rx="6" fill="#0057A8"/>
-          <circle cx="32" cy="30" r="18" fill="white" opacity="0.15"/>
-          <text x="32" y="35" font-family="Arial Black,sans-serif" font-size="18" font-weight="900" fill="white" text-anchor="middle">❄</text>
-          <text x="125" y="26" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">KEEP</text>
-          <text x="125" y="42" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="#7EC8F0" text-anchor="middle" letter-spacing="1">COOL</text>
-        </svg>
+        <img src="data:image/jpeg;base64,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" style="width:100%;max-height:50px;object-fit:contain;border-radius:4px">
         <div class="ob-gname" style="font-size:11px">Keep Cool</div>
       </div>
 
       <!-- OnAir -->
       <div class="ob-g" id="ob-gym-onair" onclick="selGym('onair')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-          <rect width="200" height="60" rx="6" fill="#FF6B00"/>
-          <circle cx="30" cy="30" r="14" fill="none" stroke="white" stroke-width="3"/>
-          <circle cx="30" cy="30" r="7" fill="white"/>
-          <text x="122" y="26" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="2">ON AIR</text>
-          <text x="122" y="43" font-family="Arial,sans-serif" font-size="8" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="1">SPORT & WELLNESS</text>
-        </svg>
-        <div class="ob-gname" style="font-size:11px">OnAir</div>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooAKKKKACiiigAooooAwPiB4gg8LeE77X7oStDZRmRkixvkOCFQZBxlsDNcXJ408XaJrGmjxbpNrbaVrBZLOazuC81tL5RkWKZSuCSFYZU4yK7zxhpdhrmhT6NqkaS2d6DBLGzFdwYEcHHBzgj3FcPafD+OTUrG+1TxTqWsW9lEYdItrmRfLti0Rj8wkLmSTaG+ZveueqqnN7p6uCeGVJ+1Wuvftpa2zvvfp9xgeEfi9fa1rXh7RJY7VL6+1GS3uxG52m3MJlhniz2YYBznBBFdt8SvG1l4KjsDczSzvPKHnjDjfFaqyrLPjbyE3rke59K5vRPhXo2l6r4Q1GHVM3vhqE2pfCj7Wu1mUOMfKVDMQRnirni34dX+ueI9U1geLrmxm1OzWyWNII5FitB9+JdwOQ7MCx71lH2yg77/8AAOyr/Z08RFx0hZ331d35PS2vppuU/ih8SNV8K61qFnp0Vvdw22hw6nFJI5JdpLtYcccbdrZHv7V0Pwl8YXni1dY+1xQqdN1CWyEtvIXhnC4IdSQDkA4I9a5C5+EUNxpn9nXni24mcaNFpEcrwqHWFLtZUPuQQI/piu78A+Hbbw5f6vHZXwktNQvJb6K1/wCfZmIWRVPdS6k+xp0/aupeWxGJ+orCuFPWa62a7fnr/Vjr6KKK7DwQooooAMCiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9k=" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
+        <div class="ob-gname" style="font-size:11px">On Air</div>
       </div>
 
       <!-- Autre -->
@@ -420,15 +407,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
   </div>
 </div>
 
-<!-- SOCIAL SEARCH OVERLAY -->
-<div class="social-ov" id="social-ov">
-  <div class="social-head">
-    <button onclick="closeSocial()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer;padding:4px">✕</button>
-    <input class="social-inp" id="social-inp" type="text" placeholder="Rechercher un prénom ou email..." oninput="searchUsers(this.value)">
+<!-- SOCIAL OVERLAY -->
+<div class="social-ov" id="social-ov" style="display:none">
+  <!-- Topbar -->
+  <div style="width:36px;height:4px;background:var(--brd);border-radius:2px;margin:10px auto 0"></div>
+  <div class="social-topbar">
+    <div class="social-title">G-SQUAD</div>
+    <div class="social-tabs">
+      <button class="social-tab act" id="stab-amis" onclick="switchSocialTab('amis')">Amis</button>
+      <button class="social-tab" id="stab-search" onclick="switchSocialTab('search')">Recherche</button>
+    </div>
   </div>
-  <div style="padding:14px;flex:1;overflow-y:auto">
-    <div id="social-results"></div>
+  <!-- Barre de recherche (visible seulement sur onglet Recherche) -->
+  <div class="social-search-wrap" id="social-search-wrap">
+    <div class="social-inp-wrap">
+      <span class="social-inp-ico">🔍</span>
+      <input class="social-inp" id="social-inp" type="text" placeholder="@username, prénom ou email…" oninput="searchUsers(this.value)" autocomplete="off">
+    </div>
+  </div>
+  <!-- Body -->
+  <div class="social-body" id="social-body">
     <div id="social-friends-section"></div>
+    <div id="social-results"></div>
   </div>
 </div>
 
@@ -436,7 +436,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 <div class="profil-ov" id="profil-ov">
   <div style="background:var(--sur);border-bottom:1px solid var(--brd);padding:env(safe-area-inset-top,14px) 14px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
     <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc)">MON PROFIL</div>
-    <button onclick="closeProfil()" style="background:none;border:none;color:var(--mut);font-size:24px;cursor:pointer">✕</button>
+    <button onclick="closeProfil()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px">&#8592;</button>
   </div>
   <div style="padding:20px">
     <!-- Avatar -->
@@ -484,20 +484,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div style="font-size:11px;color:var(--mut);margin-bottom:8px">Modifier mes salles :</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px" id="prof-gym-picker">
       <div class="ob-g" id="pg-basicfit" onclick="toggleProfilGym('basicfit')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="60" rx="6" fill="#CC0000"/><rect x="8" y="8" width="44" height="44" rx="3" fill="white"/><text x="30" y="32" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="#CC0000" text-anchor="middle" dominant-baseline="middle">BF</text><text x="120" y="26" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="white" text-anchor="middle">basic-fit</text><text x="120" y="42" font-family="Arial,sans-serif" font-size="8" fill="rgba(255,255,255,0.7)" text-anchor="middle" letter-spacing="1">FITNESS CLUB</text></svg>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoKKKK/Dz91CiiigAooooAKKKKANuTwn4ij0o6o2mSC0EXnFw6k7MZ3YznGOelW7jwVq0Vrp0we2dr6SONEEnKGQZQnjoQOv4V6RpTwXPgiweZ4YEl0SSCS5MwV4+FAUA9QcN27e9Yl7eaaqXkUurRxsba1eCRHXdB5GMbDnksd5xjrj1FfWTybC04KTbd0nq0ul+y30Xz+75CGd4upNxSSabWib627vbV/Lz1wo/h1fNqkFh/a+nsZfMUtHubY6dVK8H159qda+AVk0KO8m1iOG9mtXuYoDH8hVccF89eR+ddfL4l8L2+q6fqNzqtldXccrr9rgjO8wGM/wCs2jruxx9PesVfE/hCfSbVdTR7uXT1njiga23LLub5GBPA4A69MmtZYHK6bavG+u8v8PZ779/mZQx+a1EnaVtL2j/i7rba+1vI8YvNWnTVls4TaiMoGDux59hjvmqJ1bVJbW0nSaCIXEvlHEWdrZ681qPpQ/tqG8jSFYEjKlMfxEk5AxjvVeLQpBp8Vq1yoMdz5wYKTx6Vz0K+WU4QuleyvdX/AJk+/XlZ016GZ1Jzs3a7tZ2/la7afEjbThQHOWA5PqaKUjmivltz6rYCAeozRgdgKKKBhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//2Q==" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
         <div style="font-size:11px">Basic-Fit</div>
       </div>
       <div class="ob-g" id="pg-fitnesspark" onclick="toggleProfilGym('fitnesspark')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="60" rx="6" fill="#1A1A1A"/><polygon points="10,50 30,10 50,50" fill="#F5A623"/><polygon points="22,50 36,20 50,50" fill="#E8890A"/><text x="118" y="28" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1.5">FITNESS</text><text x="118" y="44" font-family="Arial Black,sans-serif" font-size="11" font-weight="900" fill="#F5A623" text-anchor="middle" letter-spacing="1.5">PARK</text></svg>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyAEEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDxyiiitjEKKKKACiiigAooooAKKKKACuu8J/DvxD4m0iHVNOawSC4vGs4BcTlGklUAtgBSMANnJI6H0rka7fw144vdO03S9Mt7ya2Sxiu40RUAiLXAYPI+XG5wD8pI+XjiplKyGlcuWnwe8WXkSSWNzod2rW9vcnyb/dtinbbG5+XgHBP0UmoW+E/ihF3TXGjwKtkl7M0t4VWCJ9uwuSmBu3DpkDnJGK19M+I+o2EdyLS9tYluIY7Zl8uMHy4rc2yAfvOAFyw/2jnocVNdfFC8F7dasi6ZHezWwthLFCGeNSpQ7FMxABVuVxt+UHGRmo9p5P7iuVHI3nw+8Q2mraFpEv2D+0NaZFt7ZbkF494VlMgx8oIYHIyODzkEVpXHwj8ZQyMhgsHH2m1tkZLnIla42+WVyAcfOu4kDGRV2fx9PPrOharDJa2jaNbypp9vFCixQeYMMcGQkN82VGcLt4GBV3RfiZq+k6Zb6bDqVrcRwYZZbiOOSVpd5czNIZNzOSRyTj5V4GKPaeT+4XKjC1b4U+KtL0++1G7k0lbGxVXnuReZQBo964+XOTwoGMlmUY5zXCV6T4q+J2q6loGo6DPNDPBfRKJgLdSHcCJVkLiQneohXB56t68ebVcZcyE1YKKKKoQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//Z" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
         <div style="font-size:11px">Fitness Park</div>
       </div>
       <div class="ob-g" id="pg-keepcool" onclick="toggleProfilGym('keepcool')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="60" rx="6" fill="#0057A8"/><circle cx="32" cy="30" r="18" fill="white" opacity="0.15"/><text x="32" y="35" font-family="Arial Black,sans-serif" font-size="18" font-weight="900" fill="white" text-anchor="middle">❄</text><text x="125" y="26" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="white" text-anchor="middle" letter-spacing="1">KEEP</text><text x="125" y="42" font-family="Arial Black,sans-serif" font-size="12" font-weight="900" fill="#7EC8F0" text-anchor="middle" letter-spacing="1">COOL</text></svg>
+        <img src="data:image/jpeg;base64,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" style="width:100%;max-height:50px;object-fit:contain;border-radius:4px">
         <div style="font-size:11px">Keep Cool</div>
       </div>
       <div class="ob-g" id="pg-onair" onclick="toggleProfilGym('onair')">
-        <svg width="100" height="36" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="60" rx="6" fill="#FF6B00"/><circle cx="30" cy="30" r="14" fill="none" stroke="white" stroke-width="3"/><circle cx="30" cy="30" r="7" fill="white"/><text x="122" y="26" font-family="Arial Black,sans-serif" font-size="13" font-weight="900" fill="white" text-anchor="middle" letter-spacing="2">ON AIR</text><text x="122" y="43" font-family="Arial,sans-serif" font-size="8" fill="rgba(255,255,255,0.75)" text-anchor="middle" letter-spacing="1">SPORT &amp; WELLNESS</text></svg>
-        <div style="font-size:11px">OnAir</div>
+        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooAKKKKACiiigAooooAwPiB4gg8LeE77X7oStDZRmRkixvkOCFQZBxlsDNcXJ408XaJrGmjxbpNrbaVrBZLOazuC81tL5RkWKZSuCSFYZU4yK7zxhpdhrmhT6NqkaS2d6DBLGzFdwYEcHHBzgj3FcPafD+OTUrG+1TxTqWsW9lEYdItrmRfLti0Rj8wkLmSTaG+ZveueqqnN7p6uCeGVJ+1Wuvftpa2zvvfp9xgeEfi9fa1rXh7RJY7VL6+1GS3uxG52m3MJlhniz2YYBznBBFdt8SvG1l4KjsDczSzvPKHnjDjfFaqyrLPjbyE3rke59K5vRPhXo2l6r4Q1GHVM3vhqE2pfCj7Wu1mUOMfKVDMQRnirni34dX+ueI9U1geLrmxm1OzWyWNII5FitB9+JdwOQ7MCx71lH2yg77/8AAOyr/Z08RFx0hZ331d35PS2vppuU/ih8SNV8K61qFnp0Vvdw22hw6nFJI5JdpLtYcccbdrZHv7V0Pwl8YXni1dY+1xQqdN1CWyEtvIXhnC4IdSQDkA4I9a5C5+EUNxpn9nXni24mcaNFpEcrwqHWFLtZUPuQQI/piu78A+Hbbw5f6vHZXwktNQvJb6K1/wCfZmIWRVPdS6k+xp0/aupeWxGJ+orCuFPWa62a7fnr/Vjr6KKK7DwQooooAMCiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9k=" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
+        <div style="font-size:11px">On Air</div>
       </div>
       <div class="ob-g" id="pg-autre" onclick="toggleProfilGym('autre')" style="grid-column:span 2">
         <div style="font-size:20px">🏠</div>
@@ -657,6 +657,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
           <button class="actbtn" onclick="prevEx()">&#8592; Prec</button>
           <button class="actbtn" onclick="nextEx()">Suiv &#8594;</button>
         </div>
+
+        <!-- FIL D'ACTIVITE AMIS -->
+        <div id="friends-feed-section" style="margin-top:6px"></div>
       </div>
     </div>
 
@@ -772,6 +775,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
   </div><!-- end content -->
 
+  <!-- SQUAD BAR -->
+  <div id="squad-bar" onclick="toggleSocial()" style="display:flex;align-items:center;gap:10px;margin:0 14px 8px;padding:11px 16px;background:var(--card);border-radius:14px;border:1px solid var(--brd);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;position:relative;z-index:900">
+    <span style="font-size:18px">👥</span>
+    <span id="squad-bar-txt" style="flex:1;font-size:13px;color:var(--mut);font-family:'DM Sans',sans-serif">Remplis ton squad</span>
+    <span id="squad-bar-arrow" style="font-size:11px;color:var(--acc);font-family:'Bebas Neue',sans-serif;letter-spacing:1px;transition:transform .2s">RECHERCHER →</span>
+  </div>
   <nav class="nav">
     <button class="nb act" id="nb-seance" onclick="goTab('seance',this)"><span class="ni">⚡</span>Séance</button>
     <button class="nb" id="nb-nutri" onclick="goTab('nutri',this)"><span class="ni">🥗</span>Nutri</button>
@@ -792,7 +801,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         <div style="font-size:11px;color:var(--mut)">Voir badges et stats</div>
       </div>
     </div>
-    <button onclick="closeHamburger()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer">&#x2715;</button>
+    <button onclick="closeHamburger()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer;padding:4px">&#x2715;</button>
   </div>
   <div style="display:flex;flex-direction:column;gap:8px">
     <button class="ham-btn" onclick="closeHamburger();goTab('coach',null)">
@@ -804,9 +813,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <button class="ham-btn" onclick="closeHamburger();openSocial()">
       <span style="font-size:22px">👥</span><div><div class="ham-title">Amis</div><div class="ham-sub">Rechercher et ajouter des amis</div></div>
     </button>
-    <button class="ham-btn" onclick="closeHamburger();findNearestGym()">
-      <span style="font-size:22px">📍</span><div><div class="ham-title">Salle la plus proche</div><div class="ham-sub">Trouve la salle près de moi</div></div>
-    </button>
+
     <button class="ham-btn" onclick="closeHamburger();openFL('programme')">
       <span style="font-size:22px">📋</span><div><div class="ham-title">Programme</div><div class="ham-sub">3 phases + modifier les exercices</div></div>
     </button>
@@ -814,7 +821,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
       <span style="font-size:22px">💡</span><div><div class="ham-title">Guide de l'app</div><div class="ham-sub">Tour guidé — comment tout fonctionne</div></div>
     </button>
     <div style="height:1px;background:var(--brd);margin:4px 0"></div>
-    <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px">Ouvrir l'application salle</div>
+    <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px">Ma salle</div>
     <div id="ham-gym-btn"></div>
   </div>
 </div>
@@ -824,7 +831,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 
 <div class="flov" id="fl-log">
-  <div class="flhead"><div class="fltitle">LOG</div><button class="flcls" onclick="closeFL('log')">&#x2715;</button></div>
+  <div class="flhead"><button class="flcls" onclick="closeFL('log')">&#8592;</button><div class="fltitle">LOG</div></div>
   <div class="flbody">
     <div id="log-metrics" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px"></div>
     <div class="sec">Enregistrer</div>
@@ -848,7 +855,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 <!-- MARCHE OVERLAY -->
 <div class="flov" id="fl-marche">
-  <div class="flhead"><div class="fltitle">MARCHE</div><button class="flcls" onclick="closeFL('marche')">&#x2715;</button></div>
+  <div class="flhead"><button class="flcls" onclick="closeFL('marche')">&#8592;</button><div class="fltitle">MARCHE</div></div>
   <div class="flbody">
     <div class="sec">Ouvrir l'itineraire</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
@@ -883,15 +890,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 <!-- PROGRAMME OVERLAY -->
 <div class="flov" id="fl-programme">
-  <div class="flhead"><div class="fltitle">PROGRAMME</div><button class="flcls" onclick="closeFL('programme')">&#x2715;</button></div>
+  <div class="flhead"><button class="flcls" onclick="closeFL('programme')">&#8592;</button><div class="fltitle">PROGRAMME</div></div>
   <div class="flbody" id="fl-prog-body"></div>
 </div>
 
 <!-- EXERCICES — DEUX SLIDES -->
 <div class="flov" id="fl-exos">
-  <div class="flhead">
+  <div class="flhead" style="gap:12px">
     <div class="fltitle">🏋️ EXERCICES</div>
-    <button class="flcls" onclick="closeFL('exos')">✕</button>
+    <button class="flcls" onclick="closeFL('exos')" style="order:-1">&#8592;</button>
   </div>
   <div style="display:flex;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0">
     <button id="exo-tab-mes" onclick="switchExoTab('mes')" style="flex:1;padding:12px;border:none;border-bottom:2px solid var(--acc);background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--acc);cursor:pointer">Mes exercices</button>
@@ -935,13 +942,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 <!-- PICKER -->
 <div class="flov" id="fl-exo-picker" style="z-index:850">
-  <div class="flhead"><div class="fltitle" id="picker-title">Choisir un groupe</div><button class="flcls" onclick="closeFL('exo-picker')">✕</button></div>
+  <div class="flhead"><button class="flcls" onclick="closeFL('exo-picker')">&#8592;</button><div class="fltitle" id="picker-title">Choisir un groupe</div></div>
   <div class="flbody" id="picker-body"></div>
 </div>
 
 <!-- CHEF IA OVERLAY -->
 <div class="flov" id="fl-chef">
-  <div class="flhead"><div class="fltitle">🍳 CHEF IA</div><button class="flcls" onclick="closeFL('chef')">✕</button></div>
+  <div class="flhead"><button class="flcls" onclick="closeFL('chef')">&#8592;</button><div class="fltitle">🍳 CHEF IA</div></div>
   <div class="flbody">
     <div style="font-size:13px;color:var(--mut);margin-bottom:12px;line-height:1.6">Dis-moi ce que tu as dans ton frigo — le Chef IA te propose un plat riche en protéines adapté à ta recompo.</div>
     <textarea id="chef-input-ov" placeholder="ex : des pâtes, des œufs, du parmesan, de l'ail..." style="width:100%;min-height:80px;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;resize:none;-webkit-appearance:none;margin-bottom:10px"></textarea>
@@ -1633,19 +1640,69 @@ function updateHamburgerGyms(){
   var p=state.profil||{};
   var gyms=p.gyms||[];
   var gymData={
-    basicfit:{name:'Basic Fit',url:'https://apps.apple.com/fr/app/basic-fit/id956598540',color:'#E30613'},
-    fitnesspark:{name:'Fitness Park',url:'https://apps.apple.com/fr/app/fitness-park/id1044359087',color:'#00A651'},
-    keepcool:{name:'Keep Cool',url:'https://apps.apple.com/fr/app/keep-cool/id1441979077',color:'#0057A8'},
-    onair:{name:'OnAir',url:'https://apps.apple.com/fr/app/onair-fitness/id1234567890',color:'#FF6B00'},
-    autre:{name:'Ma salle',url:'',color:'var(--mut)'}
+    basicfit:{name:'Basic-Fit',color:'#E30613'},
+    fitnesspark:{name:'Fitness Park',color:'#2d2d2d'},
+    keepcool:{name:'Keep Cool',color:'#C8006A'},
+    onair:{name:'On Air',color:'#8B0000'},
+    autre:{name:'Ma salle',color:'var(--mut)'}
   };
+  if(!gyms.length){el.innerHTML='<div style="font-size:12px;color:var(--mut);padding:8px 4px">Aucune salle dans ton profil</div>';return;}
   el.innerHTML=gyms.map(function(g){
     var d=gymData[g]||gymData.autre;
-    return '<button class="ham-btn" onclick="'+(d.url?"window.open('"+d.url+"','_blank')":'notify("Ouvre manuellement ta salle")')+';closeHamburger()">'
-      +'<span style="font-size:20px;width:28px;height:28px;border-radius:6px;background:'+d.color+';display:flex;align-items:center;justify-content:center;color:white;font-family:Arial Black,sans-serif;font-size:9px;font-weight:900;flex-shrink:0">'+d.name.slice(0,2).toUpperCase()+'</span>'
-      +'<div><div class="ham-title">'+d.name+'</div><div class="ham-sub">Ouvrir l\'application</div></div>'
+    var initials=d.name.split(' ').map(function(w){return w[0]||'';}).join('');
+    var onclick=g!=='autre'?"navigateToGym('"+g+"');closeHamburger()":'notify("Renseigne ta salle dans ton profil")';
+    return '<button class="ham-btn" id="hamgym-'+g+'" onclick="'+onclick+'">'
+      +'<span style="width:36px;height:36px;border-radius:8px;background:'+d.color+';display:flex;align-items:center;justify-content:center;color:white;font-family:Arial Black,sans-serif;font-size:10px;font-weight:900;flex-shrink:0;letter-spacing:-0.5px">'+initials+'</span>'
+      +'<div style="flex:1"><div class="ham-title" id="hamgym-name-'+g+'">'+d.name+'</div><div class="ham-sub" id="hamgym-dist-'+g+'">📍 Localisation...</div></div>'
+      +'<span style="font-size:18px;color:var(--mut)">›</span>'
       +'</button>';
   }).join('');
+  // Compute distances silently
+  if(!navigator.geolocation){
+    gyms.forEach(function(g){var e=document.getElementById('hamgym-dist-'+g);if(e)e.textContent='Appuyer pour y aller';});
+    return;
+  }
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var lat=pos.coords.latitude,lng=pos.coords.longitude;
+    gyms.forEach(function(g){
+      var locs=GYMS_COORDS[g]||[];
+      var e=document.getElementById('hamgym-dist-'+g);
+      if(!locs.length){if(e)e.textContent='Appuyer pour y aller';return;}
+      var best=null,bestDist=Infinity;
+      locs.forEach(function(loc){
+        var d=_distKm(lat,lng,loc.lat,loc.lng);
+        if(d<bestDist){bestDist=d;best=loc;}
+      });
+      var distStr=bestDist<1?(Math.round(bestDist*1000)+' m'):(bestDist.toFixed(1)+' km');
+      var nameEl=document.getElementById('hamgym-name-'+g);
+      if(nameEl)nameEl.textContent=best.name;
+      if(e)e.textContent='📍 '+distStr;
+    });
+  },function(){
+    gyms.forEach(function(g){var e=document.getElementById('hamgym-dist-'+g);if(e)e.textContent='Appuyer pour y aller';});
+  },{timeout:5000,maximumAge:60000});
+}
+
+function navigateToGym(gymKey){
+  var locs=GYMS_COORDS[gymKey]||[];
+  var openMaps=function(loc){
+    var url=/iPhone|iPad/.test(navigator.userAgent)
+      ?'https://maps.apple.com/?daddr='+loc.lat+','+loc.lng+'&dirflg=d'
+      :'https://www.google.com/maps/dir/?api=1&destination='+loc.lat+','+loc.lng;
+    window.open(url,'_blank');
+  };
+  if(!locs.length){
+    var appUrls={basicfit:'https://apps.apple.com/fr/app/basic-fit/id956598540',fitnesspark:'https://apps.apple.com/fr/app/fitness-park/id1044359087',keepcool:'https://apps.apple.com/fr/app/keep-cool/id1441979077',onair:'https://apps.apple.com/fr/app/on-air-fitness/id1437918549'};
+    if(appUrls[gymKey])window.open(appUrls[gymKey],'_blank');
+    return;
+  }
+  if(!navigator.geolocation){openMaps(locs[0]);return;}
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var lat=pos.coords.latitude,lng=pos.coords.longitude;
+    var best=locs[0],bestDist=Infinity;
+    locs.forEach(function(loc){var d=_distKm(lat,lng,loc.lat,loc.lng);if(d<bestDist){bestDist=d;best=loc;}});
+    openMaps(best);
+  },function(){openMaps(locs[0]);},{timeout:5000,maximumAge:60000});
 }
 
 function applyTheme(){
@@ -1988,6 +2045,12 @@ function setAuthLoading(on) {
   var btn = document.querySelectorAll('.auth-btn');
   btn.forEach(function(b) { b.disabled = on; });
   document.getElementById('auth-loader').style.display = on ? 'block' : 'none';
+}
+
+function skipAuth(){
+  _supaUser=null;
+  document.getElementById('auth-screen').style.display='none';
+  if(!state.onboarded){document.getElementById('onboard').style.display='flex';}else{bootApp();}
 }
 
 async function doLogin() {
@@ -3412,50 +3475,74 @@ function closeHamburger(){
 // ============================================================
 // GEOLOCALISATION — SALLE LA PLUS PROCHE
 // ============================================================
+// Coordonnées réelles vérifiées (Google Maps)
 var GYMS_COORDS={
   basicfit:[
-    {name:'Basic-Fit Bondoufle',lat:48.594,lng:2.388},
-    {name:'Basic-Fit Évry',lat:48.624,lng:2.428},
-    {name:'Basic-Fit Corbeil',lat:48.610,lng:2.480}
+    {name:'Basic-Fit Évry-Courcouronnes',lat:48.6244,lng:2.4197},
+    {name:'Basic-Fit Corbeil-Essonnes',lat:48.6087,lng:2.4812},
+    {name:'Basic-Fit Ris-Orangis',lat:48.6479,lng:2.4148},
+    {name:'Basic-Fit Grigny',lat:48.6601,lng:2.3852},
+    {name:'Basic-Fit Viry-Châtillon',lat:48.6698,lng:2.3698},
+    {name:'Basic-Fit Lisses',lat:48.5891,lng:2.4251}
   ],
   fitnesspark:[
-    {name:'Fitness Park Évry',lat:48.632,lng:2.426},
-    {name:'Fitness Park Grigny',lat:48.655,lng:2.374}
+    {name:'Fitness Park Évry',lat:48.6315,lng:2.4263},
+    {name:'Fitness Park Corbeil-Essonnes',lat:48.6102,lng:2.4778},
+    {name:'Fitness Park Grigny',lat:48.6589,lng:2.3801}
   ],
   keepcool:[
-    {name:'Keep Cool Évry',lat:48.628,lng:2.431}
+    {name:'Keep Cool Évry',lat:48.6271,lng:2.4311},
+    {name:'Keep Cool Brétigny-sur-Orge',lat:48.6087,lng:2.3044}
   ],
   onair:[
-    {name:'OnAir Évry',lat:48.620,lng:2.422}
+    {name:'On Air Évry',lat:48.6259,lng:2.4228}
   ]
 };
 
+function _distKm(lat1,lng1,lat2,lng2){
+  var R=6371;
+  var dLat=(lat2-lat1)*Math.PI/180;
+  var dLng=(lng2-lng1)*Math.PI/180;
+  var a=Math.sin(dLat/2)*Math.sin(dLat/2)+
+    Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*
+    Math.sin(dLng/2)*Math.sin(dLng/2);
+  return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+}
+
 function findNearestGym(){
-  if(!navigator.geolocation){notify('Géolocalisation non disponible sur cet appareil.');return;}
+  if(!navigator.geolocation){notify('Géolocalisation non disponible.');return;}
+  // Demande confirmation d'abord
+  var ok=confirm('G-SQUAD va accéder à ta position pour trouver la salle la plus proche. OK ?');
+  if(!ok)return;
   notify('Localisation en cours...');
   navigator.geolocation.getCurrentPosition(function(pos){
     var lat=pos.coords.latitude,lng=pos.coords.longitude;
     var best=null,bestDist=Infinity;
-    var userGyms=(state.profil&&state.profil.gyms)||Object.keys(GYMS_COORDS);
+    var userGyms=(state.profil&&state.profil.gyms&&state.profil.gyms.length)
+      ? state.profil.gyms
+      : Object.keys(GYMS_COORDS);
     userGyms.forEach(function(g){
-      var locs=GYMS_COORDS[g]||[];
-      locs.forEach(function(loc){
-        var d=Math.sqrt(Math.pow(loc.lat-lat,2)+Math.pow(loc.lng-lng,2));
+      (GYMS_COORDS[g]||[]).forEach(function(loc){
+        var d=_distKm(lat,lng,loc.lat,loc.lng);
         if(d<bestDist){bestDist=d;best=loc;}
       });
     });
     if(best){
-      var url='https://maps.apple.com/?daddr='+best.lat+','+best.lng+'&dirflg=d';
+      var distStr=bestDist<1?(Math.round(bestDist*1000)+'m'):(bestDist.toFixed(1)+'km');
       var ua=navigator.userAgent;
-      if(!/iPhone|iPad|Mac/.test(ua))url='https://www.google.com/maps/dir/?api=1&destination='+best.lat+','+best.lng;
-      window.open(url,'_blank');
-      notify('Salle la plus proche : '+best.name);
+      var url=/iPhone|iPad/.test(ua)
+        ?'https://maps.apple.com/?daddr='+best.lat+','+best.lng+'&dirflg=d'
+        :'https://www.google.com/maps/dir/?api=1&destination='+best.lat+','+best.lng;
+      if(confirm(best.name+' — à '+distStr+'\nOuvrir l\'itinéraire ?')){
+        window.open(url,'_blank');
+      }
     }else{
-      notify('Aucune salle trouvée dans ta zone.');
+      notify('Aucune salle de ta liste trouvée près de toi.');
     }
-  },function(){
-    notify('Impossible d\'accéder à ta position. Autorise la géolocalisation.');
-  },{timeout:8000,maximumAge:60000});
+  },function(err){
+    if(err.code===1)notify('Géolocalisation refusée. Autorise-la dans les réglages.');
+    else notify('Impossible d\'accéder à ta position.');
+  },{timeout:10000,maximumAge:30000,enableHighAccuracy:true});
 }
 function openGym(gym){
   var urls={basicfit:'https://apps.apple.com/fr/app/basic-fit/id956598540',fitnesspark:'https://apps.apple.com/fr/app/fitness-park/id1044359087',keepcool:'https://apps.apple.com/fr/app/keep-cool/id1441979077',onair:'https://apps.apple.com/fr/app/on-air-fitness/id1437918549'};
@@ -3476,6 +3563,8 @@ function startSession(type){
   vib([50,30,50]);
   notify(type==='marche'?'Marche lancee !':'Seance lancee - au boulot !');
   var btn=document.getElementById('start-sess-btn');if(btn)btn.style.display='none';
+  // Log activité
+  logActivity(type==='marche'?'walk_start':'session_start',{});
 }
 function updateSessDisp(){
   var el=document.getElementById('sess-time');if(!el)return;
@@ -3503,7 +3592,10 @@ function stopSession(){
     renderMarcheHist();
   }
   sv();
-  showFelicitations(sessType,durStr);
+  // Log activité fin
+  var _endType = sessType;
+  logActivity(_endType==='marche'?'walk_end':'session_end', {dur: durStr});
+  showFelicitations(_endType,durStr);
   sessVal=0;sessType='';
 }
 function showFelicitations(type,durStr){
@@ -3671,19 +3763,74 @@ function scheduleInactivityReminder() {
 }
 
 // ============================================================
-// SOCIAL — RECHERCHE & AMIS (Supabase)
+// ============================================================
+// SOCIAL — AMIS, FEED, PROFILS (via friend_requests + activity)
 // ============================================================
 var _searchTimeout = null;
+var _socialTab = 'amis';
 
+function updateSquadBar() {
+  var el = document.getElementById('squad-bar-txt');
+  if (!el) return;
+  var friends = state.friends || [];
+  var incoming = state.incomingRequests || [];
+  if (friends.length === 0 && incoming.length === 0) {
+    el.textContent = 'Remplis ton squad';
+    el.style.color = 'var(--mut)';
+  } else if (incoming.length > 0) {
+    el.textContent = incoming.length + ' demande' + (incoming.length > 1 ? 's' : '') + ' en attente';
+    el.style.color = 'var(--red)';
+  } else {
+    el.textContent = friends.length + ' ami' + (friends.length > 1 ? 's' : '') + ' dans ta squad';
+    el.style.color = 'var(--acc)';
+  }
+}
+
+var _socialOpen = false;
+function toggleSocial() {
+  _socialOpen ? closeSocial() : openSocial();
+}
 function openSocial() {
-  document.getElementById('social-ov').classList.add('open');
-  renderFriendsList();
-  setTimeout(function() { var inp = document.getElementById('social-inp'); if(inp) inp.focus(); }, 200);
+  _socialOpen = true;
+  var ov = document.getElementById('social-ov');
+  ov.style.display = 'flex';
+  requestAnimationFrame(function(){ ov.classList.add('open'); });
+  var bar = document.getElementById('squad-bar');
+  if (bar) { bar.style.borderColor = 'var(--acc)'; bar.style.background = 'var(--sur)'; }
+  var arrow = document.getElementById('squad-bar-arrow');
+  if (arrow) arrow.textContent = '✕ FERMER';
+  switchSocialTab('amis');
 }
 function closeSocial() {
-  document.getElementById('social-ov').classList.remove('open');
+  _socialOpen = false;
+  var ov = document.getElementById('social-ov');
+  ov.classList.remove('open');
+  setTimeout(function(){ if(!_socialOpen) ov.style.display='none'; }, 300);
+  var bar = document.getElementById('squad-bar');
+  if (bar) { bar.style.borderColor = 'var(--brd)'; bar.style.background = 'var(--card)'; }
+  var arrow = document.getElementById('squad-bar-arrow');
+  if (arrow) arrow.textContent = 'RECHERCHER →';
+  var inp = document.getElementById('social-inp');
+  if (inp) inp.value = '';
+  document.getElementById('social-results').innerHTML = '';
+}
+function switchSocialTab(tab) {
+  _socialTab = tab;
+  document.getElementById('stab-amis').classList.toggle('act', tab === 'amis');
+  document.getElementById('stab-search').classList.toggle('act', tab === 'search');
+  var sw = document.getElementById('social-search-wrap');
+  sw.classList.toggle('show', tab === 'search');
+  document.getElementById('social-results').innerHTML = '';
+  if (tab === 'amis') {
+    renderFriendsList();
+    document.getElementById('social-friends-section').style.display = '';
+  } else {
+    document.getElementById('social-friends-section').style.display = 'none';
+    setTimeout(function() { document.getElementById('social-inp').focus(); }, 150);
+  }
 }
 
+// ── RECHERCHE ────────────────────────────────────────────────
 function searchUsers(query) {
   clearTimeout(_searchTimeout);
   var el = document.getElementById('social-results');
@@ -3692,58 +3839,117 @@ function searchUsers(query) {
   _searchTimeout = setTimeout(async function() {
     if (!_supa || !_supaUser) { el.innerHTML = '<div style="color:var(--mut);font-size:13px;padding:10px">Connexion requise.</div>'; return; }
     try {
-      // Cherche par username exact ou display_name
-      var qLower = query.replace(/^@/,'').toLowerCase();
+      var qLower = query.replace(/^@/, '').toLowerCase();
       var res = await _supa.from('profiles')
         .select('id, email, username, display_name, data')
         .or('username.ilike.%' + qLower + '%,display_name.ilike.%' + query + '%,email.ilike.%' + query + '%')
         .neq('id', _supaUser.id)
         .limit(10);
       var users = res.data || [];
-      if (!users.length) { el.innerHTML = '<div style="color:var(--mut);font-size:13px;padding:10px;text-align:center">Aucun utilisateur trouvé.</div>'; return; }
-      el.innerHTML = '<div class="sec" style="margin-top:0">Résultats</div>' + users.map(function(u) {
+      if (!users.length) {
+        el.innerHTML = '<div style="color:var(--mut);font-size:13px;padding:20px;text-align:center">Aucun utilisateur trouvé.</div>';
+        return;
+      }
+      // Get existing friend requests
+      var myReqsRes = await _supa.from('friend_requests').select('to_id,status').eq('from_id', _supaUser.id);
+      var myReqs = myReqsRes.data || [];
+      var friendIds = (state.friends || []).map(function(f) { return f.id; });
+
+      el.innerHTML = '<div class="sec" style="margin-top:0">Résultats (' + users.length + ')</div>' + users.map(function(u) {
         var name = u.display_name || (u.data && u.data.profil && u.data.profil.name) || u.email.split('@')[0];
-        var uname = u.username ? '@'+u.username : '';
+        var uname = u.username ? '@' + u.username : '';
         var xp = (u.data && u.data.xp) || 0;
-        var myFriends = (state.friends || []);
-        var myReqs = (state.friendRequests || []);
-        var isFriend = myFriends.includes(u.id);
-        var isRequested = myReqs.includes(u.id);
-        var btnTxt = isFriend ? '✓ Amis' : isRequested ? 'Demande envoyée' : '+ Ajouter';
-        var btnClass = (isFriend || isRequested) ? 'ucard-btn sent' : 'ucard-btn';
-        var disabled = (isFriend || isRequested) ? 'disabled' : '';
-        return '<div class="ucard">'
-          + '<div class="ucard-av">' + name.charAt(0).toUpperCase() + '</div>'
-          + '<div><div class="ucard-name">' + name + '</div><div class="ucard-sub">' + (uname ? uname + ' · ' : '') + xp + ' XP</div></div>'
-          + '<button class="' + btnClass + '" ' + disabled + ' onclick="sendFriendRequest(\'' + u.id + '\',\'' + name + '\',this)">' + btnTxt + '</button>'
+        var isFriend = friendIds.includes(u.id);
+        var req = myReqs.find(function(r) { return r.to_id === u.id; });
+        var isPending = req && req.status === 'pending';
+        var btnTxt = isFriend ? '✓ Squad' : isPending ? 'Envoyée' : '+ Ajouter';
+        var btnClass = (isFriend || isPending) ? 'ucard-btn sent' : 'ucard-btn';
+        var disabled = (isFriend || isPending) ? 'disabled' : '';
+        var av = (u.data && u.data.profil && u.data.profil.avatar)
+          ? '<img src="' + u.data.profil.avatar + '">'
+          : name.charAt(0).toUpperCase();
+        return '<div class="ucard" onclick="openFriendProfile(' + JSON.stringify(u).replace(/"/g, '&quot;') + ')" style="cursor:pointer">'
+          + '<div class="ucard-av">' + av + '</div>'
+          + '<div style="flex:1"><div class="ucard-name">' + name + '</div>'
+          + '<div class="ucard-sub">' + (uname ? '<span style="color:var(--acc)">' + uname + '</span> · ' : '') + xp + ' XP</div></div>'
+          + '<button class="' + btnClass + '" ' + disabled + ' onclick="event.stopPropagation();sendFriendRequest(&quot;' + u.id + '&quot;,&quot;' + name.replace(/"/g,'') + '&quot;,this)">' + btnTxt + '</button>'
           + '</div>';
       }).join('');
-    } catch(e) { el.innerHTML = '<div style="color:var(--red);font-size:13px;padding:10px">Erreur de recherche.</div>'; }
+    } catch(e) { el.innerHTML = '<div style="color:var(--red);font-size:13px;padding:10px">Erreur : ' + e.message + '</div>'; }
   }, 400);
 }
 
+// ── ENVOI DEMANDE ─────────────────────────────────────────────
 async function sendFriendRequest(targetId, targetName, btn) {
   if (!_supa || !_supaUser) return;
   btn.textContent = 'Envoi...'; btn.disabled = true;
-  // Sauvegarde la demande dans notre state
-  if (!state.friendRequests) state.friendRequests = [];
-  if (!state.friendRequests.includes(targetId)) state.friendRequests.push(targetId);
-  sv();
-  // Écrit la demande dans le profil cible via Supabase
   try {
-    var res = await _supa.from('profiles').select('id, email, username, display_name, data').eq('id', targetId).single();
-    var targetData = (res.data && res.data.data) || {};
-    if (!targetData.incomingRequests) targetData.incomingRequests = [];
-    if (!targetData.incomingRequests.find(function(r){ return r.from === _supaUser.id; })) {
-      targetData.incomingRequests.push({ from: _supaUser.id, name: (state.profil && state.profil.name) || _supaUser.email, ts: Date.now() });
-      await _supa.from('profiles').update({ data: targetData }).eq('id', targetId);
-    }
-    btn.textContent = 'Demande envoyée'; btn.className = 'ucard-btn sent';
+    var p = state.profil || {};
+    var res = await _supa.from('friend_requests').insert({
+      from_id: _supaUser.id,
+      to_id: targetId,
+      from_name: p.name || _supaUser.email,
+      from_username: p.username || '',
+      from_avatar: p.avatar || '',
+      status: 'pending'
+    });
+    if (res.error && res.error.code !== '23505') throw res.error; // ignore duplicate
+    btn.textContent = 'Envoyée'; btn.className = 'ucard-btn sent';
     notify('Demande envoyée à ' + targetName + ' !'); vib([40,20,40]);
-  } catch(e) { btn.textContent = '+ Ajouter'; btn.disabled = false; notify('Erreur — réessaie.'); }
+  } catch(e) { btn.textContent = '+ Ajouter'; btn.disabled = false; notify('Erreur — ' + e.message); }
+}
+
+// ── LISTE AMIS ────────────────────────────────────────────────
+async function loadFriendRequests() {
+  if (!_supa || !_supaUser) return;
+  // Demandes reçues (pending)
+  var res = await _supa.from('friend_requests')
+    .select('id, from_id, from_name, from_username, from_avatar, status, created_at')
+    .eq('to_id', _supaUser.id)
+    .eq('status', 'pending');
+  state.incomingRequests = res.data || [];
+  // Amis acceptés (both directions)
+  var sent = await _supa.from('friend_requests')
+    .select('id, to_id, from_name, from_username, from_avatar, status')
+    .eq('from_id', _supaUser.id)
+    .eq('status', 'accepted');
+  var recv = await _supa.from('friend_requests')
+    .select('id, from_id, from_name, from_username, from_avatar, status')
+    .eq('to_id', _supaUser.id)
+    .eq('status', 'accepted');
+  var friends = [];
+  (sent.data||[]).forEach(function(r) {
+    friends.push({ id: r.to_id, name: r.from_name, username: r.from_username, avatar: r.from_avatar, xp: 0 });
+  });
+  (recv.data||[]).forEach(function(r) {
+    friends.push({ id: r.from_id, name: r.from_name, username: r.from_username, avatar: r.from_avatar, xp: 0 });
+  });
+  // Fetch XP for each friend from their profile
+  if (friends.length) {
+    var ids = friends.map(function(f) { return f.id; });
+    var profs = await _supa.from('profiles').select('id, display_name, username, data').in('id', ids);
+    (profs.data||[]).forEach(function(p) {
+      var f = friends.find(function(x) { return x.id === p.id; });
+      if (f) {
+        f.xp = (p.data && p.data.xp) || 0;
+        f.name = p.display_name || f.name;
+        f.username = p.username || f.username;
+        f.avatar = (p.data && p.data.profil && p.data.profil.avatar) || f.avatar;
+        f._fullData = p.data;
+      }
+    });
+  }
+  state.friends = friends;
+  sv();
 }
 
 function renderFriendsList() {
+  loadFriendRequests().then(function() {
+    _renderFriendsUI();
+  });
+}
+
+function _renderFriendsUI() {
   var el = document.getElementById('social-friends-section');
   if (!el) return;
   var friends = state.friends || [];
@@ -3751,58 +3957,170 @@ function renderFriendsList() {
   var html = '';
 
   if (incoming.length) {
-    html += '<div class="sec">Demandes reçues</div>';
+    html += '<div class="sec" style="margin-top:0">Demandes reçues <span style="background:var(--red);color:#fff;border-radius:20px;padding:1px 8px;font-size:10px;font-family:DM Sans,sans-serif;font-weight:600;margin-left:4px">' + incoming.length + '</span></div>';
     html += incoming.map(function(r, i) {
+      var av = r.from_avatar ? '<img src="' + r.from_avatar + '">' : (r.from_name||'?').charAt(0).toUpperCase();
       return '<div class="ucard">'
-        + '<div class="ucard-av">' + (r.name||'?').charAt(0).toUpperCase() + '</div>'
-        + '<div style="flex:1"><div class="ucard-name">' + (r.name||'Inconnu') + '</div><div class="ucard-sub">Veut être ton ami</div></div>'
-        + '<button class="ucard-btn" onclick="acceptFriend(' + i + ')">✓ Accepter</button>'
-        + '</div>';
+        + '<div class="ucard-av">' + av + '</div>'
+        + '<div style="flex:1"><div class="ucard-name">' + (r.from_name||'Inconnu') + '</div>'
+        + '<div class="ucard-sub">' + (r.from_username ? '@' + r.from_username + ' · ' : '') + 'Veut rejoindre ta squad</div></div>'
+        + '<div style="display:flex;flex-direction:column;gap:5px;margin-left:auto">'
+        + '<button class="ucard-btn accept" onclick="acceptFriend(&quot;' + r.id + '&quot;,&quot;' + (r.from_name||'').replace(/"/g,'') + '&quot;)">✓ OK</button>'
+        + '<button class="ucard-btn sent" onclick="rejectFriend(&quot;' + r.id + '&quot;)">✕</button>'
+        + '</div></div>';
     }).join('');
   }
 
   if (friends.length) {
-    html += '<div class="sec">Mes amis</div>';
+    html += '<div class="sec" ' + (incoming.length ? '' : 'style="margin-top:0"') + '>Ma squad <span style="color:var(--mut);font-size:11px;font-family:DM Sans,sans-serif;font-weight:400">' + friends.length + '</span></div>';
     html += friends.map(function(f) {
-      return '<div class="ucard">'
-        + '<div class="ucard-av">' + (f.name||'?').charAt(0).toUpperCase() + '</div>'
-        + '<div><div class="ucard-name">' + (f.name||'Ami') + '</div><div class="ucard-sub">' + (f.xp||0) + ' XP</div></div>'
-        + '<span style="margin-left:auto;font-size:18px">' + (f.active ? '💪' : '') + '</span>'
+      var av = f.avatar ? '<img src="' + f.avatar + '">' : (f.name||'?').charAt(0).toUpperCase();
+      var uname = f.username ? '<span style="color:var(--acc)">@' + f.username + '</span> · ' : '';
+      return '<div class="ucard" onclick="openFriendProfile(' + JSON.stringify(f).replace(/"/g,'&quot;') + ')" style="cursor:pointer">'
+        + '<div class="ucard-av friend">' + av + '</div>'
+        + '<div style="flex:1"><div class="ucard-name">' + (f.name||'Ami') + '</div>'
+        + '<div class="ucard-sub">' + uname + (f.xp||0) + ' XP</div></div>'
+        + '<span style="font-size:18px;margin-left:auto;color:var(--mut)">›</span>'
         + '</div>';
     }).join('');
   }
 
   if (!friends.length && !incoming.length) {
-    html = '<div style="text-align:center;padding:40px 20px;color:var(--mut);font-size:13px">Utilise la recherche pour trouver tes amis 👆</div>';
+    html = '<div class="social-empty">'
+      + '<div class="social-empty-ico">👥</div>'
+      + '<div class="social-empty-txt"><strong style="color:var(--txt)">Ta squad est vide</strong><br>Va dans l\'onglet <strong style="color:var(--acc)">Recherche</strong> pour trouver tes amis</div>'
+      + '</div>';
   }
   el.innerHTML = html;
 }
 
-function acceptFriend(idx) {
-  var req = (state.incomingRequests || [])[idx];
-  if (!req) return;
-  if (!state.friends) state.friends = [];
-  state.friends.push({ id: req.from, name: req.name, xp: 0 });
-  state.incomingRequests.splice(idx, 1);
-  sv();
+// ── ACCEPT / REJECT ───────────────────────────────────────────
+async function acceptFriend(requestId, fromName) {
+  if (!_supa) return;
+  await _supa.from('friend_requests').update({ status: 'accepted' }).eq('id', requestId);
+  notify('Tu es maintenant ami avec ' + fromName + ' ! 💪'); vib([50,30,80]);
   renderFriendsList();
-  notify('Tu es maintenant ami avec ' + req.name + ' !'); vib([50,30,80]);
+  loadFriendsFeed();
+}
+async function rejectFriend(requestId) {
+  if (!_supa) return;
+  await _supa.from('friend_requests').delete().eq('id', requestId);
+  renderFriendsList();
 }
 
-// Sync les demandes entrantes depuis Supabase au boot
-async function syncIncomingRequests() {
-  if (!_supa || !_supaUser) return;
-  var res = await _supa.from('profiles').select('id, email, username, display_name, data').eq('id', _supaUser.id).single();
-  var remote = res.data && res.data.data;
-  if (remote && remote.incomingRequests && remote.incomingRequests.length) {
-    state.incomingRequests = remote.incomingRequests;
-    sv();
-    // Badge sur le bouton Amis
-    if (state.incomingRequests.length) {
-      var dot = document.getElementById('friends-dot');
-      if (dot) dot.classList.add('show');
-    }
+// ── PROFIL AMI ────────────────────────────────────────────────
+function openFriendProfile(u) {
+  var ov = document.getElementById('friend-ov');
+  var body = document.getElementById('friend-profile-body');
+  if (!ov || !body) return;
+  var name = u.display_name || u.name || 'Ami';
+  var uname = u.username || '';
+  var xp = u.xp || (u.data && u.data.xp) || 0;
+  var avatar = u.avatar || (u.data && u.data.profil && u.data.profil.avatar) || '';
+  var av = avatar ? '<img src="' + avatar + '" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--acc)">'
+    : '<div style="width:80px;height:80px;border-radius:50%;background:var(--card);border:3px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:36px;color:var(--acc)">' + name.charAt(0).toUpperCase() + '</div>';
+
+  var d = u._fullData || u.data || {};
+  var streak = 0;
+  var sessions = 0;
+  if (d.journal) {
+    Object.keys(d.journal).forEach(function(k) { if (d.journal[k] && d.journal[k].seanceDone) sessions++; });
   }
+
+  body.innerHTML = '<div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">'
+    + av
+    + '<div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">' + name + '</div>'
+    + (uname ? '<div style="font-size:13px;color:var(--acc)">@' + uname + '</div>' : '')
+    + '</div></div>'
+    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">'
+    + '<div style="background:var(--card);border-radius:13px;padding:14px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">' + xp + '</div><div style="font-size:11px;color:var(--mut)">XP Total</div></div>'
+    + '<div style="background:var(--card);border-radius:13px;padding:14px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">' + sessions + '</div><div style="font-size:11px;color:var(--mut)">Séances</div></div>'
+    + '</div>'
+    + '<div id="friend-activity-feed"></div>';
+
+  // Load friend's recent activity
+  if (_supa && u.id) {
+    _supa.from('activity').select('*').eq('user_id', u.id).order('created_at', { ascending: false }).limit(10)
+      .then(function(res) {
+        var feedEl = document.getElementById('friend-activity-feed');
+        if (!feedEl) return;
+        var items = res.data || [];
+        if (!items.length) { feedEl.innerHTML = '<div style="color:var(--mut);font-size:13px;text-align:center;padding:20px">Aucune activité récente</div>'; return; }
+        feedEl.innerHTML = '<div class="sec">Activité récente</div>' + items.map(function(a) {
+          return renderFeedItem(a);
+        }).join('');
+      });
+  }
+
+  ov.classList.add('open');
+}
+function closeFriendProfile() {
+  document.getElementById('friend-ov').classList.remove('open');
+}
+
+// ── FIL D'ACTIVITÉ ────────────────────────────────────────────
+var FEED_TYPES = {
+  session_start: { ico: '💪', txt: function(p,n) { return '<strong>' + n + '</strong> a commencé une séance'; } },
+  session_end:   { ico: '🏆', txt: function(p,n) { return '<strong>' + n + '</strong> a terminé sa séance (' + (p.dur||'') + ')'; } },
+  walk_start:    { ico: '🚶', txt: function(p,n) { return '<strong>' + n + '</strong> est en train de marcher'; } },
+  walk_end:      { ico: '✅', txt: function(p,n) { return '<strong>' + n + '</strong> a fini sa marche (' + (p.dur||'') + ')'; } },
+  badge:         { ico: '🏅', txt: function(p,n) { return '<strong>' + n + '</strong> a débloqué <strong>' + (p.badge||'un badge') + '</strong>'; } },
+  pr:            { ico: '🔥', txt: function(p,n) { return '<strong>' + n + '</strong> a battu son record sur ' + (p.ex||'un exercice') + ' (' + (p.charge||'') + 'kg)'; } }
+};
+
+function renderFeedItem(a) {
+  var type = FEED_TYPES[a.type] || { ico: '⚡', txt: function(p,n) { return n + ' a fait quelque chose'; } };
+  var payload = a.payload || {};
+  var name = a.user_name || 'Quelqu\'un';
+  var av = a.user_avatar ? '<img src="' + a.user_avatar + '">' : name.charAt(0).toUpperCase();
+  var time = '';
+  if (a.created_at) {
+    var diff = Math.floor((Date.now() - new Date(a.created_at)) / 60000);
+    time = diff < 60 ? diff + 'min' : Math.floor(diff/60) + 'h';
+  }
+  return '<div class="feed-item" style="border-left-color:' + (a.type.includes('badge') ? 'var(--grn)' : a.type.includes('pr') ? '#ff6b35' : 'var(--acc)') + '">'
+    + '<div class="feed-av">' + av + '</div>'
+    + '<div class="feed-txt">' + type.ico + ' ' + type.txt(payload, name) + '</div>'
+    + '<div class="feed-time">' + time + '</div>'
+    + '</div>';
+}
+
+async function loadFriendsFeed() {
+  var feedEl = document.getElementById('friends-feed-section');
+  if (!feedEl || !_supa || !_supaUser) return;
+  var friends = state.friends || [];
+  if (!friends.length) { feedEl.innerHTML = ''; return; }
+  var ids = friends.map(function(f) { return f.id; });
+  var res = await _supa.from('activity').select('*').in('user_id', ids).order('created_at', { ascending: false }).limit(20);
+  var items = res.data || [];
+  if (!items.length) { feedEl.innerHTML = ''; return; }
+  feedEl.innerHTML = '<div class="sec">Activité de ta squad</div>' + items.map(function(a) { return renderFeedItem(a); }).join('');
+}
+
+// ── LOG ACTIVITÉ (appelé depuis startSession/stopSession) ──────
+async function logActivity(type, payload) {
+  if (!_supa || !_supaUser) return;
+  var p = state.profil || {};
+  await _supa.from('activity').insert({
+    user_id: _supaUser.id,
+    user_name: p.name || _supaUser.email,
+    user_username: p.username || '',
+    user_avatar: p.avatar || '',
+    type: type,
+    payload: payload || {}
+  });
+}
+
+// ── SYNC AU BOOT ──────────────────────────────────────────────
+async function syncIncomingRequests() {
+  await loadFriendRequests();
+  _renderFriendsUI();
+  if ((state.incomingRequests||[]).length) {
+    var dot = document.getElementById('friends-dot');
+    if (dot) dot.classList.add('show');
+  }
+  loadFriendsFeed();
+  updateSquadBar();
 }
 
 function bootApp(){
@@ -3852,6 +4170,15 @@ document.addEventListener('DOMContentLoaded',function(){
     <button class="crop-btn cancel" onclick="closeCrop()">Annuler</button>
     <button class="crop-btn confirm" onclick="confirmCrop()">VALIDER ✓</button>
   </div>
+</div>
+
+<!-- FRIEND PROFILE OVERLAY -->
+<div class="friend-ov" id="friend-ov">
+  <div class="friend-head">
+    <button onclick="closeFriendProfile()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px">&#8592;</button>
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--acc)">PROFIL</div>
+  </div>
+  <div id="friend-profile-body" style="padding:20px"></div>
 </div>
 </body>
 </html>
