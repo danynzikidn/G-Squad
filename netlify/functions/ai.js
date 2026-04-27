@@ -11,31 +11,36 @@ exports.handler = async function(event) {
 
   try {
     const body = JSON.parse(event.body);
-    const { provider = 'gemini', system, messages, max_tokens = 1000 } = body;
+    const { system, messages, max_tokens = 1000 } = body;
 
-    if (provider === 'gemini') {
-      const apiKey = process.env.GEMINI_API_KEY || body.userKey;
-      if (!apiKey) return { statusCode: 500, headers, body: JSON.stringify({ error: 'Clé Gemini manquante.' }) };
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) return { statusCode: 500, headers, body: JSON.stringify({ error: 'Clé OpenAI manquante.' }) };
 
-      const prompt = system ? system + '\n\n' + (messages?.[0]?.content || '') : (messages?.[0]?.content || '');
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
+    const oaiMessages = system
+      ? [{ role: 'system', content: system }, ...(messages || [])]
+      : (messages || []);
 
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-      });
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages: oaiMessages,
+        max_tokens
+      })
+    });
 
-      const data = await res.json();
-      if (!res.ok) {
-        console.error('Gemini error:', JSON.stringify(data));
-        return { statusCode: res.status, headers, body: JSON.stringify({ error: data?.error?.message || 'Erreur Gemini.' }) };
-      }
-      const text = data.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      return { statusCode: 200, headers, body: JSON.stringify({ text }) };
+    const data = await res.json();
+    if (!res.ok) {
+      console.error('OpenAI error:', JSON.stringify(data));
+      return { statusCode: res.status, headers, body: JSON.stringify({ error: data?.error?.message || 'Erreur OpenAI.' }) };
     }
 
-    return { statusCode: 400, headers, body: JSON.stringify({ error: 'Provider inconnu.' }) };
+    const text = data.choices?.[0]?.message?.content || '';
+    return { statusCode: 200, headers, body: JSON.stringify({ text }) };
 
   } catch (e) {
     return { statusCode: 500, headers, body: JSON.stringify({ error: 'Erreur serveur : ' + e.message }) };
