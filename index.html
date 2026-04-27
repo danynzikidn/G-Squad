@@ -21,19 +21,19 @@
 
 /* ONBOARDING */
 .onboard{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;padding-top:env(safe-area-inset-top,32px)}
-.ob-logo{font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--acc);letter-spacing:2px;margin-bottom:6px}
+.ob-logo{font-family:Bebas Neue,sans-serif;font-size:52px;color:var(--acc);letter-spacing:2px;margin-bottom:6px}
 .ob-sub{font-size:14px;color:var(--mut);margin-bottom:40px;text-align:center}
 .ob-step{width:100%;max-width:340px}
 .ob-label{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
-.ob-inp{width:100%;padding:14px 16px;border-radius:13px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:17px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;margin-bottom:14px}
+.ob-inp{width:100%;padding:14px 16px;border-radius:13px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:17px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:14px}
 .ob-inp:focus{outline:none;border-color:var(--acc)}
 .ob-gender{display:flex;gap:10px;margin-bottom:24px}
 .ob-g{flex:1;padding:18px 10px;border-radius:14px;border:2px solid var(--brd);background:var(--card);cursor:pointer;text-align:center;transition:all .2s}
 .ob-g.sel{border-color:var(--acc);background:rgba(232,255,71,.08)}
 .ob-g.sel.female{border-color:#c84bff;background:rgba(200,75,255,.08)}
 .ob-gico{font-size:36px;margin-bottom:6px}
-.ob-gname{font-family:'Bebas Neue',sans-serif;font-size:18px}
-.ob-btn{width:100%;padding:16px;border-radius:13px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;border:none;cursor:pointer}
+.ob-gname{font-family:Bebas Neue,sans-serif;font-size:18px}
+.ob-btn{width:100%;padding:16px;border-radius:13px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;border:none;cursor:pointer}
 
 /* PROFIL */
 .profil-ov{position:fixed;inset:0;background:var(--bg);z-index:800;display:none;flex-direction:column;overflow-y:auto}
@@ -41,12 +41,12 @@
 .avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--acc);cursor:pointer}
 .avatar-ph{width:80px;height:80px;border-radius:50%;background:var(--card);border:3px solid var(--acc);display:flex;align-items:center;justify-content:center;font-size:32px;cursor:pointer;flex-shrink:0}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font-family:DM Sans,sans-serif}
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh}
 
 /* NAV */
 .nav{display:flex;background:var(--sur);border-top:1px solid var(--brd);padding-bottom:env(safe-area-inset-bottom,14px);flex-shrink:0}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;background:none;border:none;color:var(--mut);font-family:'DM Sans',sans-serif;font-size:10px;cursor:pointer;position:relative}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;background:none;border:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:10px;cursor:pointer;position:relative}
 .nb.act{color:var(--acc)}
 .nb.act::after{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--acc);border-radius:0 0 2px 2px}
 .ni{font-size:20px;line-height:1}
@@ -60,29 +60,29 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 /* DAYBAR */
 .daybar{display:flex;gap:6px;overflow-x:auto;padding:9px 14px;scrollbar-width:none;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
 .daybar::-webkit-scrollbar{display:none}
-.dp{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.dp{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:13px;cursor:pointer;font-family:DM Sans,sans-serif;white-space:nowrap}
 .dp.act{background:var(--acc);color:#000;border-color:var(--acc);font-weight:500}
 .dp.done{border-color:var(--grn);color:var(--grn)}
 
 /* HUD */
 .hud{display:flex;gap:7px;margin-bottom:12px}
 .hp{flex:1;background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:9px;text-align:center;cursor:pointer}
-.hv{font-family:'Bebas Neue',sans-serif;font-size:21px;line-height:1}
+.hv{font-family:Bebas Neue,sans-serif;font-size:21px;line-height:1}
 .hl{font-size:9px;color:var(--mut);margin-top:2px}
 
 /* PROGRESS */
 .bptrack{height:10px;background:var(--fnt);border-radius:20px;overflow:hidden;margin:5px 0}
 .bpfill{height:100%;border-radius:20px;background:linear-gradient(90deg,var(--acc),#b8ff00);transition:width .5s cubic-bezier(.34,1.56,.64,1)}
-.bppct{font-family:'Bebas Neue',sans-serif;font-size:44px;text-align:center;color:var(--acc);line-height:1;margin-bottom:10px}
+.bppct{font-family:Bebas Neue,sans-serif;font-size:44px;text-align:center;color:var(--acc);line-height:1;margin-bottom:10px}
 
 /* TIMER */
 .tstrip{background:var(--sur);border:1px solid var(--brd);border-radius:13px;padding:9px 13px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.tdig{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--acc);letter-spacing:2px;min-width:78px}
+.tdig{font-family:Bebas Neue,sans-serif;font-size:34px;color:var(--acc);letter-spacing:2px;min-width:78px}
 .tbtns{display:flex;gap:4px;flex:1;flex-direction:column}
 .trow{display:flex;gap:4px}
-.tb{flex:1;padding:7px 2px;border-radius:8px;border:1px solid var(--brd);background:none;color:var(--txt);font-size:11px;font-family:'DM Sans',sans-serif;cursor:pointer}
+.tb{flex:1;padding:7px 2px;border-radius:8px;border:1px solid var(--brd);background:none;color:var(--txt);font-size:11px;font-family:DM Sans,sans-serif;cursor:pointer}
 .tb.go{background:var(--acc);color:#000;border-color:var(--acc);font-weight:500}
-.tinp{flex:1;padding:6px;border-radius:7px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:12px;text-align:center;font-family:'DM Sans',sans-serif;-webkit-appearance:none}
+.tinp{flex:1;padding:6px;border-radius:7px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:12px;text-align:center;font-family:DM Sans,sans-serif;-webkit-appearance:none}
 
 /* EX DOTS */
 .exnav{display:flex;gap:5px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;margin-bottom:10px}
@@ -97,7 +97,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 @keyframes glow{0%{box-shadow:0 0 0 0 rgba(57,255,20,.6)}100%{box-shadow:0 0 0 20px rgba(57,255,20,0)}}
 .hero.glowing{animation:glow .4s ease}
 .exnum{font-size:10px;color:var(--mut);letter-spacing:.8px;text-transform:uppercase;margin-bottom:5px}
-.extitle{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1.05;margin-bottom:4px}
+.extitle{font-family:Bebas Neue,sans-serif;font-size:30px;line-height:1.05;margin-bottom:4px}
 .exsets{font-size:15px;font-weight:300;color:var(--mut);margin-bottom:7px}
 .exnote{font-size:12px;color:var(--blu);background:rgba(68,170,255,.08);border-radius:7px;padding:6px 10px;margin-bottom:7px;border-left:3px solid var(--blu)}
 .exrow{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
@@ -106,28 +106,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .minilog{background:var(--fnt);border-radius:10px;padding:10px;margin-top:8px;display:none}
 .minilog.open{display:block}
 .mlrow{display:flex;gap:6px;margin-bottom:6px}
-.mlinp{flex:1;padding:8px 10px;border-radius:8px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none}
-.mlsave{width:100%;padding:10px;border-radius:8px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:17px;border:none;cursor:pointer}
+.mlinp{flex:1;padding:8px 10px;border-radius:8px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none}
+.mlsave{width:100%;padding:10px;border-radius:8px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:17px;border:none;cursor:pointer}
 
 /* DONE BTN */
-.donebtn{width:100%;padding:18px;border-radius:14px;border:none;font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;cursor:pointer;transition:transform .1s;margin-bottom:10px}
+.donebtn{width:100%;padding:18px;border-radius:14px;border:none;font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:2px;cursor:pointer;transition:transform .1s;margin-bottom:10px}
 .donebtn:active{transform:scale(.96)}
 .donebtn.rdy{background:var(--acc);color:#000}
-.donebtn.alr{background:var(--fnt);color:var(--mut);font-size:13px;font-family:'DM Sans',sans-serif;letter-spacing:0}
+.donebtn.alr{background:var(--fnt);color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;letter-spacing:0}
 .actrow{display:flex;gap:8px;margin-bottom:12px}
-.actbtn{flex:1;padding:11px;border-radius:11px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.actbtn{flex:1;padding:11px;border-radius:11px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:13px;cursor:pointer;font-family:DM Sans,sans-serif}
 
 /* NUTRI */
 .ncard{background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px}
-.nval{font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;margin:3px 0}
+.nval{font-family:Bebas Neue,sans-serif;font-size:38px;line-height:1;margin:3px 0}
 .ntrack{height:10px;background:var(--fnt);border-radius:20px;overflow:hidden;margin-bottom:8px}
 .nfill{height:100%;border-radius:20px;transition:width .4s cubic-bezier(.34,1.56,.64,1)}
 .nbtns{display:flex;gap:6px}
-.nbtn{flex:1;padding:10px 4px;border-radius:10px;border:1px solid var(--brd);background:var(--fnt);color:var(--txt);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500}
+.nbtn{flex:1;padding:10px 4px;border-radius:10px;border:1px solid var(--brd);background:var(--fnt);color:var(--txt);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500}
 .nbtn:active{opacity:.7}
 .ninprow{display:flex;gap:6px;margin-bottom:8px;align-items:center}
-.ninp{flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none}
-.nadd{padding:10px 14px;border-radius:10px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;font-weight:500}
+.ninp{flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none}
+.nadd{padding:10px 14px;border-radius:10px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500}
 .nrst{background:none;border:none;color:var(--red);font-size:18px;padding:4px 8px;cursor:pointer}
 
 /* MEAL */
@@ -157,7 +157,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .dot:nth-child(2){animation-delay:.2s}
 .dot:nth-child(3){animation-delay:.4s}
 @keyframes blink{0%,80%,100%{opacity:.2}40%{opacity:1}}
-.sug{padding:7px 12px;border-radius:20px;border:1px solid var(--brd);background:var(--card);color:var(--mut);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+.sug{padding:7px 12px;border-radius:20px;border:1px solid var(--brd);background:var(--card);color:var(--mut);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;white-space:nowrap}
 
 /* JOURNAL */
 .jcard{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:14px;margin-bottom:10px}
@@ -169,7 +169,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .jv.good{color:var(--grn)}
 .jv.bad{color:var(--red)}
 .jvtabs{display:flex;gap:5px;margin-bottom:12px}
-.jvt{flex:1;padding:8px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer}
+.jvt{flex:1;padding:8px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer}
 .jvt.act{background:var(--acc);color:#000;border-color:var(--acc);font-weight:500}
 .mbar{height:5px;background:var(--fnt);border-radius:10px;overflow:hidden;margin-top:3px}
 .mbarfill{height:100%;border-radius:10px}
@@ -180,7 +180,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .more-sh{position:fixed;bottom:0;left:0;right:0;background:var(--sur);border-top:1px solid var(--brd);border-radius:20px 20px 0 0;padding:18px 14px;padding-bottom:env(safe-area-inset-bottom,20px);z-index:901;transform:translateY(100%);transition:transform .3s ease}
 .more-sh.open{transform:translateY(0)}
 .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
-.mgbtn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 8px;background:var(--card);border-radius:13px;border:1px solid var(--brd);cursor:pointer;font-size:11px;color:var(--mut);font-family:'DM Sans',sans-serif}
+.mgbtn{display:flex;flex-direction:column;align-items:center;gap:5px;padding:14px 8px;background:var(--card);border-radius:13px;border:1px solid var(--brd);cursor:pointer;font-size:11px;color:var(--mut);font-family:DM Sans,sans-serif}
 .mgbtn .ico{font-size:22px}
 .mgbtn:active{background:var(--fnt)}
 
@@ -188,7 +188,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .flov{position:fixed;inset:0;background:var(--bg);z-index:800;display:none;flex-direction:column;overflow:hidden}
 .flov.open{display:flex}
 .flhead{display:flex;align-items:center;gap:12px;padding:env(safe-area-inset-top,14px) 14px 12px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
-.fltitle{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc)}
+.fltitle{font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc)}
 .flcls{background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px;flex-shrink:0}
 .flbody{padding:14px;flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
 
@@ -198,9 +198,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .card{background:var(--card);border:1px solid var(--brd);border-radius:14px;padding:14px;margin-bottom:10px}
 .lfield{margin-bottom:11px}
 .lfield label{display:block;font-size:10px;color:var(--mut);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px}
-.lfield input,.lfield select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none}
+.lfield input,.lfield select{width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none}
 .lfield input:focus,.lfield select:focus{outline:none;border-color:var(--acc)}
-.bigbtn{width:100%;padding:16px;border-radius:13px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;border:none;cursor:pointer}
+.bigbtn{width:100%;padding:16px;border-radius:13px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;border:none;cursor:pointer}
 .bigbtn:active{transform:scale(.98)}
 .lentry{background:var(--card);border-radius:11px;padding:11px 13px;margin-bottom:7px;border-left:3px solid var(--acc)}
 
@@ -214,7 +214,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .finov.open{display:flex}
 
 /* XP POP */
-.xppop{position:fixed;left:50%;transform:translateX(-50%);top:30%;font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--acc);pointer-events:none;z-index:1999;opacity:0}
+.xppop{position:fixed;left:50%;transform:translateX(-50%);top:30%;font-family:Bebas Neue,sans-serif;font-size:44px;color:var(--acc);pointer-events:none;z-index:1999;opacity:0}
 @keyframes xpfloat{0%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(-60px)}}
 .xppop.fire{animation:xpfloat .7s ease forwards}
 
@@ -229,7 +229,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .prog-sets{color:var(--mut);font-size:11px}
 
 /* EXOS */
-.exos-filt{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+.exos-filt{flex-shrink:0;padding:6px 14px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;white-space:nowrap}
 .exos-filt.act{background:var(--acc);color:#000;border-color:var(--acc);font-weight:500}
 .exo-card{background:var(--card);border-radius:13px;padding:13px 14px;margin-bottom:8px;border:1px solid var(--brd)}
 .exo-name{font-size:14px;font-weight:500;color:var(--txt);margin-bottom:3px}
@@ -245,20 +245,20 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 /* SESSION TIMER BAR */
 .sess-bar{background:var(--sur);border-bottom:1px solid var(--brd);padding:8px 14px;display:none;align-items:center;justify-content:space-between;flex-shrink:0}
 .sess-bar.active{display:flex}
-.sess-time{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc);letter-spacing:2px}
+.sess-time{font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc);letter-spacing:2px}
 .sess-label{font-size:11px;color:var(--mut)}
-.sess-stop{padding:6px 14px;border-radius:20px;border:none;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:14px;cursor:pointer}
+.sess-stop{padding:6px 14px;border-radius:20px;border:none;background:var(--red);color:#fff;font-family:Bebas Neue,sans-serif;font-size:14px;cursor:pointer}
 /* AUTH SCREEN */
 .auth-screen{position:fixed;inset:0;background:var(--bg);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;padding-top:env(safe-area-inset-top,32px)}
-.auth-logo{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--acc);letter-spacing:3px;margin-bottom:4px}
+.auth-logo{font-family:Bebas Neue,sans-serif;font-size:56px;color:var(--acc);letter-spacing:3px;margin-bottom:4px}
 .auth-sub{font-size:13px;color:var(--mut);margin-bottom:36px;text-align:center}
 .auth-box{width:100%;max-width:360px;background:var(--card);border:1px solid var(--brd);border-radius:20px;padding:24px}
 .auth-tabs{display:flex;gap:0;margin-bottom:24px;background:var(--fnt);border-radius:10px;padding:3px}
-.auth-tab{flex:1;padding:9px;border-radius:8px;border:none;background:none;color:var(--mut);font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer;transition:all .2s}
+.auth-tab{flex:1;padding:9px;border-radius:8px;border:none;background:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:14px;cursor:pointer;transition:all .2s}
 .auth-tab.act{background:var(--sur);color:var(--txt);font-weight:500}
-.auth-inp{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:16px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;margin-bottom:12px}
+.auth-inp{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:16px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:12px}
 .auth-inp:focus{outline:none;border-color:var(--acc)}
-.auth-btn{width:100%;padding:15px;border-radius:12px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;border:none;cursor:pointer;margin-top:4px}
+.auth-btn{width:100%;padding:15px;border-radius:12px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:22px;letter-spacing:2px;border:none;cursor:pointer;margin-top:4px}
 .auth-btn:active{transform:scale(.98)}
 .auth-err{color:var(--red);font-size:13px;text-align:center;margin-top:10px;min-height:18px}
 .auth-loader{display:none;text-align:center;padding:10px;color:var(--mut);font-size:13px}
@@ -266,13 +266,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .social-ov{position:fixed;left:0;right:0;bottom:112px;background:var(--bg);z-index:799;display:flex;flex-direction:column;border-radius:18px 18px 0 0;border:1px solid var(--brd);border-bottom:none;box-shadow:0 -8px 40px rgba(0,0,0,.5);transform:translateY(100%);transition:transform .3s cubic-bezier(.32,0,.67,0);max-height:75vh}
 .social-ov.open{transform:translateY(0)}
 .social-head{display:flex;align-items:center;gap:10px;padding:env(safe-area-inset-top,14px) 14px 12px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
-.social-inp{flex:1;padding:10px 14px;border-radius:20px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none}
+.social-inp{flex:1;padding:10px 14px;border-radius:20px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none}
 .social-inp:focus{outline:none;border-color:var(--acc)}
 .ucard{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border-radius:13px;margin-bottom:8px;border:1px solid var(--brd)}
-.ucard-av{width:44px;height:44px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--acc);flex-shrink:0}
+.ucard-av{width:44px;height:44px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--acc);flex-shrink:0}
 .ucard-name{font-size:14px;font-weight:500;color:var(--txt)}
 .ucard-sub{font-size:11px;color:var(--mut);margin-top:2px}
-.ucard-btn{margin-left:auto;padding:7px 14px;border-radius:20px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer;flex-shrink:0}
+.ucard-btn{margin-left:auto;padding:7px 14px;border-radius:20px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;flex-shrink:0}
 .ucard-btn.sent{border-color:var(--mut);background:none;color:var(--mut)}
 /* NOTIF BELL */
 .notif-bell{position:relative;display:flex;align-items:center;justify-content:center;width:36px;height:36px;cursor:pointer}
@@ -280,7 +280,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .notif-dot.show{display:block}
 /* FEED */
 .feed-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--card);border-radius:12px;margin-bottom:7px;border-left:3px solid var(--acc)}
-.feed-av{width:34px;height:34px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--acc);flex-shrink:0;overflow:hidden;border:2px solid var(--brd)}
+.feed-av{width:34px;height:34px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:15px;color:var(--acc);flex-shrink:0;overflow:hidden;border:2px solid var(--brd)}
 .feed-av img{width:100%;height:100%;object-fit:cover}
 .feed-txt{font-size:13px;color:var(--txt);line-height:1.4;flex:1}
 .feed-time{font-size:10px;color:var(--mut);flex-shrink:0}
@@ -296,7 +296,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .crop-img{position:absolute;user-select:none;pointer-events:none;transform-origin:0 0}
 .crop-hint{color:var(--mut);font-size:12px;margin-top:14px;text-align:center}
 .crop-btns{display:flex;gap:10px;margin-top:18px}
-.crop-btn{padding:12px 28px;border-radius:12px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;border:none;cursor:pointer}
+.crop-btn{padding:12px 28px;border-radius:12px;font-family:Bebas Neue,sans-serif;font-size:18px;letter-spacing:1px;border:none;cursor:pointer}
 .crop-btn.confirm{background:var(--acc);color:#000}
 .crop-btn.cancel{background:none;border:1px solid var(--brd);color:var(--mut)}
 .crop-zoom{width:200px;margin-top:12px;accent-color:var(--acc)}
@@ -328,7 +328,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div class="auth-err" id="auth-err"></div>
     <div class="auth-loader" id="auth-loader">Chargement...</div>
   </div>
-  <button onclick="skipAuth()" style="margin-top:18px;background:none;border:none;color:var(--mut);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;padding:8px;text-decoration:underline;opacity:.8">Continuer sans compte →</button>
+  <button onclick="skipAuth()" style="margin-top:18px;background:none;border:none;color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;padding:8px;text-decoration:underline;opacity:.8">Continuer sans compte →</button>
 </div>
 
 <!-- ONBOARDING -->
@@ -363,10 +363,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
       </div>
     </div>
     <div id="ob-imc-result" style="display:none;background:var(--card);border-radius:11px;padding:12px 14px;margin-bottom:14px;border-left:4px solid var(--acc)">
-      <div id="ob-imc-val" style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc)"></div>
+      <div id="ob-imc-val" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc)"></div>
       <div id="ob-imc-label" style="font-size:13px;color:var(--mut);margin-top:2px"></div>
     </div>
-    <button onclick="calcIMC()" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:16px">Calculer mon IMC</button>
+    <button onclick="calcIMC()" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:16px">Calculer mon IMC</button>
 
     <div class="ob-label">Ta salle (plusieurs possibles)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px" id="ob-gyms">
@@ -435,7 +435,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 <!-- PROFIL OVERLAY -->
 <div class="profil-ov" id="profil-ov">
   <div style="background:var(--sur);border-bottom:1px solid var(--brd);padding:env(safe-area-inset-top,14px) 14px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc)">MON PROFIL</div>
+    <div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc)">MON PROFIL</div>
     <button onclick="closeProfil()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px">&#8592;</button>
   </div>
   <div style="padding:20px">
@@ -443,7 +443,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
       <div id="profil-avatar-wrap" onclick="changeAvatar()"></div>
       <div>
-        <div id="profil-nom" style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--acc)"></div>
+        <div id="profil-nom" style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)"></div>
         <div id="profil-genre" style="font-size:13px;color:var(--mut)"></div>
         <div style="font-size:11px;color:var(--mut);margin-top:2px">Appuie sur la photo pour la changer</div>
       </div>
@@ -453,19 +453,19 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <!-- Stats globales -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
       <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-sess" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc)">0</div>
+        <div id="prof-sess" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">0</div>
         <div style="font-size:11px;color:var(--mut)">Séances complètes</div>
       </div>
       <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-xp" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc)">0</div>
+        <div id="prof-xp" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">0</div>
         <div style="font-size:11px;color:var(--mut)">XP Total</div>
       </div>
       <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-streak" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:#ff6b35">0</div>
+        <div id="prof-streak" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:#ff6b35">0</div>
         <div style="font-size:11px;color:var(--mut)">Streak actuel</div>
       </div>
       <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-poids" style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--acc)">--</div>
+        <div id="prof-poids" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">--</div>
         <div style="font-size:11px;color:var(--mut)">Dernier poids (kg)</div>
       </div>
     </div>
@@ -510,40 +510,40 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div style="display:flex;gap:8px;margin-bottom:8px">
       <div style="flex:1">
         <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Taille (cm)</div>
-        <input id="edit-taille" type="number" inputmode="numeric" placeholder="185" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none">
+        <input id="edit-taille" type="number" inputmode="numeric" placeholder="185" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
       </div>
       <div style="flex:1">
         <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Poids (kg)</div>
-        <input id="edit-poids-profil" type="number" inputmode="decimal" step="0.1" placeholder="95" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none">
+        <input id="edit-poids-profil" type="number" inputmode="decimal" step="0.1" placeholder="95" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
       </div>
     </div>
     <div id="profil-imc-result" style="display:none;background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--acc)">
-      <span id="profil-imc-val" style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acc)"></span>
+      <span id="profil-imc-val" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)"></span>
       <span id="profil-imc-label" style="font-size:12px;color:var(--mut);margin-left:8px"></span>
     </div>
-    <button onclick="saveProfilMensures()" style="width:100%;padding:11px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:16px">Calculer et sauvegarder l'IMC</button>
+    <button onclick="saveProfilMensures()" style="width:100%;padding:11px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:16px">Calculer et sauvegarder l'IMC</button>
 
     <!-- Choix API IA -->
     <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">API Intelligence artificielle</div>
-    <select id="api-choice" onchange="saveAPIChoice()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;margin-bottom:6px">
+    <select id="api-choice" onchange="saveAPIChoice()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:6px">
       <option value="claude">Claude (Anthropic)</option>
       <option value="openai">ChatGPT (OpenAI)</option>
       <option value="gemini">Gemini (Google)</option>
     </select>
     <div id="api-key-wrap" style="margin-bottom:16px">
       <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Clé API (facultative — laisse vide pour utiliser la clé par défaut)</div>
-      <input id="api-key-input" type="password" placeholder="sk-..." style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;margin-bottom:6px">
-      <button onclick="saveAPIKey()" style="width:100%;padding:10px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">Sauvegarder la clé API</button>
+      <input id="api-key-input" type="password" placeholder="sk-..." style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:6px">
+      <button onclick="saveAPIKey()" style="width:100%;padding:10px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Sauvegarder la clé API</button>
     </div>
 
     <!-- Modifier prénom -->
     <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Modifier le prénom</div>
-    <input id="edit-name" type="text" maxlength="20" placeholder="Nouveau prénom" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;margin-bottom:8px;-webkit-appearance:none">
+    <input id="edit-name" type="text" maxlength="20" placeholder="Nouveau prénom" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-bottom:8px;-webkit-appearance:none">
     <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;margin-top:4px">@Username</div>
-    <input id="edit-username" type="text" maxlength="20" placeholder="@username" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;margin-bottom:8px;-webkit-appearance:none" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'').toLowerCase()">
-    <button onclick="saveProfilName()" style="width:100%;padding:13px;border-radius:11px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:18px;border:none;cursor:pointer;margin-bottom:8px">SAUVEGARDER</button>
-    <button onclick="deconnexion()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:none;color:var(--mut);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:8px">Se déconnecter (revenir à l'accueil)</button>
-    <button onclick="resetAppConfirm()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,59,59,.3);background:none;color:var(--red);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer">Réinitialiser l'application</button>
+    <input id="edit-username" type="text" maxlength="20" placeholder="@username" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-bottom:8px;-webkit-appearance:none" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'').toLowerCase()">
+    <button onclick="saveProfilName()" style="width:100%;padding:13px;border-radius:11px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer;margin-bottom:8px">SAUVEGARDER</button>
+    <button onclick="deconnexion()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:none;color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:8px">Se déconnecter (revenir à l'accueil)</button>
+    <button onclick="resetAppConfirm()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,59,59,.3);background:none;color:var(--red);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Réinitialiser l'application</button>
   </div>
 </div>
 
@@ -554,11 +554,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
   <!-- FIN OVERLAY -->
   <div class="finov" id="finov">
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:52px;color:var(--acc);line-height:1">SEANCE<br>BOUCLEE !</div>
+    <div style="font-family:Bebas Neue,sans-serif;font-size:52px;color:var(--acc);line-height:1">SEANCE<br>BOUCLEE !</div>
     <div style="font-size:13px;color:var(--mut);margin-top:8px">Tu as gagne</div>
-    <div id="fin-xp" style="font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--grn);line-height:1;margin:10px 0">+0 XP</div>
+    <div id="fin-xp" style="font-family:Bebas Neue,sans-serif;font-size:72px;color:var(--grn);line-height:1;margin:10px 0">+0 XP</div>
     <div style="font-size:13px;color:var(--mut)">Prends ta whey + creatine</div>
-    <button onclick="closeFinov()" style="margin-top:24px;padding:14px 44px;border-radius:13px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:20px;border:none;cursor:pointer">FERMER</button>
+    <button onclick="closeFinov()" style="margin-top:24px;padding:14px 44px;border-radius:13px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:20px;border:none;cursor:pointer">FERMER</button>
   </div>
 
   <div style="display:flex;align-items:center;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0">
@@ -574,7 +574,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
       <div class="sess-time" id="sess-time">00:00</div>
     </div>
     <div style="display:flex;gap:8px">
-      <button onclick="cancelSession()" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:none;color:rgba(255,255,255,.7);font-size:12px;font-family:'DM Sans',sans-serif;cursor:pointer">Annuler</button>
+      <button onclick="cancelSession()" style="padding:6px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:none;color:rgba(255,255,255,.7);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer">Annuler</button>
       <button class="sess-stop" onclick="stopSession()">TERMINER ✓</button>
     </div>
   </div>
@@ -586,12 +586,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
       <div class="wrap">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">
           <div>
-            <div id="f-day" style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--acc)">LUNDI</div>
+            <div id="f-day" style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">LUNDI</div>
             <div id="f-type" style="font-size:12px;color:var(--mut)">Push</div>
           </div>
           <div style="display:flex;align-items:center;gap:8px">
-            <div id="f-dur" style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--mut)">75 min</div>
-            <button id="start-sess-btn" onclick="startSession('seance')" style="padding:7px 13px;border-radius:20px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:14px;border:none;cursor:pointer;white-space:nowrap">▶ GO</button>
+            <div id="f-dur" style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--mut)">75 min</div>
+            <button id="start-sess-btn" onclick="startSession('seance')" style="padding:7px 13px;border-radius:20px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:14px;border:none;cursor:pointer;white-space:nowrap">▶ GO</button>
           </div>
         </div>
         <div class="hud">
@@ -603,9 +603,9 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         <div style="display:flex;align-items:center;gap:8px;background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:12px">
           <span style="font-size:13px;color:var(--mut);white-space:nowrap">&#9878; Poids</span>
           <input id="quick-poids" type="number" step="0.1" inputmode="decimal" placeholder="ex: 94.5"
-            style="flex:1;padding:8px 12px;border-radius:9px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:15px;font-family:'DM Sans',sans-serif;-webkit-appearance:none">
+            style="flex:1;padding:8px 12px;border-radius:9px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
           <span style="font-size:13px;color:var(--mut)">kg</span>
-          <button onclick="saveQuickPoids()" style="padding:8px 14px;border-radius:9px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:16px;border:none;cursor:pointer">OK</button>
+          <button onclick="saveQuickPoids()" style="padding:8px 14px;border-radius:9px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:16px;border:none;cursor:pointer">OK</button>
           <a href="spotify://" style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;background:#1DB954;flex-shrink:0;text-decoration:none">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
           </a>
@@ -671,7 +671,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:14px">
           <button onclick="nNavDate(-1)" style="background:none;border:none;color:var(--acc);font-size:24px;cursor:pointer;padding:4px 8px">&#8592;</button>
           <div style="text-align:center">
-            <div id="n-nav-date" style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acc)"></div>
+            <div id="n-nav-date" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)"></div>
             <div id="n-nav-sub" style="font-size:11px;color:var(--mut)"></div>
           </div>
           <button onclick="nNavDate(1)" id="n-nav-next" style="background:none;border:none;color:var(--acc);font-size:24px;cursor:pointer;padding:4px 8px">&#8594;</button>
@@ -689,8 +689,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
       <div style="background:var(--sur);border-bottom:1px solid var(--brd);padding:12px 14px;flex-shrink:0">
         <div style="font-size:11px;color:var(--mut);margin-bottom:6px">🎯 Pas sûr de quoi faire aujourd'hui ?</div>
         <div style="display:flex;gap:8px">
-          <input id="coach-envie" type="text" placeholder="ex : jambes et cardio, je veux transpirer…" style="flex:1;padding:9px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:'DM Sans',sans-serif;-webkit-appearance:none" onkeydown="if(event.key==='Enter')generateWorkout()">
-          <button onclick="generateWorkout()" style="padding:9px 14px;border-radius:10px;background:var(--acc);color:#000;font-family:'Bebas Neue',sans-serif;font-size:14px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">GÉNÉRER ⚡</button>
+          <input id="coach-envie" type="text" placeholder="ex : jambes et cardio, je veux transpirer…" style="flex:1;padding:9px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none" onkeydown="if(event.key==='Enter')generateWorkout()">
+          <button onclick="generateWorkout()" style="padding:9px 14px;border-radius:10px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:14px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">GÉNÉRER ⚡</button>
         </div>
       </div>
       <div id="coach-msgs" style="flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch">
@@ -704,7 +704,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         </div>
       </div>
       <div style="background:var(--sur);border-top:1px solid var(--brd);padding:11px 14px;padding-bottom:env(safe-area-inset-bottom,14px);display:flex;gap:8px;flex-shrink:0">
-        <input id="coach-inp" type="text" placeholder="Ta question…" style="flex:1;padding:11px 13px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none" onkeydown="if(event.key==='Enter')sendCoach()">
+        <input id="coach-inp" type="text" placeholder="Ta question…" style="flex:1;padding:11px 13px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none" onkeydown="if(event.key==='Enter')sendCoach()">
         <button id="coach-sendbtn" onclick="sendCoach()" style="width:42px;height:42px;border-radius:11px;background:var(--acc);border:none;cursor:pointer;font-size:17px;flex-shrink:0">&#8593;</button>
       </div>
     </div>
@@ -712,7 +712,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <!-- JOURNAL -->
     <div id="p-journal" class="panel">
       <div class="wrap">
-        <div id="j-date" style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--acc);margin-bottom:2px"></div>
+        <div id="j-date" style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc);margin-bottom:2px"></div>
         <div id="j-sub" style="font-size:11px;color:var(--mut);margin-bottom:12px"></div>
 
         <!-- Tabs comparaison -->
@@ -740,12 +740,12 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         </div>
         <div class="card" style="padding:12px">
           <div id="chart-block-poids">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:10px;color:var(--mut);text-transform:uppercase">Poids (kg)</span><span id="leg-poids" style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--acc)"></span></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:10px;color:var(--mut);text-transform:uppercase">Poids (kg)</span><span id="leg-poids" style="font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--acc)"></span></div>
             <canvas id="chart-poids" height="90" style="width:100%;display:block"></canvas>
           </div>
           <div id="chart-block-perf" style="display:none">
-            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:10px;color:var(--mut);text-transform:uppercase">Charge max (kg)</span><span id="leg-perf" style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--grn)"></span></div>
-            <select id="perf-ex-select" onchange="renderCharts()" style="width:100%;padding:7px;border-radius:8px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:11px;font-family:'DM Sans',sans-serif;margin-bottom:7px;-webkit-appearance:none"></select>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px"><span style="font-size:10px;color:var(--mut);text-transform:uppercase">Charge max (kg)</span><span id="leg-perf" style="font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--grn)"></span></div>
+            <select id="perf-ex-select" onchange="renderCharts()" style="width:100%;padding:7px;border-radius:8px;border:1px solid var(--brd);background:var(--bg);color:var(--txt);font-size:11px;font-family:DM Sans,sans-serif;margin-bottom:7px;-webkit-appearance:none"></select>
             <canvas id="chart-perf" height="90" style="width:100%;display:block"></canvas>
           </div>
           <div id="chart-block-nutri" style="display:none">
@@ -763,13 +763,13 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         <div style="display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:12px">
           <button onclick="jNavDate(-1)" style="background:none;border:none;color:var(--acc);font-size:24px;cursor:pointer;padding:4px 8px">&#8592;</button>
           <div style="text-align:center">
-            <div id="j-nav-date" style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acc)"></div>
+            <div id="j-nav-date" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)"></div>
             <div id="j-nav-sub" style="font-size:11px;color:var(--mut)"></div>
           </div>
           <button onclick="jNavDate(1)" id="j-nav-next" style="background:none;border:none;color:var(--acc);font-size:24px;cursor:pointer;padding:4px 8px">&#8594;</button>
         </div>
         <div id="journal-content"></div>
-        <button onclick="snapshotToday()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(232,255,71,.3);background:none;color:var(--acc);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:8px">Sauvegarder le bilan d'aujourd'hui</button>
+        <button onclick="snapshotToday()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(232,255,71,.3);background:none;color:var(--acc);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-top:8px">Sauvegarder le bilan d'aujourd'hui</button>
       </div>
     </div>
 
@@ -778,8 +778,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
   <!-- SQUAD BAR -->
   <div id="squad-bar" onclick="toggleSocial()" style="display:flex;align-items:center;gap:10px;margin:0 14px 8px;padding:11px 16px;background:var(--card);border-radius:14px;border:1px solid var(--brd);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;position:relative;z-index:900">
     <span style="font-size:18px">👥</span>
-    <span id="squad-bar-txt" style="flex:1;font-size:13px;color:var(--mut);font-family:'DM Sans',sans-serif">Remplis ton squad</span>
-    <span id="squad-bar-arrow" style="font-size:11px;color:var(--acc);font-family:'Bebas Neue',sans-serif;letter-spacing:1px;transition:transform .2s">RECHERCHER →</span>
+    <span id="squad-bar-txt" style="flex:1;font-size:13px;color:var(--mut);font-family:DM Sans,sans-serif">Remplis ton squad</span>
+    <span id="squad-bar-arrow" style="font-size:11px;color:var(--acc);font-family:Bebas Neue,sans-serif;letter-spacing:1px;transition:transform .2s">RECHERCHER →</span>
   </div>
   <nav class="nav">
     <button class="nb act" id="nb-seance" onclick="goTab('seance',this)"><span class="ni">⚡</span>Séance</button>
@@ -797,7 +797,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div id="ham-profil" style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="closeHamburger();openProfil()">
       <div id="ham-avatar"></div>
       <div>
-        <div id="ham-name" style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acc)">Mon profil</div>
+        <div id="ham-name" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)">Mon profil</div>
         <div style="font-size:11px;color:var(--mut)">Voir badges et stats</div>
       </div>
     </div>
@@ -869,7 +869,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <div class="sec">Enregistrer</div>
     <div class="card">
       <div class="lfield"><label>Parcours</label>
-        <select id="m-parc" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none">
+        <select id="m-parc" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
           <option>Lac + Berges (~20 km)</option>
           <option>Foret de Senart (~18 km)</option>
           <option>Urbain Evry (~20 km)</option>
@@ -881,7 +881,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         <div class="lfield" style="flex:1;margin-bottom:0"><label>Duree min</label><input type="number" id="m-dur" placeholder="210" inputmode="numeric"></div>
       </div>
       <button class="bigbtn" style="margin-top:10px" onclick="saveMarche()">ENREGISTRER</button>
-    <button onclick="startSession('marche')" style="width:100%;padding:13px;border-radius:11px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;margin-top:8px">▶ COMMENCER LA MARCHE</button>
+    <button onclick="startSession('marche')" style="width:100%;padding:13px;border-radius:11px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-family:Bebas Neue,sans-serif;font-size:18px;cursor:pointer;margin-top:8px">▶ COMMENCER LA MARCHE</button>
     </div>
     <div class="sec">Historique</div>
     <div id="marche-hist"></div>
@@ -901,28 +901,28 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <button class="flcls" onclick="closeFL('exos')" style="order:-1">&#8592;</button>
   </div>
   <div style="display:flex;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0">
-    <button id="exo-tab-mes" onclick="switchExoTab('mes')" style="flex:1;padding:12px;border:none;border-bottom:2px solid var(--acc);background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--acc);cursor:pointer">Mes exercices</button>
-    <button id="exo-tab-bib" onclick="switchExoTab('bib')" style="flex:1;padding:12px;border:none;border-bottom:2px solid transparent;background:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:var(--mut);cursor:pointer">Bibliothèque</button>
+    <button id="exo-tab-mes" onclick="switchExoTab('mes')" style="flex:1;padding:12px;border:none;border-bottom:2px solid var(--acc);background:none;font-family:DM Sans,sans-serif;font-size:13px;font-weight:500;color:var(--acc);cursor:pointer">Mes exercices</button>
+    <button id="exo-tab-bib" onclick="switchExoTab('bib')" style="flex:1;padding:12px;border:none;border-bottom:2px solid transparent;background:none;font-family:DM Sans,sans-serif;font-size:13px;font-weight:500;color:var(--mut);cursor:pointer">Bibliothèque</button>
   </div>
   <!-- MES EXOS -->
   <div id="exo-slide-mes" style="flex:1;display:flex;flex-direction:column;overflow:hidden">
     <div style="display:flex;align-items:center;justify-content:space-between;background:var(--sur);border-bottom:1px solid var(--brd);padding:10px 14px;flex-shrink:0">
       <button onclick="exosNavDay(-1)" style="background:none;border:none;color:var(--acc);font-size:24px;cursor:pointer;padding:4px 10px">&#8592;</button>
       <div style="text-align:center">
-        <div id="exos-day-name" style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--acc)">LUNDI</div>
+        <div id="exos-day-name" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)">LUNDI</div>
         <div id="exos-day-type" style="font-size:11px;color:var(--mut)">Push</div>
       </div>
       <button onclick="exosNavDay(1)" style="background:none;border:none;color:var(--acc);font-size:24px;cursor:pointer;padding:4px 10px">&#8594;</button>
     </div>
     <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px">
       <div id="exos-day-list"></div>
-      <button onclick="openAddExo()" style="width:100%;padding:14px;border-radius:13px;border:2px dashed var(--acc);background:rgba(232,255,71,.06);color:var(--acc);font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;letter-spacing:1px;margin-top:8px">+ AJOUTER UN EXERCICE</button>
+      <button onclick="openAddExo()" style="width:100%;padding:14px;border-radius:13px;border:2px dashed var(--acc);background:rgba(232,255,71,.06);color:var(--acc);font-family:Bebas Neue,sans-serif;font-size:18px;cursor:pointer;letter-spacing:1px;margin-top:8px">+ AJOUTER UN EXERCICE</button>
     </div>
   </div>
   <!-- BIBLIOTHEQUE -->
   <div id="exo-slide-bib" style="flex:1;display:none;flex-direction:column;overflow:hidden">
     <div style="background:var(--sur);border-bottom:1px solid var(--brd);padding:10px 14px;flex-shrink:0">
-      <input id="bib-search" type="text" placeholder="Rechercher..." oninput="renderBib()" style="width:100%;padding:10px 14px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;-webkit-appearance:none;margin-bottom:8px">
+      <input id="bib-search" type="text" placeholder="Rechercher..." oninput="renderBib()" style="width:100%;padding:10px 14px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:8px">
       <div style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px" id="bib-filters">
         <button class="exos-filt act" onclick="setBibFilter('',this)">Tous</button>
         <button class="exos-filt" onclick="setBibFilter('pecs',this)">Pecs</button>
@@ -951,8 +951,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
   <div class="flhead"><button class="flcls" onclick="closeFL('chef')">&#8592;</button><div class="fltitle">🍳 CHEF IA</div></div>
   <div class="flbody">
     <div style="font-size:13px;color:var(--mut);margin-bottom:12px;line-height:1.6">Dis-moi ce que tu as dans ton frigo — le Chef IA te propose un plat riche en protéines adapté à ta recompo.</div>
-    <textarea id="chef-input-ov" placeholder="ex : des pâtes, des œufs, du parmesan, de l'ail..." style="width:100%;min-height:80px;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:'DM Sans',sans-serif;resize:none;-webkit-appearance:none;margin-bottom:10px"></textarea>
-    <button id="chef-btn-ov" onclick="chefIAOverlay()" style="width:100%;padding:14px;border-radius:11px;background:linear-gradient(90deg,var(--acc),#b8ff00);color:#000;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1px;border:none;cursor:pointer">PROPOSER UN PLAT</button>
+    <textarea id="chef-input-ov" placeholder="ex : des pâtes, des œufs, du parmesan, de l'ail..." style="width:100%;min-height:80px;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;resize:none;-webkit-appearance:none;margin-bottom:10px"></textarea>
+    <button id="chef-btn-ov" onclick="chefIAOverlay()" style="width:100%;padding:14px;border-radius:11px;background:linear-gradient(90deg,var(--acc),#b8ff00);color:#000;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:1px;border:none;cursor:pointer">PROPOSER UN PLAT</button>
     <div id="chef-load-ov" style="display:none;text-align:center;padding:14px;color:var(--mut);font-size:13px"><div style="display:flex;justify-content:center;gap:4px;margin-bottom:4px"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>Le Chef cuisine...</div>
     <div id="chef-result-ov" style="display:none;margin-top:14px;background:var(--card);border-radius:11px;padding:14px;border:1px solid var(--brd)"></div>
   </div>
@@ -1640,69 +1640,122 @@ function updateHamburgerGyms(){
   var p=state.profil||{};
   var gyms=p.gyms||[];
   var gymData={
-    basicfit:{name:'Basic-Fit',color:'#E30613'},
-    fitnesspark:{name:'Fitness Park',color:'#2d2d2d'},
-    keepcool:{name:'Keep Cool',color:'#C8006A'},
-    onair:{name:'On Air',color:'#8B0000'},
-    autre:{name:'Ma salle',color:'var(--mut)'}
+    basicfit:{name:'Basic-Fit',color:'#E30613',bg:'#ee6f1e',logo:'data:image/jpeg;base64,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'},
+    fitnesspark:{name:'Fitness Park',color:'#2d2d2d',bg:'#3d4452',logo:'data:image/jpeg;base64,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'},
+    keepcool:{name:'Keep Cool',color:'#C8006A',bg:'#ffffff',logo:'data:image/jpeg;base64,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'},
+    onair:{name:'On Air',color:'#8B0000',bg:'#ffffff',logo:'data:image/jpeg;base64,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'},
+    autre:{name:'Ma salle',color:'var(--mut)',bg:'var(--card)',logo:''}
   };
   if(!gyms.length){el.innerHTML='<div style="font-size:12px;color:var(--mut);padding:8px 4px">Aucune salle dans ton profil</div>';return;}
   el.innerHTML=gyms.map(function(g){
     var d=gymData[g]||gymData.autre;
-    var initials=d.name.split(' ').map(function(w){return w[0]||'';}).join('');
     var onclick=g!=='autre'?"navigateToGym('"+g+"');closeHamburger()":'notify("Renseigne ta salle dans ton profil")';
     return '<button class="ham-btn" id="hamgym-'+g+'" onclick="'+onclick+'">'
-      +'<span style="width:36px;height:36px;border-radius:8px;background:'+d.color+';display:flex;align-items:center;justify-content:center;color:white;font-family:Arial Black,sans-serif;font-size:10px;font-weight:900;flex-shrink:0;letter-spacing:-0.5px">'+initials+'</span>'
+      +(d.logo?'<img src="'+d.logo+'" style="width:52px;height:36px;object-fit:contain;border-radius:6px;background:'+d.bg+';flex-shrink:0;padding:2px">':'<span style="width:36px;height:36px;border-radius:8px;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">🏠</span>')
       +'<div style="flex:1"><div class="ham-title" id="hamgym-name-'+g+'">'+d.name+'</div><div class="ham-sub" id="hamgym-dist-'+g+'">📍 Localisation...</div></div>'
       +'<span style="font-size:18px;color:var(--mut)">›</span>'
       +'</button>';
   }).join('');
-  // Compute distances silently
-  if(!navigator.geolocation){
-    gyms.forEach(function(g){var e=document.getElementById('hamgym-dist-'+g);if(e)e.textContent='Appuyer pour y aller';});
-    return;
-  }
-  navigator.geolocation.getCurrentPosition(function(pos){
-    var lat=pos.coords.latitude,lng=pos.coords.longitude;
-    gyms.forEach(function(g){
-      var locs=GYMS_COORDS[g]||[];
-      var e=document.getElementById('hamgym-dist-'+g);
-      if(!locs.length){if(e)e.textContent='Appuyer pour y aller';return;}
-      var best=null,bestDist=Infinity;
-      locs.forEach(function(loc){
-        var d=_distKm(lat,lng,loc.lat,loc.lng);
-        if(d<bestDist){bestDist=d;best=loc;}
-      });
-      var distStr=bestDist<1?(Math.round(bestDist*1000)+' m'):(bestDist.toFixed(1)+' km');
-      var nameEl=document.getElementById('hamgym-name-'+g);
-      if(nameEl)nameEl.textContent=best.name;
-      if(e)e.textContent='📍 '+distStr;
-    });
-  },function(){
-    gyms.forEach(function(g){var e=document.getElementById('hamgym-dist-'+g);if(e)e.textContent='Appuyer pour y aller';});
-  },{timeout:5000,maximumAge:60000});
+  // Ouvrir Google Maps pour trouver la salle la plus proche
+  gyms.forEach(function(g){
+    var e=document.getElementById('hamgym-dist-'+g);
+    if(e)e.textContent='📍 Trouver près de moi';
+  });
 }
 
 function navigateToGym(gymKey){
-  var locs=GYMS_COORDS[gymKey]||[];
-  var openMaps=function(loc){
-    var url=/iPhone|iPad/.test(navigator.userAgent)
-      ?'https://maps.apple.com/?daddr='+loc.lat+','+loc.lng+'&dirflg=d'
-      :'https://www.google.com/maps/dir/?api=1&destination='+loc.lat+','+loc.lng;
-    window.open(url,'_blank');
+  var searchTerms={
+    basicfit:'Basic-Fit',
+    fitnesspark:'Fitness Park',
+    keepcool:'Keep Cool',
+    onair:'On Air'
   };
-  if(!locs.length){
-    var appUrls={basicfit:'https://apps.apple.com/fr/app/basic-fit/id956598540',fitnesspark:'https://apps.apple.com/fr/app/fitness-park/id1044359087',keepcool:'https://apps.apple.com/fr/app/keep-cool/id1441979077',onair:'https://apps.apple.com/fr/app/on-air-fitness/id1437918549'};
-    if(appUrls[gymKey])window.open(appUrls[gymKey],'_blank');
+  var brandName=searchTerms[gymKey]||gymKey;
+
+  if(!navigator.geolocation){
+    notify('Géolocalisation requise pour cette fonction.');
     return;
   }
-  if(!navigator.geolocation){openMaps(locs[0]);return;}
-  navigator.geolocation.getCurrentPosition(function(pos){
+
+  // Show loading state
+  var btn=document.getElementById('hamgym-'+gymKey);
+  var distEl=document.getElementById('hamgym-dist-'+gymKey);
+  if(distEl)distEl.textContent='Recherche en cours...';
+
+  navigator.geolocation.getCurrentPosition(async function(pos){
     var lat=pos.coords.latitude,lng=pos.coords.longitude;
-    var best=locs[0],bestDist=Infinity;
-    locs.forEach(function(loc){var d=_distKm(lat,lng,loc.lat,loc.lng);if(d<bestDist){bestDist=d;best=loc;}});
-    openMaps(best);
-  },function(){openMaps(locs[0]);},{timeout:5000,maximumAge:60000});
+    var radius=15000; // 15km
+
+    try {
+      // Overpass API — find gyms with matching name
+      var query='[out:json][timeout:10];(node["leisure"="fitness_centre"]["name"~"'+brandName+'",i](around:'+radius+','+lat+','+lng+');way["leisure"="fitness_centre"]["name"~"'+brandName+'",i](around:'+radius+','+lat+','+lng+'););out center 20;';
+      var res=await fetch('https://overpass-api.de/api/interpreter',{
+        method:'POST',
+        body:'data='+encodeURIComponent(query)
+      });
+      var data=await res.json();
+      var elements=data.elements||[];
+
+      // Compute distance for each
+      var gyms=elements.map(function(el){
+        var elat=el.lat||(el.center&&el.center.lat)||0;
+        var elng=el.lon||(el.center&&el.center.lon)||0;
+        var d=_distKm(lat,lng,elat,elng);
+        return{name:el.tags&&el.tags.name||brandName,lat:elat,lng:elng,dist:d,addr:el.tags&&(el.tags['addr:street']||el.tags['addr:city'])||''};
+      }).filter(function(g){return g.lat&&g.lng;});
+
+      // Sort by distance, take 5
+      gyms.sort(function(a,b){return a.dist-b.dist;});
+      gyms=gyms.slice(0,5);
+
+      if(distEl)distEl.textContent='📍 Trouver près de moi';
+
+      if(!gyms.length){
+        notify('Aucune salle trouvée dans un rayon de 15km.');
+        return;
+      }
+
+      // Show picker overlay
+      showGymPicker(gyms,brandName);
+
+    } catch(e) {
+      if(distEl)distEl.textContent='📍 Trouver près de moi';
+      notify('Erreur de recherche — vérifie ta connexion.');
+    }
+  },function(){
+    if(distEl)distEl.textContent='📍 Trouver près de moi';
+    notify('Géolocalisation refusée. Active-la dans les réglages.');
+  },{timeout:8000,maximumAge:30000,enableHighAccuracy:true});
+}
+
+function showGymPicker(gyms,brandName){
+  var ex=document.getElementById('gym-picker-ov');if(ex)ex.remove();
+  var isApple=/iPhone|iPad/.test(navigator.userAgent);
+
+  var html='<div id="gym-picker-ov" style="position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;display:flex;flex-direction:column;justify-content:flex-end">';
+  html+='<div style="background:var(--sur);border-radius:20px 20px 0 0;padding:20px 14px;padding-bottom:env(safe-area-inset-bottom,20px)">';
+  html+='<div style="width:36px;height:4px;background:var(--brd);border-radius:2px;margin:0 auto 16px"></div>';
+  html+='<div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--acc);margin-bottom:4px">'+brandName+' les plus proches</div>';
+  html+='<div style="font-size:11px;color:var(--mut);margin-bottom:14px">'+gyms.length+' salle'+(gyms.length>1?'s':'')+' trouvée'+(gyms.length>1?'s':'')+' près de toi</div>';
+
+  gyms.forEach(function(g,i){
+    var distStr=g.dist<1?(Math.round(g.dist*1000)+' m'):(g.dist.toFixed(1)+' km');
+    var mapsUrl=isApple
+      ?'https://maps.apple.com/?daddr='+g.lat+','+g.lng+'&dirflg=d'
+      :'https://www.google.com/maps/dir/?api=1&destination='+g.lat+','+g.lng;
+    html+='<button data-url="'+mapsUrl+'" onclick="window.open(this.dataset.url,\'_blank\');document.getElementById(\'gym-picker-ov\').remove()" style="width:100%;display:flex;align-items:center;gap:12px;padding:13px 14px;background:var(--card);border-radius:13px;border:1px solid var(--brd);cursor:pointer;margin-bottom:8px;text-align:left">';
+    html+='<div style="width:36px;height:36px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:13px;color:var(--acc);flex-shrink:0">'+(i+1)+'</div>';
+    html+='<div style="flex:1"><div style="font-size:14px;font-weight:500;color:var(--txt)">'+g.name+'</div>';
+    if(g.addr)html+='<div style="font-size:11px;color:var(--mut);margin-top:2px">'+g.addr+'</div>';
+    html+='</div>';
+    html+='<div style="font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--acc)">'+distStr+'</div>';
+    html+='<span style="font-size:18px;color:var(--mut)">›</span>';
+    html+='</button>';
+  });
+
+  html+='<button onclick="document.getElementById(\'gym-picker-ov\').remove()" style="width:100%;padding:13px;border-radius:13px;border:none;background:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:14px;cursor:pointer;margin-top:4px">Annuler</button>';
+  html+='</div></div>';
+  document.body.insertAdjacentHTML('beforeend',html);
 }
 
 function applyTheme(){
@@ -4159,7 +4212,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <!-- CROP AVATAR OVERLAY -->
 <div class="crop-ov" id="crop-ov">
-  <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--acc);margin-bottom:16px">RECADRER LA PHOTO</div>
+  <div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc);margin-bottom:16px">RECADRER LA PHOTO</div>
   <div class="crop-wrap" id="crop-wrap">
     <img class="crop-img" id="crop-img" draggable="false">
   </div>
@@ -4176,7 +4229,7 @@ document.addEventListener('DOMContentLoaded',function(){
 <div class="friend-ov" id="friend-ov">
   <div class="friend-head">
     <button onclick="closeFriendProfile()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px">&#8592;</button>
-    <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--acc)">PROFIL</div>
+    <div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--acc)">PROFIL</div>
   </div>
   <div id="friend-profile-body" style="padding:20px"></div>
 </div>
