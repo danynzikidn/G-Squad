@@ -66,7 +66,7 @@ exports.handler = async function(event) {
       if (!apiKey) return { statusCode: 500, headers, body: JSON.stringify({ error: 'Clé Gemini manquante côté serveur.' }) };
 
       const prompt = system ? system + '\n\n' + (messages?.[0]?.content || '') : (messages?.[0]?.content || '');
-      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
 
       const res = await fetch(url, {
         method: 'POST',
