@@ -11,7 +11,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--bg:#0a0a0a;--sur:#141414;--card:#1a1a1a;--brd:#252525;--acc:#e8ff47;--grn:#39ff14;--red:#ff3b3b;--blu:#4af;--txt:#f0f0f0;--mut:#666;--fnt:#2a2a2a}
+:root{
+  --bg:#000000;--sur:#0f0f0f;--card:#121212;--brd:#1e1e1e;
+  --acc:#e8ff47;--grn:#39ff14;--red:#ff3b3b;--blu:#4af;
+  --txt:#f0f0f0;--mut:#555;--fnt:#1a1a1a;
+  --radius:16px;--radius-sm:10px;
+  --shadow:0 4px 24px rgba(0,0,0,.6);
+}
 .theme-female{--acc:#c84bff;--grn:#ff4bdb;--brd:#2d1f3d;--sur:#160d24;--card:#1e1030;--fnt:#2a1a40}
 .theme-female .bpfill{background:linear-gradient(90deg,#c84bff,#ff4bdb)}
 .theme-female .nb.act::after{background:#c84bff}
@@ -221,6 +227,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .xppop{position:fixed;left:50%;transform:translateX(-50%);top:30%;font-family:Bebas Neue,sans-serif;font-size:44px;color:var(--acc);pointer-events:none;z-index:1999;opacity:0}
 @keyframes xpfloat{0%{opacity:1;transform:translateX(-50%) translateY(0)}100%{opacity:0;transform:translateX(-50%) translateY(-60px)}}
 .xppop.fire{animation:xpfloat .7s ease forwards}
+@keyframes badgeIn{0%{opacity:0;transform:translateY(-20px) scale(.9)}100%{opacity:1;transform:translateY(0) scale(1)}}
 
 /* CONFETTI */
 .cfw{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1997;overflow:hidden}
@@ -323,6 +330,121 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .quick-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .quick-action-item{padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left;font-family:DM Sans,sans-serif}
 .quick-action-item:active{opacity:.7;transform:scale(.97)}
+
+/* ═══════════════════════════════════════
+   G-SQUAD DESIGN SYSTEM v2
+   NRC-inspired, TDAH-friendly, Elite
+   ═══════════════════════════════════════ */
+
+/* TRANSITIONS GLOBALES */
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+button,a{-webkit-tap-highlight-color:transparent}
+button:active{transform:scale(.96);transition:transform .1s}
+
+/* TYPOGRAPHY */
+.t-hero{font-family:Bebas Neue,sans-serif;font-size:52px;letter-spacing:2px;line-height:1}
+.t-title{font-family:Bebas Neue,sans-serif;font-size:28px;letter-spacing:1px;line-height:1.1}
+.t-label{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.8px;color:var(--mut)}
+.t-num{font-family:Bebas Neue,sans-serif;font-size:36px;color:var(--acc);line-height:1}
+
+/* CARDS */
+.card-v2{background:var(--card);border-radius:var(--radius);border:1px solid var(--brd);overflow:hidden}
+.card-v2:active{background:#161616}
+.card-highlight{border-color:var(--acc);background:rgba(232,255,71,.04)}
+
+/* BOUTONS */
+.btn-primary{width:100%;padding:17px;border-radius:14px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:20px;letter-spacing:2px;border:none;cursor:pointer;transition:transform .1s,box-shadow .2s}
+.btn-primary:active{transform:scale(.97)}
+.btn-ghost{padding:12px 20px;border-radius:12px;border:1px solid var(--brd);background:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:13px;cursor:pointer}
+.btn-accent{padding:10px 18px;border-radius:10px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-family:DM Sans,sans-serif;font-size:13px;cursor:pointer;font-weight:500}
+
+/* SÉANCE — HERO EXERCISE */
+.ex-hero{background:var(--card);border-radius:20px;border:1px solid var(--brd);padding:20px;margin-bottom:12px}
+.ex-hero-num{font-size:10px;color:var(--mut);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.ex-hero-name{font-family:Bebas Neue,sans-serif;font-size:34px;line-height:1.05;margin-bottom:4px;color:var(--txt)}
+.ex-hero-sets{font-size:16px;color:var(--mut);font-weight:300;margin-bottom:12px}
+.ex-done-btn{width:100%;padding:20px;border-radius:16px;border:none;font-family:Bebas Neue,sans-serif;font-size:24px;letter-spacing:2px;cursor:pointer;transition:all .15s}
+.ex-done-btn.rdy{background:var(--acc);color:#000;box-shadow:0 4px 20px rgba(232,255,71,.3)}
+.ex-done-btn.rdy:active{transform:scale(.97);box-shadow:none}
+.ex-done-btn.alr{background:var(--fnt);color:var(--mut);font-size:14px;font-family:DM Sans,sans-serif;letter-spacing:0;font-weight:500}
+
+/* DOTS EXERCICES */
+.ex-dot-v2{width:32px;height:32px;border-radius:50%;border:2px solid var(--brd);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--mut);flex-shrink:0;transition:all .2s}
+.ex-dot-v2.cur{border-color:var(--acc);color:var(--acc);background:rgba(232,255,71,.1)}
+.ex-dot-v2.dn{background:var(--grn);border-color:var(--grn);color:#000}
+
+/* PROGRESS BAR */
+.prog-bar{height:4px;background:var(--fnt);border-radius:4px;overflow:hidden;margin:4px 0 6px}
+.prog-fill{height:4px;border-radius:4px;background:linear-gradient(90deg,var(--acc),#b8ff00);transition:width .5s cubic-bezier(.34,1.56,.64,1)}
+
+/* TIMER */
+.timer-dig{font-family:Bebas Neue,sans-serif;font-size:38px;color:var(--acc);letter-spacing:3px;min-width:88px;line-height:1}
+
+/* FEED */
+.feed-card{background:var(--card);border-radius:14px;padding:14px;margin-bottom:8px;border:1px solid var(--brd);overflow:hidden}
+.feed-card-accent{border-left:3px solid var(--acc)}
+.feed-av-v2{width:38px;height:38px;border-radius:50%;background:var(--fnt);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:16px;color:var(--acc);flex-shrink:0;overflow:hidden;border:2px solid var(--brd)}
+
+/* RÉACTIONS */
+.react-btn{display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);background:none;font-size:14px;cursor:pointer;color:var(--mut);transition:all .15s;font-family:DM Sans,sans-serif}
+.react-btn.active{border-color:var(--acc);background:rgba(232,255,71,.12);color:var(--acc)}
+.react-btn:active{transform:scale(.92)}
+
+/* LEADERBOARD */
+.lb-row{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--card);border-radius:12px;margin-bottom:6px;border:1px solid var(--brd)}
+.lb-rank{font-family:Bebas Neue,sans-serif;font-size:22px;min-width:32px;text-align:center}
+.lb-rank.gold{color:#e8c84a}
+.lb-rank.silver{color:#c0c0c0}
+.lb-rank.bronze{color:#cd7f32}
+
+/* PROGRAMME */
+.prog-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--brd);padding:16px;margin-bottom:10px;overflow:hidden;position:relative}
+.prog-week-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.prog-day-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:var(--fnt);font-size:12px;margin-right:6px;margin-bottom:6px}
+
+/* HUD STATS */
+.hud-card{flex:1;background:var(--card);border:1px solid var(--brd);border-radius:12px;padding:10px;text-align:center;cursor:pointer;transition:border-color .2s}
+.hud-card:active{border-color:var(--acc)}
+.hud-val{font-family:Bebas Neue,sans-serif;font-size:22px;line-height:1}
+.hud-lbl{font-size:9px;color:var(--mut);margin-top:2px;text-transform:uppercase;letter-spacing:.5px}
+
+/* NUTRITION MACROS CIRCLES */
+.macro-ring{position:relative;display:inline-flex;align-items:center;justify-content:center}
+.macro-ring svg{transform:rotate(-90deg)}
+
+/* SLIDE ANIMATIONS */
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pop{0%{transform:scale(1)}50%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.anim-up{animation:slideUp .25s ease}
+.anim-pop{animation:pop .3s ease}
+
+/* OVERLAY FULLSCREEN */
+.fl-head-v2{display:flex;align-items:center;gap:12px;padding:env(safe-area-inset-top,14px) 16px 14px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0}
+.fl-title-v2{font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc);letter-spacing:2px}
+.fl-back{background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px;display:flex;align-items:center}
+
+/* SECTION HEADER */
+.sec-v2{display:flex;align-items:center;justify-content:space-between;margin:16px 0 10px}
+.sec-v2 .label{font-size:10px;font-weight:600;color:var(--mut);letter-spacing:.8px;text-transform:uppercase}
+.sec-v2 .action{font-size:11px;color:var(--acc);background:none;border:none;cursor:pointer;font-family:DM Sans,sans-serif}
+
+/* QUICK LOG */
+.log-inp{flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--fnt);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none}
+.log-inp:focus{outline:none;border-color:var(--acc)}
+
+/* RESPONSIVE */
+@media(max-width:375px){
+  .ex-hero-name{font-size:28px}
+  .t-hero{font-size:42px}
+  .btn-primary{font-size:18px;padding:15px}
+  .timer-dig{font-size:32px}
+  .hud-val{font-size:18px}
+}
+@media(min-width:430px){
+  .ex-hero-name{font-size:38px}
+}
 </style>
 </head>
 <body>
@@ -457,118 +579,263 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 <!-- PROFIL OVERLAY -->
 <div class="profil-ov" id="profil-ov">
-  <div style="background:var(--sur);border-bottom:1px solid var(--brd);padding:env(safe-area-inset-top,14px) 14px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
-    <div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc)">MON PROFIL</div>
-    <button onclick="closeProfil()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px">&#8592;</button>
+
+  <!-- HEADER PROFIL -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:env(safe-area-inset-top,14px) 14px 12px;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0">
+    <button onclick="closeProfil()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:4px">←</button>
+    <div id="profil-username-header" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc);letter-spacing:1px">MON PROFIL</div>
+    <button onclick="openProfilSettings()" style="background:none;border:none;color:var(--mut);font-size:20px;cursor:pointer;padding:4px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
   </div>
-  <div style="padding:20px">
-    <!-- Avatar -->
-    <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">
-      <div id="profil-avatar-wrap" onclick="changeAvatar()"></div>
-      <div>
-        <div id="profil-nom" style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)"></div>
-        <div id="profil-genre" style="font-size:13px;color:var(--mut)"></div>
-        <div style="font-size:11px;color:var(--mut);margin-top:2px">Appuie sur la photo pour la changer</div>
+
+  <!-- TABS NAV -->
+  <div style="display:flex;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0" id="profil-tabs">
+    <button onclick="switchProfilTab('stats')" id="ptab-stats" style="flex:1;padding:11px 4px;border:none;border-bottom:2px solid var(--acc);background:none;color:var(--acc);font-size:11px;font-weight:500;font-family:DM Sans,sans-serif;cursor:pointer">STATS</button>
+    <button onclick="switchProfilTab('galerie')" id="ptab-galerie" style="flex:1;padding:11px 4px;border:none;border-bottom:2px solid transparent;background:none;color:var(--mut);font-size:11px;font-weight:500;font-family:DM Sans,sans-serif;cursor:pointer">GALERIE</button>
+    <button onclick="switchProfilTab('reglages')" id="ptab-reglages" style="flex:1;padding:11px 4px;border:none;border-bottom:2px solid transparent;background:none;color:var(--mut);font-size:11px;font-weight:500;font-family:DM Sans,sans-serif;cursor:pointer">RÉGLAGES</button>
+  </div>
+
+  <div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch">
+
+    <!-- ══ TAB STATS ══ -->
+    <div id="ppanel-stats">
+
+      <!-- Instagram-style header -->
+      <div style="padding:16px 16px 0">
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:14px">
+          <div id="profil-avatar-wrap" onclick="changeAvatar()" style="position:relative;flex-shrink:0">
+            <!-- avatar rendered by JS -->
+            <div style="position:absolute;bottom:0;right:0;width:22px;height:22px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;border:2px solid #000;cursor:pointer">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </div>
+          </div>
+          <!-- Compteurs Instagram -->
+          <div style="flex:1;display:grid;grid-template-columns:1fr 1fr 1fr;text-align:center">
+            <div>
+              <div id="prof-sess" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">0</div>
+              <div style="font-size:10px;color:var(--mut)">Séances</div>
+            </div>
+            <div onclick="openSocial()" style="cursor:pointer">
+              <div id="prof-followers" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">0</div>
+              <div style="font-size:10px;color:var(--mut)">Abonnés</div>
+            </div>
+            <div onclick="openSocial()" style="cursor:pointer">
+              <div id="prof-following" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">0</div>
+              <div style="font-size:10px;color:var(--mut)">Suivi(e)s</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nom + badge + genre -->
+        <div style="margin-bottom:6px">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px">
+            <div id="profil-nom" style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--txt)"></div>
+            <div id="profil-badge-inline" style="font-size:16px"></div>
+            <div id="profil-genre" style="font-size:16px"></div>
+          </div>
+          <div id="profil-username-sub" style="font-size:12px;color:var(--acc);margin-bottom:4px"></div>
+          <!-- Salle tag + réseaux -->
+          <div id="profil-salle-tag" style="margin-bottom:6px"></div>
+          <div id="profil-socials" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+        </div>
+
+        <!-- Objectif pill -->
+        <div id="profil-objectif-pill" style="margin-bottom:14px"></div>
+      </div>
+
+      <!-- Thèmes couleur -->
+      <div style="padding:0 16px;margin-bottom:14px">
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Thème</div>
+        <div style="display:flex;gap:8px">
+          <button onclick="setTheme('jaune')" style="width:28px;height:28px;border-radius:50%;background:#e8ff47;border:3px solid transparent" id="theme-jaune"></button>
+          <button onclick="setTheme('rouge')" style="width:28px;height:28px;border-radius:50%;background:#ff3b3b;border:3px solid transparent" id="theme-rouge"></button>
+          <button onclick="setTheme('bleu')" style="width:28px;height:28px;border-radius:50%;background:#4af;border:3px solid transparent" id="theme-bleu"></button>
+          <button onclick="setTheme('violet')" style="width:28px;height:28px;border-radius:50%;background:#c84bff;border:3px solid transparent" id="theme-violet"></button>
+          <button onclick="setTheme('vert')" style="width:28px;height:28px;border-radius:50%;background:#39ff14;border:3px solid transparent" id="theme-vert"></button>
+          <button onclick="setTheme('blanc')" style="width:28px;height:28px;border-radius:50%;background:#f0f0f0;border:3px solid transparent" id="theme-blanc"></button>
+        </div>
+      </div>
+
+      <!-- Stats XP / Streak / Poids -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--brd);margin-bottom:14px">
+        <div style="background:var(--bg);padding:12px;text-align:center">
+          <div id="prof-xp" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc)">0</div>
+          <div style="font-size:9px;color:var(--mut);text-transform:uppercase">XP</div>
+        </div>
+        <div style="background:var(--bg);padding:12px;text-align:center">
+          <div id="prof-streak" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:#ff6b35">0</div>
+          <div style="font-size:9px;color:var(--mut);text-transform:uppercase">Streak</div>
+        </div>
+        <div style="background:var(--bg);padding:12px;text-align:center">
+          <div id="prof-poids" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">--</div>
+          <div style="font-size:9px;color:var(--mut);text-transform:uppercase">kg</div>
+        </div>
+      </div>
+
+      <!-- Badges strips -->
+      <div style="padding:0 16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px">Badges Séances</div>
+          <button onclick="openBadges('sess')" style="font-size:10px;color:var(--acc);background:none;border:none;cursor:pointer;font-family:DM Sans,sans-serif">Tout voir →</button>
+        </div>
+        <div id="prof-badges-sess" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none"></div>
+
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Badges Streak</div>
+        <div id="prof-badges-str" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:12px;scrollbar-width:none"></div>
+
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Badges XP</div>
+        <div id="prof-badges-xp" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:20px;scrollbar-width:none"></div>
       </div>
     </div>
-    <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="saveAvatar(event)">
 
-    <!-- Stats globales -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">
-      <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-sess" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">0</div>
-        <div style="font-size:11px;color:var(--mut)">Séances complètes</div>
+    <!-- ══ TAB GALERIE ══ -->
+    <div id="ppanel-galerie" style="display:none">
+      <div style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px">Photos</div>
+        <button onclick="document.getElementById('galerie-input').click()" style="display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:20px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer">
+          + Ajouter
+        </button>
       </div>
-      <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-xp" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">0</div>
-        <div style="font-size:11px;color:var(--mut)">XP Total</div>
-      </div>
-      <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-streak" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:#ff6b35">0</div>
-        <div style="font-size:11px;color:var(--mut)">Streak actuel</div>
-      </div>
-      <div style="background:var(--card);border-radius:13px;padding:14px;text-align:center">
-        <div id="prof-poids" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">--</div>
-        <div style="font-size:11px;color:var(--mut)">Dernier poids (kg)</div>
+      <input type="file" id="galerie-input" accept="image/*" multiple style="display:none" onchange="addGaleriePhotos(event)">
+      <div id="galerie-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;padding:0 2px"></div>
+      <div id="galerie-empty" style="text-align:center;padding:60px 20px;display:none">
+        <div style="font-size:48px;margin-bottom:12px">📸</div>
+        <div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--mut);margin-bottom:6px">AUCUNE PHOTO</div>
+        <div style="font-size:12px;color:var(--mut)">Ajoute tes premières photos de progression</div>
       </div>
     </div>
 
-    <!-- Badge séances -->
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Badges séances</div>
-    <div id="prof-badges-sess" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:16px;scrollbar-width:none"></div>
+    <!-- ══ TAB RÉGLAGES ══ -->
+    <div id="ppanel-reglages" style="display:none;padding:16px">
 
-    <!-- Badge streak -->
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Badges streak</div>
-    <div id="prof-badges-str" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:20px;scrollbar-width:none"></div>
+      <!-- Objectif -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Objectif</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:16px" id="objectif-picker">
+        <button onclick="setObjectif('perte')" id="obj-perte" style="padding:12px 6px;border-radius:12px;border:2px solid var(--brd);background:var(--card);color:var(--mut);font-size:12px;cursor:pointer;font-family:DM Sans,sans-serif;transition:all .2s">
+          <div style="font-size:20px;margin-bottom:4px">📉</div>Perte
+        </button>
+        <button onclick="setObjectif('maintien')" id="obj-maintien" style="padding:12px 6px;border-radius:12px;border:2px solid var(--brd);background:var(--card);color:var(--mut);font-size:12px;cursor:pointer;font-family:DM Sans,sans-serif;transition:all .2s">
+          <div style="font-size:20px;margin-bottom:4px">📊</div>Maintien
+        </button>
+        <button onclick="setObjectif('prise')" id="obj-prise" style="padding:12px 6px;border-radius:12px;border:2px solid var(--brd);background:var(--card);color:var(--mut);font-size:12px;cursor:pointer;font-family:DM Sans,sans-serif;transition:all .2s">
+          <div style="font-size:20px;margin-bottom:4px">📈</div>Prise
+        </button>
+      </div>
 
-    <!-- Ma salle -->
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Ma salle de sport</div>
-    <div id="prof-gyms" style="margin-bottom:20px"></div>
-    <div style="font-size:11px;color:var(--mut);margin-bottom:8px">Modifier mes salles :</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px" id="prof-gym-picker">
-      <div class="ob-g" id="pg-basicfit" onclick="toggleProfilGym('basicfit')">
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDoKKKK/Dz91CiiigAooooAKKKKANuTwn4ij0o6o2mSC0EXnFw6k7MZ3YznGOelW7jwVq0Vrp0we2dr6SONEEnKGQZQnjoQOv4V6RpTwXPgiweZ4YEl0SSCS5MwV4+FAUA9QcN27e9Yl7eaaqXkUurRxsba1eCRHXdB5GMbDnksd5xjrj1FfWTybC04KTbd0nq0ul+y30Xz+75CGd4upNxSSabWib627vbV/Lz1wo/h1fNqkFh/a+nsZfMUtHubY6dVK8H159qda+AVk0KO8m1iOG9mtXuYoDH8hVccF89eR+ddfL4l8L2+q6fqNzqtldXccrr9rgjO8wGM/wCs2jruxx9PesVfE/hCfSbVdTR7uXT1njiga23LLub5GBPA4A69MmtZYHK6bavG+u8v8PZ779/mZQx+a1EnaVtL2j/i7rba+1vI8YvNWnTVls4TaiMoGDux59hjvmqJ1bVJbW0nSaCIXEvlHEWdrZ681qPpQ/tqG8jSFYEjKlMfxEk5AxjvVeLQpBp8Vq1yoMdz5wYKTx6Vz0K+WU4QuleyvdX/AJk+/XlZ016GZ1Jzs3a7tZ2/la7afEjbThQHOWA5PqaKUjmivltz6rYCAeozRgdgKKKBhRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQB//2Q==" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
-        <div style="font-size:11px">Basic-Fit</div>
+      <!-- Mensurations -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Mensurations</div>
+      <div style="display:flex;gap:8px;margin-bottom:8px">
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Taille (cm)</div>
+          <input id="edit-taille" type="number" inputmode="numeric" placeholder="185" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
+        </div>
+        <div style="flex:1">
+          <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Poids (kg)</div>
+          <input id="edit-poids-profil" type="number" inputmode="decimal" step="0.1" placeholder="95" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
+        </div>
       </div>
-      <div class="ob-g" id="pg-fitnesspark" onclick="toggleProfilGym('fitnesspark')">
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyAEEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDxyiiitjEKKKKACiiigAooooAKKKKACuu8J/DvxD4m0iHVNOawSC4vGs4BcTlGklUAtgBSMANnJI6H0rka7fw144vdO03S9Mt7ya2Sxiu40RUAiLXAYPI+XG5wD8pI+XjiplKyGlcuWnwe8WXkSSWNzod2rW9vcnyb/dtinbbG5+XgHBP0UmoW+E/ihF3TXGjwKtkl7M0t4VWCJ9uwuSmBu3DpkDnJGK19M+I+o2EdyLS9tYluIY7Zl8uMHy4rc2yAfvOAFyw/2jnocVNdfFC8F7dasi6ZHezWwthLFCGeNSpQ7FMxABVuVxt+UHGRmo9p5P7iuVHI3nw+8Q2mraFpEv2D+0NaZFt7ZbkF494VlMgx8oIYHIyODzkEVpXHwj8ZQyMhgsHH2m1tkZLnIla42+WVyAcfOu4kDGRV2fx9PPrOharDJa2jaNbypp9vFCixQeYMMcGQkN82VGcLt4GBV3RfiZq+k6Zb6bDqVrcRwYZZbiOOSVpd5czNIZNzOSRyTj5V4GKPaeT+4XKjC1b4U+KtL0++1G7k0lbGxVXnuReZQBo964+XOTwoGMlmUY5zXCV6T4q+J2q6loGo6DPNDPBfRKJgLdSHcCJVkLiQneohXB56t68ebVcZcyE1YKKKKoQUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAf//Z" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
-        <div style="font-size:11px">Fitness Park</div>
+      <div id="profil-imc-result" style="display:none;background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:4px;border-left:3px solid var(--acc)">
+        <span id="profil-imc-val" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)"></span>
+        <span id="profil-imc-label" style="font-size:12px;color:var(--mut);margin-left:8px"></span>
       </div>
-      <div class="ob-g" id="pg-keepcool" onclick="toggleProfilGym('keepcool')">
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCABQAFADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7Et4YvIj/AHSfdH8I9Kk8mL/nkn/fIot/9RH/ALo/lT6AGeTF/wA8k/75FHkxf88k/wC+RT68Z/aC+J+teDtW0/R9A+ypPLCbm4lmj8zC7iqqBkAZwxJ+lNK7sd2XZfWzCuqFHd99tD2PyYv+eSf98ijyYv8Ankn/AHyKyvBOq3Gu+ENJ1m6t1t5720jnkjXopZQTjPauL/aA8f3Xgrw9bQ6RJEmrX8hWJnUP5Ua8u+DwTyAM8c+1CTbsLDZfWxGKWFgvebt5ab/JHpPkw/8APJP++RR5MX/PJP8AvkV5j+z/AONtb8U+EtRvvE0kR+w3GwXpQRq6bAzbsYGV7njgiu08LeMfDPiiS4j0DWbW/e3x5qxkgqD0OCBke44oaaKxeW4jC1alOSvybtapX21/zNryYv8Ankn/AHyKjuIYvs8n7pPun+EelT1Hc/8AHvJ/un+VI4Bbf/UR/wC6P5U+mW/+oj/3R/Ks7xDqOoafbF9O0G71aUDPlwyxRj83YfoDQi4Qc5KK/Fpfi9DUr5P/AGqY5V+J5L52vpsJj+mXB/WvRNY+O93oWqfYdf8AAGp6c/ULJcruI9RlQGH0NcP8c9f8N+P9JsPE3h+5YXungwXtnOuyZYmOVcDoyhsglScbucVrCLTPueGctxmX4+FWtT9ySaummtdtU3u1b5n0R8P5YpvAmgywkGNtNtyuP+ua18r/AB41i+8Q/FbUbcxSH7HMNPtYO52nHHuzMT+Ir2D9l3xhBqfhQ+FrmUC+0vPkqTzJbk5BHrtJKn22+tenz+G/D8+ux67No1hJqceNl00CmQY6HdjqOx7Uk+SWpw4bFrh/NKzrU+Z6pfN3T+aPEvixJF8O/gtpXgW0dRf6kuLtl6leGmb8WIUe2fSqv7JHh+eTVNU8UyFlgji+xQ+kjMVdz+AC/ia3/j18LfEvjDxTZ6xok9rLGLZbeSK4mKeVhmO4cHIO7nvx3r074e+GoPCPhDT9BgZZDbx/vZAMeZITl2/Ek/hihyXKdOJzahSyX2dOalVrNufdXet/wX4o36juf+PeT/dP8qRp4xcJb5zIylto7KO5/Hiluf8Aj3k/3T/Ksz4lqwtv/qI/90fyp9Mt/wDUR/7o/lT6BGR4t8N6N4p0eTS9askuYHHyk8PG3ZkbqrD1FfH3xS8D6h4E8RnT7lmntJgXs7rGBKnQg+jDOCPx6GvtiuT+K/g638a+D7nSnVFu0Hm2Up/5ZzAcc+h+6fY1cJWZ9Nw3n08trqE3+6luu3mv17r5HyD4UXxBa3La94c88XOmESu9uN0kSnjcV6lD0PBHOD1r37wF8f8AQ762jtvFcL6ZdgYa5hQyW7n1wMsn0wR714P4L12/8E+NbXVRHJHNYzmO6gPBZM7ZIz+GfxAr611HwJ4D8URRandeHtOuftCLKk8cfls6sMglkwTwe9aTt1PrOKqmDjOCxtJyjJe7OL95d1ro+69duo9PiV4CeDzh4u0fZjPNyoP5HmqEPxFttfnax8C2M2vT52tdlGisYPd5SPmx/dQEn261JYfCb4d2UyzReFrN3U5HnM8o/JiRXZWtvb2kCW9rBFBCgwscaBVUewHArLTofB1Z5bT1oRlJ/wB5pL7lq/vRT0HTZLC3d7u6a8vpyGuLgrt3nsFX+FB0C9u+SSTduf8Aj3k/3T/KpKjuf+PeT/dP8qk8uc3OTkwhIW2RmIACDJP0pTLEIxIZECHoxYY/OuW+JF21v4NNvGf3t40dug7/ADdf0BrndLa1dr1teHyeHYwsGmj7h2jHmH+8Sfw5FeNi83VDEewUb6J3bslu9dOiTfd9uphKpaVj04EEZHIorgNN8QeJrmSzvRA32aRvMuYmsikUMPXIlJ+Y454qODxL4n1VFvNKtpAJJ9sNubImMx5xueYkAH6VKz7DtK0ZXeytutNVr5rTe+lg9sjjvi38E9R8R+MZdd8PXthbpekNdRXG5dkmMF12g5yACRxzn1r2HwppCaB4Z03RUmaZbG2jgEjcF9qgZ9q5G61/X5rTXdXtdRtrexsZzFAjW4cyEYGN2fU+/Wl1nUb/AFu78O6JOzWqahAtxeCNipcYJ2A9QPlPHuKqefUnG0YtvS22t5cq1u7K/fpqeli87xOLw9PD1XeMNvyWp3cVzbyyGOKeJ3XqquCR+FS1x3iJLDw01imhaRZRaneyfZoJPLwEBxknueoqjd+KdU0LVdTtL25j1SO0tVk3iERlZWIAU47c/WnUzeGHbjiFZrdrVK6bW9nsr6Jnmuoo7nf1FO6NDMqspKqcgHpxXFNrWvadqmiLfX1vcf2grST2ywBRAmM5DZzwM9fQ1Z+HETy6Ff6xKD5upXEs2f8AZGQP61VDNY166owi09b36JJPpffmQ1Uu7I37zSbHUhYy3kRka0YSxDcQA2ByQOvTvUd34c0i71KXUJ7XdPNEYZfnIWRCMYIzg9vyHpV+3mh8iP8Aep90fxD0p/nQ/wDPVP8AvoV3TwtCo25QTvrt1WiLcU+hl6b4b0ywdWiFzIEUpGk1y8iIpGCApOBx7VUbwxY6dbSy6ZDdNLEGktrf7U/lrJjjCk46+tb/AJ0P/PVP++hR50P/AD1T/voVm8vw3KkoJW20Wnp9y+5C5I9jkvC/guzh0a0Grwyy3IPmzQtOxi356lAdpIGK39a0LTNX8o3tvueH/VSI5R0+hGDV7zof+eqf99Cjzof+eqf99Cpo5bhaNH2KgmrJO6Wtu/cShFK1jIbwpojWgtntpHAl80SNO5kD4xuDE5BxUsXhzRY9PuLAWKNDcnM+8lmkPqWJyT+NaXnQ/wDPVP8AvoUedD/z1T/voVosDhk7qnHa2y2HyR7GXZeGdGtBL5dpuaWIwu8kjO2wjG0EnIGPSrNhp1tpWkGxsw6wRq2xWctjOTjJq350P/PVP++hTLiaHyJP3qfdP8Q9KunhaNJpwglbsu41FLZH/9k=" style="width:100%;max-height:50px;object-fit:contain;border-radius:4px">
-        <div style="font-size:11px">Keep Cool</div>
+      <div id="profil-macros-result" style="display:none;margin-bottom:12px"></div>
+      <button onclick="saveProfilMensures()" style="width:100%;padding:12px;border-radius:10px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer;margin-bottom:16px">CALCULER & SAUVEGARDER</button>
+
+      <!-- Réseaux sociaux -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Réseaux sociaux</div>
+      <div style="margin-bottom:16px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="font-size:16px;width:24px">📸</span>
+          <input id="social-instagram" type="text" placeholder="@username Instagram" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="font-size:16px;width:24px">🎵</span>
+          <input id="social-tiktok" type="text" placeholder="@username TikTok" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <span style="font-size:16px;width:24px">👻</span>
+          <input id="social-snapchat" type="text" placeholder="@username Snapchat" style="flex:1;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
+        </div>
+        <button onclick="saveSocials()" style="width:100%;padding:11px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Sauvegarder les réseaux</button>
       </div>
-      <div class="ob-g" id="pg-onair" onclick="toggleProfilGym('onair')">
-        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAyADIDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD7LooooAKKKKACiiigAooooAwPiB4gg8LeE77X7oStDZRmRkixvkOCFQZBxlsDNcXJ408XaJrGmjxbpNrbaVrBZLOazuC81tL5RkWKZSuCSFYZU4yK7zxhpdhrmhT6NqkaS2d6DBLGzFdwYEcHHBzgj3FcPafD+OTUrG+1TxTqWsW9lEYdItrmRfLti0Rj8wkLmSTaG+ZveueqqnN7p6uCeGVJ+1Wuvftpa2zvvfp9xgeEfi9fa1rXh7RJY7VL6+1GS3uxG52m3MJlhniz2YYBznBBFdt8SvG1l4KjsDczSzvPKHnjDjfFaqyrLPjbyE3rke59K5vRPhXo2l6r4Q1GHVM3vhqE2pfCj7Wu1mUOMfKVDMQRnirni34dX+ueI9U1geLrmxm1OzWyWNII5FitB9+JdwOQ7MCx71lH2yg77/8AAOyr/Z08RFx0hZ331d35PS2vppuU/ih8SNV8K61qFnp0Vvdw22hw6nFJI5JdpLtYcccbdrZHv7V0Pwl8YXni1dY+1xQqdN1CWyEtvIXhnC4IdSQDkA4I9a5C5+EUNxpn9nXni24mcaNFpEcrwqHWFLtZUPuQQI/piu78A+Hbbw5f6vHZXwktNQvJb6K1/wCfZmIWRVPdS6k+xp0/aupeWxGJ+orCuFPWa62a7fnr/Vjr6KKK7DwQooooAMCiiigAooooAKKKKACiiigAooooAKKKKACiiigD/9k=" style="width:100%;max-height:44px;object-fit:contain;border-radius:4px">
-        <div style="font-size:11px">On Air</div>
+
+      <!-- Ma salle -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Ma salle</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px" id="prof-gym-picker">
+        <div class="ob-g" id="pg-basicfit" onclick="toggleProfilGym('basicfit')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:#FF6B00">● Basic-Fit</div>
+        </div>
+        <div class="ob-g" id="pg-fitnesspark" onclick="toggleProfilGym('fitnesspark')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:#4CAF50">● Fitness Park</div>
+        </div>
+        <div class="ob-g" id="pg-keepcool" onclick="toggleProfilGym('keepcool')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:#C8006A">● Keep Cool</div>
+        </div>
+        <div class="ob-g" id="pg-onair" onclick="toggleProfilGym('onair')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:#CC0000">● On Air</div>
+        </div>
+        <div class="ob-g" id="pg-autre" onclick="toggleProfilGym('autre')" style="grid-column:span 2;padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--mut)">🏠 Autre / Maison</div>
+        </div>
       </div>
-      <div class="ob-g" id="pg-autre" onclick="toggleProfilGym('autre')" style="grid-column:span 2">
-        <div style="font-size:20px">🏠</div>
-        <div style="font-size:11px">Autre / Maison</div>
+
+      <!-- Modifier prénom + username -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Identité</div>
+      <input id="edit-name" type="text" maxlength="20" placeholder="Prénom" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-bottom:8px;-webkit-appearance:none">
+      <input id="edit-username" type="text" maxlength="20" placeholder="@username" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-bottom:8px;-webkit-appearance:none" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'').toLowerCase()">
+      <button onclick="saveProfilName()" style="width:100%;padding:13px;border-radius:11px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer;margin-bottom:16px">SAUVEGARDER</button>
+
+      <!-- API IA -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">API Intelligence artificielle</div>
+      <select id="api-choice" onchange="saveAPIChoice()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:6px">
+        <option value="claude">Claude (Anthropic)</option>
+        <option value="openai">ChatGPT (OpenAI)</option>
+        <option value="gemini">Gemini (Google)</option>
+      </select>
+      <div id="api-key-wrap" style="margin-bottom:20px">
+        <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Clé API (facultatif)</div>
+        <input id="api-key-input" type="password" placeholder="sk-..." style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:6px">
+        <button onclick="saveAPIKey()" style="width:100%;padding:10px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Sauvegarder la clé</button>
       </div>
+
+      <!-- Danger zone -->
+      <button onclick="deconnexion()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.15);background:none;color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:8px">Se déconnecter</button>
+      <button onclick="resetAppConfirm()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,59,59,.3);background:none;color:var(--red);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:20px">Réinitialiser l'app</button>
     </div>
 
-    <!-- Taille, poids et IMC -->
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Mensurations</div>
-    <div style="display:flex;gap:8px;margin-bottom:8px">
-      <div style="flex:1">
-        <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Taille (cm)</div>
-        <input id="edit-taille" type="number" inputmode="numeric" placeholder="185" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
-      </div>
-      <div style="flex:1">
-        <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Poids (kg)</div>
-        <input id="edit-poids-profil" type="number" inputmode="decimal" step="0.1" placeholder="95" style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
-      </div>
-    </div>
-    <div id="profil-imc-result" style="display:none;background:var(--card);border-radius:10px;padding:10px 14px;margin-bottom:8px;border-left:3px solid var(--acc)">
-      <span id="profil-imc-val" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)"></span>
-      <span id="profil-imc-label" style="font-size:12px;color:var(--mut);margin-left:8px"></span>
-    </div>
-    <button onclick="saveProfilMensures()" style="width:100%;padding:11px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:16px">Calculer et sauvegarder l'IMC</button>
+  </div><!-- end scroll -->
 
-    <!-- Choix API IA -->
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">API Intelligence artificielle</div>
-    <select id="api-choice" onchange="saveAPIChoice()" style="width:100%;padding:11px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:6px">
-      <option value="claude">Claude (Anthropic)</option>
-      <option value="openai">ChatGPT (OpenAI)</option>
-      <option value="gemini">Gemini (Google)</option>
-    </select>
-    <div id="api-key-wrap" style="margin-bottom:16px">
-      <div style="font-size:11px;color:var(--mut);margin-bottom:4px">Clé API (facultative — laisse vide pour utiliser la clé par défaut)</div>
-      <input id="api-key-input" type="password" placeholder="sk-..." style="width:100%;padding:10px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;-webkit-appearance:none;margin-bottom:6px">
-      <button onclick="saveAPIKey()" style="width:100%;padding:10px;border-radius:10px;background:var(--sur);border:1px solid var(--brd);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Sauvegarder la clé API</button>
-    </div>
+  <input type="file" id="avatar-input" accept="image/*" style="display:none" onchange="saveAvatar(event)">
+</div>
 
-    <!-- Modifier prénom -->
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Modifier le prénom</div>
-    <input id="edit-name" type="text" maxlength="20" placeholder="Nouveau prénom" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-bottom:8px;-webkit-appearance:none">
-    <div style="font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;margin-top:4px">@Username</div>
-    <input id="edit-username" type="text" maxlength="20" placeholder="@username" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-bottom:8px;-webkit-appearance:none" oninput="this.value=this.value.replace(/[^a-zA-Z0-9_]/g,'').toLowerCase()">
-    <button onclick="saveProfilName()" style="width:100%;padding:13px;border-radius:11px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer;margin-bottom:8px">SAUVEGARDER</button>
-    <button onclick="deconnexion()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,255,255,.2);background:none;color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:8px">Se déconnecter (revenir à l'accueil)</button>
-    <button onclick="resetAppConfirm()" style="width:100%;padding:12px;border-radius:11px;border:1px solid rgba(255,59,59,.3);background:none;color:var(--red);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Réinitialiser l'application</button>
+<!-- SOCIAL OVERLAY -->
+<div class="social-ov" id="social-ov" style="display:none">
+  <!-- Topbar -->
+  <div style="width:36px;height:4px;background:var(--brd);border-radius:2px;margin:10px auto 0"></div>
+  <div class="social-topbar">
+    <div class="social-title">G-SQUAD</div>
+    <div class="social-tabs">
+      <button class="social-tab act" id="stab-amis" onclick="switchSocialTab('amis')">Amis</button>
+      <button class="social-tab" id="stab-search" onclick="switchSocialTab('search')">Recherche</button>
+    </div>
+  </div>
+  <!-- Barre de recherche (visible seulement sur onglet Recherche) -->
+  <div class="social-search-wrap" id="social-search-wrap">
+    <div class="social-inp-wrap">
+      <span class="social-inp-ico">🔍</span>
+      <input class="social-inp" id="social-inp" type="text" placeholder="@username, prénom ou email…" oninput="searchUsers(this.value)" autocomplete="off">
+    </div>
+  </div>
+  <!-- Body -->
+  <div class="social-body" id="social-body">
+    <div id="social-friends-section"></div>
+    <div id="social-results"></div>
   </div>
 </div>
+
+<!-- PROFIL OVERLAY -->
+
 
 <div class="app">
   <div class="notif" id="notif"></div>
@@ -614,20 +881,34 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <!-- SEANCE -->
     <div id="p-seance" class="panel act">
       <div class="wrap">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:11px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
           <div>
-            <div id="f-day" style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">LUNDI</div>
-            <div id="f-type" style="font-size:12px;color:var(--mut)">Push</div>
+            <div id="f-day" style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc);line-height:1">LUNDI</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:3px">
+              <div id="f-type" style="font-size:12px;color:var(--mut)">Push</div>
+              <span style="color:var(--brd)">·</span>
+              <div id="f-dur" style="font-size:12px;color:var(--mut)">75 min</div>
+            </div>
           </div>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div id="f-dur" style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--mut)">75 min</div>
-            <button id="start-sess-btn" onclick="startSession('seance')" style="padding:7px 13px;border-radius:20px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:14px;border:none;cursor:pointer;white-space:nowrap">▶ GO</button>
-          </div>
+          <button id="start-sess-btn" onclick="startSession('seance')" style="padding:9px 18px;border-radius:22px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:15px;border:none;cursor:pointer;white-space:nowrap;letter-spacing:1px;box-shadow:0 4px 16px rgba(232,255,71,.3)">▶ GO</button>
         </div>
-        <div class="hud">
-          <div class="hp" onclick="openBadges('streak')"><div class="hv" id="h-streak" style="color:#ff6b35">0</div><div class="hl">Jours suite</div></div>
-          <div class="hp"><div class="hv" id="h-xp" style="color:var(--acc)">0</div><div class="hl">XP</div></div>
-          <div class="hp" onclick="openBadges('total')"><div class="hv" id="h-badge">&#127807;</div><div class="hl">Badge</div></div>
+        <div style="display:flex;gap:6px;margin-bottom:12px">
+          <div class="hud-card" onclick="openBadges('streak')">
+            <div class="hud-val" id="h-streak" style="color:#ff6b35">0</div>
+            <div class="hud-lbl">Streak</div>
+          </div>
+          <div class="hud-card">
+            <div class="hud-val" id="h-xp" style="color:var(--acc)">0</div>
+            <div class="hud-lbl">XP</div>
+          </div>
+          <div class="hud-card" onclick="openBadges('sess')">
+            <div class="hud-val" id="h-badge" style="font-size:20px">🔰</div>
+            <div class="hud-lbl">Badge</div>
+          </div>
+          <div class="hud-card" onclick="openLeaderboard()">
+            <div class="hud-val" style="font-size:18px;color:var(--acc)">🏆</div>
+            <div class="hud-lbl">Records</div>
+          </div>
         </div>
         <!-- Poids rapide -->
         <div style="display:flex;align-items:center;gap:8px;background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:12px">
@@ -641,10 +922,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
           </a>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--mut);margin-bottom:4px"><span id="bp-l">0/0</span><span id="bp-r">0%</span></div>
-        <div class="bptrack"><div class="bpfill" id="bpfill" style="width:0%"></div></div>
+        <div class="prog-bar"><div class="prog-fill" id="bpfill" style="width:0%"></div></div>
         <div class="bppct" id="bppct">0</div>
         <div class="tstrip">
-          <div class="tdig" id="tdisp">00:00</div>
+          <div class="timer-dig" id="tdisp">00:00</div>
           <div class="tbtns">
             <div class="trow">
               <button class="tb go" id="tstart" onclick="tToggle()">&#9654;</button>
@@ -662,10 +943,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
           </div>
         </div>
         <div class="exnav" id="exnav"></div>
-        <div class="hero" id="hero">
-          <div class="exnum" id="exnum">EX 1/8</div>
-          <div class="extitle" id="extitle">NOM</div>
-          <div class="exsets" id="exsets">4x6</div>
+        <div class="ex-hero" id="hero">
+          <div class="ex-hero-num" id="exnum">EX 1/8</div>
+          <div class="ex-hero-name" id="extitle">NOM</div>
+          <div class="ex-hero-sets" id="exsets">4x6</div>
           <div class="exnote" id="exnote" style="display:none"></div>
           <div class="exrow">
             <a class="ytbtn" id="exyt" href="#" target="_blank" style="display:none" onclick="event.stopPropagation()">
@@ -682,7 +963,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
             <button class="mlsave" onclick="saveML()">ENREGISTRER</button>
           </div>
         </div>
-        <button class="donebtn rdy" id="donebtn" onclick="markDone()">&#10003; C'EST FAIT</button>
+        <button class="ex-done-btn rdy" id="donebtn" class="ex-done-btn rdy" onclick="markDone()">&#10003; C'EST FAIT</button>
         <div class="actrow">
           <button class="actbtn" onclick="prevEx()">&#8592; Prec</button>
           <button class="actbtn" onclick="nextEx()">Suiv &#8594;</button>
@@ -805,11 +1086,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
     <!-- ACCUEIL / SQUAD FEED -->
     <div id="p-accueil" class="panel">
-      <div class="wrap">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
-          <div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">MA SQUAD</div>
-          <button onclick="openSocial()" style="padding:8px 14px;border-radius:20px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500">+ Ajouter</button>
-        </div>
+      <div class="wrap" style="padding-top:8px">
         <div id="accueil-feed"></div>
       </div>
     </div>
@@ -846,34 +1123,57 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 <!-- HAMBURGER MENU -->
 <div class="more-ov" id="more-ov" onclick="closeHamburger()"></div>
 <div class="more-sh" id="more-sh">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-    <div id="ham-profil" style="display:flex;align-items:center;gap:10px;cursor:pointer" onclick="closeHamburger();openProfil()">
+  <!-- Ham header -->
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+    <div onclick="closeHamburger();openProfil()" style="display:flex;align-items:center;gap:10px;cursor:pointer">
       <div id="ham-avatar"></div>
       <div>
-        <div id="ham-name" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc)">Mon profil</div>
-        <div style="font-size:11px;color:var(--mut)">Voir badges et stats</div>
+        <div id="ham-name" style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc);letter-spacing:1px">G-SQUAD</div>
+        <div style="font-size:11px;color:var(--mut)">Voir mon profil →</div>
       </div>
     </div>
-    <button onclick="closeHamburger()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer;padding:4px">&#x2715;</button>
+    <button onclick="closeHamburger()" style="background:none;border:none;color:var(--mut);font-size:24px;cursor:pointer;padding:4px">✕</button>
   </div>
-  <div style="display:flex;flex-direction:column;gap:8px">
+
+  <!-- Actions principales -->
+  <div style="display:flex;flex-direction:column;gap:6px">
     <button class="ham-btn" onclick="closeHamburger();goTab('coach',null)">
-      <span style="font-size:22px">🤖</span><div><div class="ham-title">Coach IA</div><div class="ham-sub">Pose toutes tes questions</div></div>
+      <span style="font-size:22px">🤖</span>
+      <div><div class="ham-title">Coach IA</div><div class="ham-sub">Questions, programme, conseils</div></div>
+      <span style="margin-left:auto;color:var(--mut)">›</span>
     </button>
     <button class="ham-btn" onclick="closeHamburger();openChefIA()">
-      <span style="font-size:22px">🍳</span><div><div class="ham-title">Chef IA</div><div class="ham-sub">Propose un repas avec mes ingrédients</div></div>
+      <span style="font-size:22px">🍳</span>
+      <div><div class="ham-title">Chef IA</div><div class="ham-sub">Recette selon mes ingrédients</div></div>
+      <span style="margin-left:auto;color:var(--mut)">›</span>
     </button>
-    <button class="ham-btn" onclick="closeHamburger();openSocial()">
-      <span style="font-size:22px">👥</span><div><div class="ham-title">Amis</div><div class="ham-sub">Rechercher et ajouter des amis</div></div>
-    </button>
-
     <button class="ham-btn" onclick="closeHamburger();openFL('programme')">
-      <span style="font-size:22px">📋</span><div><div class="ham-title">Programme</div><div class="ham-sub">3 phases + modifier les exercices</div></div>
+      <span style="font-size:22px">📋</span>
+      <div><div class="ham-title">Programme</div><div class="ham-sub">3 phases · modifier les exos</div></div>
+      <span style="margin-left:auto;color:var(--mut)">›</span>
+    </button>
+    <button class="ham-btn" onclick="closeHamburger();openLeaderboard()">
+      <span style="font-size:22px">🏆</span>
+      <div><div class="ham-title">Leaderboard</div><div class="ham-sub">Mes records par exercice</div></div>
+      <span style="margin-left:auto;color:var(--mut)">›</span>
+    </button>
+    <button class="ham-btn" onclick="closeHamburger();openSearchModal()">
+      <span style="font-size:22px">👥</span>
+      <div><div class="ham-title">Trouver des amis</div><div class="ham-sub">Rechercher par @username</div></div>
+      <span style="margin-left:auto;color:var(--mut)">›</span>
     </button>
     <button class="ham-btn" onclick="closeHamburger();openGuide()">
-      <span style="font-size:22px">💡</span><div><div class="ham-title">Guide de l'app</div><div class="ham-sub">Tour guidé — comment tout fonctionne</div></div>
+      <span style="font-size:22px">💡</span>
+      <div><div class="ham-title">Guide</div><div class="ham-sub">Comment utiliser l'app</div></div>
+      <span style="margin-left:auto;color:var(--mut)">›</span>
     </button>
-    <div style="height:1px;background:var(--brd);margin:4px 0"></div>
+
+    <div style="height:1px;background:var(--brd);margin:8px 0"></div>
+    <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px">Musique</div>
+    <div style="display:flex;gap:8px;margin-bottom:8px">
+      <a href="spotify://" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;background:var(--card);border-radius:11px;border:1px solid var(--brd);text-decoration:none;font-size:12px;color:var(--txt)">🎵 Spotify</a>
+      <a href="deezer://" style="flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:10px;background:var(--card);border-radius:11px;border:1px solid var(--brd);text-decoration:none;font-size:12px;color:var(--txt)">🎵 Deezer</a>
+    </div>
     <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px">Ma salle</div>
     <div id="ham-gym-btn"></div>
   </div>
@@ -884,7 +1184,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 
 <div class="flov" id="fl-log">
-  <div class="flhead"><button class="flcls" onclick="closeFL('log')">&#8592;</button><div class="fltitle">LOG</div></div>
+  <div class="fl-head-v2"><button class="fl-back" onclick="closeFL('log')">←</button><div class="fl-title-v2">LOG SÉANCE</div></div>
   <div class="flbody">
     <div id="log-metrics" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px"></div>
     <div class="sec">Enregistrer</div>
@@ -908,12 +1208,21 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 <!-- MARCHE OVERLAY -->
 <div class="flov" id="fl-marche">
-  <div class="flhead"><button class="flcls" onclick="closeFL('marche')">&#8592;</button><div class="fltitle">MARCHE</div></div>
+  <div class="fl-head-v2"><button class="fl-back" onclick="closeFL('marche')">←</button><div class="fl-title-v2">COURSE / MARCHE</div></div>
   <div class="flbody">
     <div class="sec">Démarrer</div>
-    <div style="background:var(--card);border-radius:14px;padding:16px;margin-bottom:14px;border:1px solid var(--brd);text-align:center">
-      <div style="font-size:36px;margin-bottom:8px">🚶</div>
-      <div style="font-size:13px;color:var(--mut);margin-bottom:12px;line-height:1.5">Le tracking GPS démarre automatiquement.<br>Aucune adresse requise.</div>
+    <div style="background:var(--card);border-radius:14px;padding:16px;margin-bottom:14px;border:1px solid var(--brd)">
+      <div style="display:flex;gap:10px;margin-bottom:12px">
+        <div style="flex:1;text-align:center">
+          <div style="font-size:30px;margin-bottom:4px">🏃</div>
+          <div style="font-size:11px;color:var(--mut)">Course</div>
+        </div>
+        <div style="flex:1;text-align:center">
+          <div style="font-size:30px;margin-bottom:4px">🚶</div>
+          <div style="font-size:11px;color:var(--mut)">Marche</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--mut);margin-bottom:12px;text-align:center;line-height:1.5">Tracking GPS automatique — distance, durée, allure</div>
       <button onclick="startGPSWalk()" style="width:100%;padding:14px;border-radius:12px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:20px;border:none;cursor:pointer">▶ DÉMARRER GPS</button>
     </div>
     <div id="marche-gps-live" style="display:none;background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px;border:1px solid var(--acc)">
@@ -923,11 +1232,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     </div>
     <div class="sec">Enregistrer manuellement</div>
     <div class="card">
-      <div class="lfield"><label>Parcours</label>
+      <div class="lfield"><label>Type</label>
         <select id="m-parc" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
-          <option>Lac + Berges (~20 km)</option>
-          <option>Foret de Senart (~18 km)</option>
-          <option>Urbain Evry (~20 km)</option>
+          <option>Course</option>
+          <option>Marche</option>
+          <option>Randonnée</option>
           <option>Autre</option>
         </select>
       </div>
@@ -936,7 +1245,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
         <div class="lfield" style="flex:1;margin-bottom:0"><label>Duree min</label><input type="number" id="m-dur" placeholder="210" inputmode="numeric"></div>
       </div>
       <button class="bigbtn" style="margin-top:10px" onclick="saveMarche()">ENREGISTRER</button>
-    <button onclick="startSession('marche')" style="width:100%;padding:13px;border-radius:11px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-family:Bebas Neue,sans-serif;font-size:18px;cursor:pointer;margin-top:8px">▶ COMMENCER LA MARCHE</button>
+
     </div>
     <div class="sec">Historique</div>
     <div id="marche-hist"></div>
@@ -945,15 +1254,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 
 <!-- PROGRAMME OVERLAY -->
 <div class="flov" id="fl-programme">
-  <div class="flhead"><button class="flcls" onclick="closeFL('programme')">&#8592;</button><div class="fltitle">PROGRAMME</div></div>
+  <div class="fl-head-v2">
+    <button class="fl-back" onclick="closeFL('programme')">←</button>
+    <div class="fl-title-v2">PROGRAMME</div>
+  </div>
   <div class="flbody" id="fl-prog-body"></div>
 </div>
 
 <!-- EXERCICES — DEUX SLIDES -->
 <div class="flov" id="fl-exos">
-  <div class="flhead" style="gap:12px">
-    <div class="fltitle">🏋️ EXERCICES</div>
-    <button class="flcls" onclick="closeFL('exos')" style="order:-1">&#8592;</button>
+  <div class="fl-head-v2">
+    <button class="fl-back" onclick="closeFL('exos')">←</button>
+    <div class="fl-title-v2">EXERCICES</div>
   </div>
   <div style="display:flex;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0">
     <button id="exo-tab-mes" onclick="switchExoTab('mes')" style="flex:1;padding:12px;border:none;border-bottom:2px solid var(--acc);background:none;font-family:DM Sans,sans-serif;font-size:13px;font-weight:500;color:var(--acc);cursor:pointer">Mes exercices</button>
@@ -1127,28 +1439,156 @@ var SUPPLS = [
   {ico:'&#x1F964;',name:'Whey post-seance',dose:'25-30 g proteines',timing:'Dans les 30 min apres la seance'}
 ];
 
+// ════════════════════════════════════════════════════
+// SYSTÈME DE BADGES G-SQUAD
+// Catégorie SÉANCES — difficulté progressive, rare
+// ════════════════════════════════════════════════════
 var BADGES_SESS = [
-  {min:0,ico:'&#127807;',name:'Debutant',desc:'Tu commences - bienvenue'},
-  {min:3,ico:'&#9889;',name:'Etincelle',desc:'3 seances - tu es la'},
-  {min:7,ico:'&#128293;',name:'En feu',desc:'7 seances - l habitude commence'},
-  {min:15,ico:'&#128170;',name:'Solide',desc:'15 seances - tu deviens serieux'},
-  {min:25,ico:'&#129409;',name:'Guerrier',desc:'25 seances - tu ne laches pas'},
-  {min:40,ico:'&#9876;',name:'Combattant',desc:'40 seances - mentalite de fer'},
-  {min:60,ico:'&#127942;',name:'Champion',desc:'60 seances - respect total'},
-  {min:90,ico:'&#128142;',name:'Elite',desc:'90 seances - autre categorie'},
-  {min:150,ico:'&#128081;',name:'Legende',desc:'150 seances - niveau pro'}
+  {
+    min:1, tier:'bronze',
+    ico:'🔰', name:'FIRST REP',
+    desc:'Première séance complète. Le voyage commence.',
+    rarity:'Commun'
+  },
+  {
+    min:10, tier:'bronze',
+    ico:'⚡', name:'IGNITION',
+    desc:'10 séances. Tu as prouvé que ce n\'était pas un accident.',
+    rarity:'Commun'
+  },
+  {
+    min:25, tier:'argent',
+    ico:'🔩', name:'IRON WILL',
+    desc:'25 séances. La douleur est devenue familière.',
+    rarity:'Peu commun'
+  },
+  {
+    min:50, tier:'argent',
+    ico:'🗡️', name:'BLADE',
+    desc:'50 séances. Tu es taillé différemment.',
+    rarity:'Peu commun'
+  },
+  {
+    min:100, tier:'or',
+    ico:'🔥', name:'CENTURY',
+    desc:'100 séances. Moins de 1% des gens arrivent là.',
+    rarity:'Rare'
+  },
+  {
+    min:150, tier:'or',
+    ico:'🐺', name:'LONE WOLF',
+    desc:'150 séances. Tu fais ce que les autres refusent.',
+    rarity:'Rare'
+  },
+  {
+    min:250, tier:'platine',
+    ico:'💠', name:'PHANTOM',
+    desc:'250 séances. Tu es une légende dans ta salle.',
+    rarity:'Épique'
+  },
+  {
+    min:365, tier:'platine',
+    ico:'🌑', name:'OBSIDIAN',
+    desc:'365 séances — 1 an de séances. Niveau non-humain.',
+    rarity:'Épique'
+  },
+  {
+    min:500, tier:'obsidienne',
+    ico:'👁️', name:'THE ONE',
+    desc:'500 séances. Il n\'y a rien à dire. Tu sais.',
+    rarity:'Légendaire'
+  },
+  {
+    min:1000, tier:'mythique',
+    ico:'🏴', name:'G-SQUAD OG',
+    desc:'1000 séances. Ce badge n\'existe pas pour la plupart.',
+    rarity:'Mythique'
+  }
 ];
 
+// ════════════════════════════════════════════════════
+// Catégorie STREAK — consécutivité, discipline brute
+// ════════════════════════════════════════════════════
 var BADGES_STR = [
-  {min:0,ico:'&#128035;',name:'Reveil',desc:'Le premier pas'},
-  {min:2,ico:'&#128279;',name:'Enchaine',desc:'2 jours - l elan commence'},
-  {min:5,ico:'&#127754;',name:'Dans le flow',desc:'5 jours - tu prends de la vitesse'},
-  {min:10,ico:'&#128481;',name:'Discipline',desc:'10 jours - plus question de reculer'},
-  {min:15,ico:'&#128058;',name:'Loup solitaire',desc:'15 jours - tu fais ce que les autres font pas'},
-  {min:21,ico:'&#129504;',name:'Habitude',desc:'21 jours - ancre dans ton cerveau'},
-  {min:30,ico:'&#127755;',name:'Inarretable',desc:'30 jours - un mois complet'},
-  {min:60,ico:'&#128640;',name:'Machine',desc:'60 jours - t es plus humain'}
+  {
+    min:3, tier:'bronze',
+    ico:'🌡️', name:'WARMUP',
+    desc:'3 jours de suite. L\'élan démarre.',
+    rarity:'Commun'
+  },
+  {
+    min:7, tier:'bronze',
+    ico:'📅', name:'WEEK LOCK',
+    desc:'7 jours. Une semaine sans faillir.',
+    rarity:'Commun'
+  },
+  {
+    min:14, tier:'argent',
+    ico:'⚔️', name:'FORTNIGHT',
+    desc:'14 jours. Deux semaines, zéro excuse.',
+    rarity:'Peu commun'
+  },
+  {
+    min:21, tier:'argent',
+    ico:'🧠', name:'REWIRED',
+    desc:'21 jours. Ton cerveau a changé. Scientifiquement prouvé.',
+    rarity:'Peu commun'
+  },
+  {
+    min:30, tier:'or',
+    ico:'🏹', name:'ARCHER',
+    desc:'30 jours de suite. Un mois sans briser la chaîne.',
+    rarity:'Rare'
+  },
+  {
+    min:60, tier:'or',
+    ico:'🔱', name:'TRIDENT',
+    desc:'60 jours. Deux mois. Tu es une machine à habitudes.',
+    rarity:'Rare'
+  },
+  {
+    min:90, tier:'platine',
+    ico:'🌊', name:'TSUNAMI',
+    desc:'90 jours de suite. Inarrêtable.',
+    rarity:'Épique'
+  },
+  {
+    min:180, tier:'obsidienne',
+    ico:'🌑', name:'DARK MATTER',
+    desc:'180 jours. 6 mois. Personne ne voit ça venir.',
+    rarity:'Légendaire'
+  },
+  {
+    min:365, tier:'mythique',
+    ico:'♾️', name:'ETERNAL',
+    desc:'365 jours de suite. Ce streak n\'existe presque pas.',
+    rarity:'Mythique'
+  }
 ];
+
+// ════════════════════════════════════════════════════
+// Catégorie XP — performance totale cumulée
+// ════════════════════════════════════════════════════
+var BADGES_XP = [
+  {min:100,  tier:'bronze',     ico:'🌱', name:'SEEDLING',  desc:'100 XP. Le sol est préparé.', rarity:'Commun'},
+  {min:500,  tier:'bronze',     ico:'⚙️', name:'GEARS',     desc:'500 XP. La machine tourne.', rarity:'Commun'},
+  {min:1000, tier:'argent',     ico:'🔋', name:'CHARGED',   desc:'1000 XP. Plein de puissance.', rarity:'Peu commun'},
+  {min:2500, tier:'argent',     ico:'💢', name:'IMPACT',    desc:'2 500 XP. Tu laisses une marque.', rarity:'Peu commun'},
+  {min:5000, tier:'or',         ico:'🌋', name:'VOLCANO',   desc:'5000 XP. Éruption permanente.', rarity:'Rare'},
+  {min:10000,tier:'platine',    ico:'⭐', name:'SUPERNOVA', desc:'10000 XP. Tu brilles fort.', rarity:'Épique'},
+  {min:25000,tier:'obsidienne', ico:'🌌', name:'GALAXY',    desc:'25000 XP. Niveau cosmique.', rarity:'Légendaire'},
+  {min:50000,tier:'mythique',   ico:'🏴', name:'TRANSCEND', desc:'50000 XP. Au-delà du possible.', rarity:'Mythique'}
+];
+
+// Couleurs par tier
+var TIER_COLORS = {
+  bronze:    '#cd7f32',
+  argent:    '#c0c0c0',
+  or:        '#e8c84a',
+  platine:   '#00e5ff',
+  obsidienne:'#9b59b6',
+  mythique:  '#e8ff47'
+};
 
 // ============================================================
 // BASE D EXERCICES COMPLETE
@@ -1184,13 +1624,18 @@ function renderExosDay(){
     el.innerHTML='<div style="text-align:center;color:var(--mut);padding:24px;font-size:14px">Aucun exercice — ajoutes-en un !</div>';
     return;
   }
+  var total=d.exercises.length;
   el.innerHTML=d.exercises.map(function(ex,ei){
-    return '<div style="display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--brd)">'
-      +'<div style="flex:1">'
-      +'<div style="font-size:14px;font-weight:500;color:var(--txt)">'+ex.n+'</div>'
+    return '<div style="display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--brd)">'
+      +'<div style="display:flex;flex-direction:column;gap:2px;flex-shrink:0">'
+      +(ei>0?'<button onclick="moveExo('+exosDayIdx+','+ei+',-1)" style="background:none;border:1px solid var(--brd);color:var(--mut);border-radius:6px;padding:3px 7px;font-size:11px;cursor:pointer;line-height:1">▲</button>':'<div style="width:26px;height:20px"></div>')
+      +(ei<total-1?'<button onclick="moveExo('+exosDayIdx+','+ei+',1)" style="background:none;border:1px solid var(--brd);color:var(--mut);border-radius:6px;padding:3px 7px;font-size:11px;cursor:pointer;line-height:1">▼</button>':'<div style="width:26px;height:20px"></div>')
+      +'</div>'
+      +'<div style="flex:1;min-width:0">'
+      +'<div style="font-size:14px;font-weight:500;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+ex.n+'</div>'
       +'<div style="font-size:12px;color:var(--mut);margin-top:2px">'+ex.s+'</div>'
       +'</div>'
-      +'<button onclick="removeExoFromDay('+exosDayIdx+','+ei+')" style="background:none;border:1px solid rgba(255,59,59,.4);color:var(--red);border-radius:8px;padding:6px 11px;font-size:12px;cursor:pointer;flex-shrink:0">Retirer</button>'
+      +'<button onclick="removeExoFromDay('+exosDayIdx+','+ei+')" style="background:none;border:1px solid rgba(255,59,59,.4);color:var(--red);border-radius:8px;padding:6px 9px;font-size:12px;cursor:pointer;flex-shrink:0">✕</button>'
       +'</div>';
   }).join('');
 }
@@ -1202,6 +1647,18 @@ function removeExoFromDay(di,ei){
   sv();renderExosDay();
   if(cDay===di)renderSeance();
   vib([30]);
+}
+
+function moveExo(di,ei,dir){
+  var exos=DAYS[di].exercises;
+  var target=ei+dir;
+  if(target<0||target>=exos.length)return;
+  var tmp=exos[ei];exos[ei]=exos[target];exos[target]=tmp;
+  if(!state.customDays)state.customDays={};
+  state.customDays[di]=DAYS[di].exercises.map(function(ex){return{n:ex.n,s:ex.s,note:ex.note||'',yt:ex.yt||''};});
+  sv();renderExosDay();
+  if(cDay===di)renderSeance();
+  vib([20]);
 }
 
 function openAddExo(){
@@ -1656,64 +2113,43 @@ function navigateToGym(gymKey){
     basicfit:'Basic-Fit',
     fitnesspark:'Fitness Park',
     keepcool:'Keep Cool',
-    onair:'On Air'
+    onair:'On Air Fitness'
   };
   var brandName=searchTerms[gymKey]||gymKey;
+  var distEl=document.getElementById('hamgym-dist-'+gymKey);
+  if(distEl)distEl.textContent='Localisation...';
 
   if(!navigator.geolocation){
-    notify('Géolocalisation requise pour cette fonction.');
+    // Fallback: ouvrir Google Maps search directement
+    var ua=navigator.userAgent;
+    var url=/iPhone|iPad/.test(ua)
+      ?'https://maps.apple.com/?q='+encodeURIComponent(brandName)
+      :'https://www.google.com/maps/search/'+encodeURIComponent(brandName);
+    window.open(url,'_blank');
+    if(distEl)distEl.textContent='📍 Trouver près de moi';
     return;
   }
 
-  // Show loading state
-  var btn=document.getElementById('hamgym-'+gymKey);
-  var distEl=document.getElementById('hamgym-dist-'+gymKey);
-  if(distEl)distEl.textContent='Recherche en cours...';
-
-  navigator.geolocation.getCurrentPosition(async function(pos){
+  navigator.geolocation.getCurrentPosition(function(pos){
     var lat=pos.coords.latitude,lng=pos.coords.longitude;
-    var radius=15000; // 15km
-
-    try {
-      // Overpass API — find gyms with matching name
-      var query='[out:json][timeout:10];(node["leisure"="fitness_centre"]["name"~"'+brandName+'",i](around:'+radius+','+lat+','+lng+');way["leisure"="fitness_centre"]["name"~"'+brandName+'",i](around:'+radius+','+lat+','+lng+'););out center 20;';
-      var res=await fetch('https://overpass-api.de/api/interpreter',{
-        method:'POST',
-        body:'data='+encodeURIComponent(query)
-      });
-      var data=await res.json();
-      var elements=data.elements||[];
-
-      // Compute distance for each
-      var gyms=elements.map(function(el){
-        var elat=el.lat||(el.center&&el.center.lat)||0;
-        var elng=el.lon||(el.center&&el.center.lon)||0;
-        var d=_distKm(lat,lng,elat,elng);
-        return{name:el.tags&&el.tags.name||brandName,lat:elat,lng:elng,dist:d,addr:el.tags&&(el.tags['addr:street']||el.tags['addr:city'])||''};
-      }).filter(function(g){return g.lat&&g.lng;});
-
-      // Sort by distance, take 5
-      gyms.sort(function(a,b){return a.dist-b.dist;});
-      gyms=gyms.slice(0,5);
-
-      if(distEl)distEl.textContent='📍 Trouver près de moi';
-
-      if(!gyms.length){
-        notify('Aucune salle trouvée dans un rayon de 15km.');
-        return;
-      }
-
-      // Show picker overlay
-      showGymPicker(gyms,brandName);
-
-    } catch(e) {
-      if(distEl)distEl.textContent='📍 Trouver près de moi';
-      notify('Erreur de recherche — vérifie ta connexion.');
-    }
-  },function(){
+    var ua=navigator.userAgent;
     if(distEl)distEl.textContent='📍 Trouver près de moi';
-    notify('Géolocalisation refusée. Active-la dans les réglages.');
-  },{timeout:8000,maximumAge:30000,enableHighAccuracy:true});
+    closeHamburger();
+    // Ouvrir Maps avec la recherche de la marque depuis la position actuelle
+    var url=/iPhone|iPad/.test(ua)
+      ?'https://maps.apple.com/?q='+encodeURIComponent(brandName)+'&sll='+lat+','+lng+'&z=12'
+      :'https://www.google.com/maps/search/'+encodeURIComponent(brandName)+'/@'+lat+','+lng+',13z';
+    window.open(url,'_blank');
+  },function(err){
+    if(distEl)distEl.textContent='📍 Trouver près de moi';
+    // En cas d'erreur GPS, ouvrir Maps sans position
+    var ua=navigator.userAgent;
+    var url=/iPhone|iPad/.test(ua)
+      ?'https://maps.apple.com/?q='+encodeURIComponent(brandName)
+      :'https://www.google.com/maps/search/'+encodeURIComponent(brandName);
+    window.open(url,'_blank');
+    closeHamburger();
+  },{timeout:5000,maximumAge:60000,enableHighAccuracy:false});
 }
 
 function showGymPicker(gyms,brandName){
@@ -1767,61 +2203,245 @@ function renderTopbarAvatar(){
 
 function openProfil(){
   var p=state.profil||{};
+  var total=getTotalSess(),streak=getRealStreak();
+
   // Avatar
   var wrap=document.getElementById('profil-avatar-wrap');
   if(wrap){
+    var avatarHtml='';
     if(p.avatar){
-      wrap.innerHTML='<img src="'+p.avatar+'" class="avatar">';
+      avatarHtml='<img src="'+p.avatar+'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--acc)">';
     }else{
-      var ini=(p.name||'?').charAt(0).toUpperCase();
-      wrap.innerHTML='<div class="avatar-ph">'+ini+'</div>';
+      var ini=(p.name||'G').charAt(0).toUpperCase();
+      avatarHtml='<div style="width:80px;height:80px;border-radius:50%;background:var(--card);border:3px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:36px;color:var(--acc)">'+ini+'</div>';
     }
+    wrap.innerHTML=avatarHtml+'<div style="position:absolute;bottom:2px;right:2px;width:22px;height:22px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;border:2px solid #000;cursor:pointer" onclick="changeAvatar()"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>';
   }
+
+  // Username header
+  var uh=document.getElementById('profil-username-header');
+  if(uh)uh.textContent=p.username?'@'+p.username:'MON PROFIL';
+
+  // Nom + badge + genre
   var nn=document.getElementById('profil-nom');if(nn)nn.textContent=p.name||'';
+  var badge=getBadge(total,BADGES_SESS);
+  var bi=document.getElementById('profil-badge-inline');if(bi&&badge)bi.innerHTML=badge.ico;
+  var ng=document.getElementById('profil-genre');
+  if(ng)ng.innerHTML=p.gender==='femme'?'🏄‍♀️':p.gender==='homme'?'🏋️':'';
+  var us=document.getElementById('profil-username-sub');
+  if(us)us.textContent=p.username?'@'+p.username:'';
+
+  // Salle tags
+  var st=document.getElementById('profil-salle-tag');
+  if(st){
+    var gymColors={basicfit:'#FF6B00',fitnesspark:'#4CAF50',keepcool:'#C8006A',onair:'#CC0000',autre:'#555'};
+    var gymNames={basicfit:'Basic-Fit',fitnesspark:'Fitness Park',keepcool:'Keep Cool',onair:'On Air',autre:'Maison'};
+    var gyms=p.gyms||[];
+    st.innerHTML=gyms.map(function(g){
+      return '<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:'+gymColors[g]+'22;border:1px solid '+gymColors[g]+';color:'+gymColors[g]+';font-size:11px;font-weight:600;margin-right:4px">●&nbsp;'+(gymNames[g]||g)+'</span>';
+    }).join('');
+  }
+
+  // Réseaux sociaux
+  var sc=document.getElementById('profil-socials');
+  if(sc){
+    var links=[];
+    if(p.instagram)links.push('<a href="https://instagram.com/'+p.instagram.replace('@','')+'" target="_blank" style="display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);color:var(--mut);font-size:11px;text-decoration:none">📸 '+p.instagram+'</a>');
+    if(p.tiktok)links.push('<a href="https://tiktok.com/@'+p.tiktok.replace('@','')+'" target="_blank" style="display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);color:var(--mut);font-size:11px;text-decoration:none">🎵 '+p.tiktok+'</a>');
+    if(p.snapchat)links.push('<a href="https://snapchat.com/add/'+p.snapchat.replace('@','')+'" target="_blank" style="display:flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);color:var(--mut);font-size:11px;text-decoration:none">👻 '+p.snapchat+'</a>');
+    sc.innerHTML=links.join('');
+  }
+
+  // Objectif pill
+  var op=document.getElementById('profil-objectif-pill');
+  if(op&&p.objectif){
+    var objLabels={perte:'📉 Perte de masse',maintien:'📊 Maintien',prise:'📈 Prise de masse'};
+    op.innerHTML='<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:20px;background:rgba(232,255,71,.1);border:1px solid var(--acc);color:var(--acc);font-size:12px;font-weight:500">'+(objLabels[p.objectif]||p.objectif)+'</span>';
+  }else if(op){op.innerHTML='';}
+
+  // Compteurs Instagram-style
+  var ps=document.getElementById('prof-sess');if(ps)ps.textContent=total;
+  var pxp=document.getElementById('prof-xp');if(pxp)pxp.textContent=state.xp||0;
+  var pstr=document.getElementById('prof-streak');if(pstr)pstr.textContent=streak;
+  var pp=document.getElementById('prof-poids');
+  var lastP=(state.logs||[]).filter(function(l){return l.poids;});
+  if(pp)pp.textContent=lastP.length?lastP[lastP.length-1].poids:'--';
+
+  // Followers/following from state
+  var pf=document.getElementById('prof-followers');if(pf)pf.textContent=(state.friends||[]).length;
+  var pfw=document.getElementById('prof-following');if(pfw)pfw.textContent=(state.friends||[]).length;
+
+  // Badges
+  function renderBadgeStrip(list,val,type){
+    return list.map(function(b){
+      var unlocked=val>=b.min;
+      var col=TIER_COLORS[b.tier]||'var(--acc)';
+      return '<div onclick="openBadges(\'' + type + '\')" style="flex-shrink:0;text-align:center;cursor:pointer">'
+        +'<div style="width:44px;height:44px;border-radius:11px;background:'+(unlocked?col+'22':'var(--fnt)')+';border:2px solid '+(unlocked?col:'#1e1e1e')+';display:flex;align-items:center;justify-content:center;font-size:20px;opacity:'+(unlocked?'1':'.22')+'">'+b.ico+'</div>'
+        +'<div style="font-size:8px;color:'+(unlocked?col:'var(--mut)')+';margin-top:3px;max-width:44px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:'+(unlocked?'600':'400')+'">'+b.name+'</div>'
+        +'</div>';
+    }).join('');
+  }
+  var bsEl=document.getElementById('prof-badges-sess');if(bsEl)bsEl.innerHTML=renderBadgeStrip(BADGES_SESS,total,'sess');
+  var bstrEl=document.getElementById('prof-badges-str');if(bstrEl)bstrEl.innerHTML=renderBadgeStrip(BADGES_STR,streak,'str');
+  var bxpEl=document.getElementById('prof-badges-xp');if(bxpEl)bxpEl.innerHTML=renderBadgeStrip(BADGES_XP,state.xp||0,'xp');
+
+  // Thème actif
+  var themes=['jaune','rouge','bleu','violet','vert','blanc'];
+  themes.forEach(function(t){
+    var btn=document.getElementById('theme-'+t);
+    if(btn)btn.style.border=(p.theme===t||(!p.theme&&t==='jaune'))?'3px solid var(--txt)':'3px solid transparent';
+  });
+
+  // Objectif picker
+  ['perte','maintien','prise'].forEach(function(o){
+    var btn=document.getElementById('obj-'+o);
+    if(btn){
+      var active=p.objectif===o;
+      btn.style.borderColor=active?'var(--acc)':'var(--brd)';
+      btn.style.background=active?'rgba(232,255,71,.1)':'var(--card)';
+      btn.style.color=active?'var(--acc)':'var(--mut)';
+    }
+  });
+
+  // Réglages fields
   var en=document.getElementById('edit-name');if(en)en.value=p.name||'';
   var eu=document.getElementById('edit-username');if(eu)eu.value=p.username||'';
-  var ng=document.getElementById('profil-genre');
-  if(ng){
-    var usertag=p.username?'<span style="font-size:12px;color:var(--acc);margin-right:8px">@'+p.username+'</span>':'';
-    ng.innerHTML=usertag+(p.gender==='femme'?'🌸 Femme':'💪 Homme');
-  }
-  // Stats
-  var total=getTotalSess(),streak=getRealStreak();
-  var lastPoids=(state.logs||[]).filter(function(l){return l.poids;});
-  var lp=lastPoids.length?lastPoids[lastPoids.length-1].poids:'--';
-  var ps=document.getElementById('prof-sess');if(ps)ps.textContent=total;
-  var px=document.getElementById('prof-xp');if(px)px.textContent=state.xp||0;
-  var pstr=document.getElementById('prof-streak');if(pstr)pstr.textContent=streak;
-  var pp=document.getElementById('prof-poids');if(pp)pp.textContent=lp;
-  // Badges séances
-  var bsEl=document.getElementById('prof-badges-sess');
-  if(bsEl)bsEl.innerHTML=BADGES_SESS.map(function(b){
-    var unlocked=total>=b.min;
-    return '<div style="flex-shrink:0;text-align:center;opacity:'+(unlocked?'1':'.3')+'">'
-      +'<div style="font-size:30px">'+b.ico+'</div>'
-      +'<div style="font-size:9px;color:var(--mut);margin-top:2px">'+b.name+'</div>'
-      +'<div style="font-size:9px;color:var(--mut)">'+b.min+'</div>'
-      +'</div>';
-  }).join('');
-  // Badges streak
-  var bstrEl=document.getElementById('prof-badges-str');
-  if(bstrEl)bstrEl.innerHTML=BADGES_STR.map(function(b){
-    var unlocked=streak>=b.min;
-    return '<div style="flex-shrink:0;text-align:center;opacity:'+(unlocked?'1':'.3')+'">'
-      +'<div style="font-size:30px">'+b.ico+'</div>'
-      +'<div style="font-size:9px;color:var(--mut);margin-top:2px">'+b.name+'</div>'
-      +'<div style="font-size:9px;color:var(--mut)">'+b.min+'</div>'
-      +'</div>';
-  }).join('');
+  var et=document.getElementById('edit-taille');if(et)et.value=p.taille||'';
+  var epf=document.getElementById('edit-poids-profil');if(epf)epf.value=p.poids||'';
+  var si=document.getElementById('social-instagram');if(si)si.value=p.instagram||'';
+  var st2=document.getElementById('social-tiktok');if(st2)st2.value=p.tiktok||'';
+  var ss=document.getElementById('social-snapchat');if(ss)ss.value=p.snapchat||'';
+
   // Salles
-  renderProfilGyms();
-  var gyms=(p.gyms||[]);
   ['basicfit','fitnesspark','keepcool','onair','autre'].forEach(function(id){
     var el=document.getElementById('pg-'+id);
-    if(el)el.classList.toggle('sel',gyms.indexOf(id)!==-1);
+    if(el)el.classList.toggle('sel',((p.gyms||[]).indexOf(id)!==-1));
   });
+
+  // API
   updateAPIUI();
+
+  // Galerie
+  renderGalerie();
+
+  // Show profil
+  switchProfilTab('stats');
   document.getElementById('profil-ov').classList.add('open');
+}
+
+function switchProfilTab(id){
+  ['stats','galerie','reglages'].forEach(function(t){
+    var tab=document.getElementById('ptab-'+t);
+    var panel=document.getElementById('ppanel-'+t);
+    var active=t===id;
+    if(tab){tab.style.borderBottomColor=active?'var(--acc)':'transparent';tab.style.color=active?'var(--acc)':'var(--mut)';}
+    if(panel)panel.style.display=active?'block':'none';
+  });
+}
+
+function setTheme(theme){
+  if(!state.profil)state.profil={};
+  state.profil.theme=theme;sv();
+  var themeColors={jaune:'#e8ff47',rouge:'#ff3b3b',bleu:'#4af',violet:'#c84bff',vert:'#39ff14',blanc:'#f0f0f0'};
+  var col=themeColors[theme]||'#e8ff47';
+  document.documentElement.style.setProperty('--acc',col);
+  ['jaune','rouge','bleu','violet','vert','blanc'].forEach(function(t){
+    var btn=document.getElementById('theme-'+t);
+    if(btn)btn.style.border=(t===theme)?'3px solid var(--txt)':'3px solid transparent';
+  });
+  notify('Thème '+theme+' appliqué');vib([20]);
+}
+
+function setObjectif(obj){
+  if(!state.profil)state.profil={};
+  state.profil.objectif=obj;sv();
+  ['perte','maintien','prise'].forEach(function(o){
+    var btn=document.getElementById('obj-'+o);
+    if(btn){
+      var active=o===obj;
+      btn.style.borderColor=active?'var(--acc)':'var(--brd)';
+      btn.style.background=active?'rgba(232,255,71,.1)':'var(--card)';
+      btn.style.color=active?'var(--acc)':'var(--mut)';
+    }
+  });
+  // Recalculer macros si on a les mensurations
+  if(state.profil.taille&&state.profil.poids)saveProfilMensures();
+  notify('Objectif : '+obj);vib([20]);
+}
+
+function saveSocials(){
+  if(!state.profil)state.profil={};
+  var si=document.getElementById('social-instagram');
+  var st=document.getElementById('social-tiktok');
+  var ss=document.getElementById('social-snapchat');
+  if(si)state.profil.instagram=si.value.trim();
+  if(st)state.profil.tiktok=st.value.trim();
+  if(ss)state.profil.snapchat=ss.value.trim();
+  sv();notify('Réseaux sociaux sauvegardés');vib([30]);
+}
+
+function openProfilSettings(){switchProfilTab('reglages');}
+
+// ── GALERIE ─────────────────────────────────────────────────
+function renderGalerie(){
+  var el=document.getElementById('galerie-grid');
+  var empty=document.getElementById('galerie-empty');
+  var photos=state.galerie||[];
+  if(!el)return;
+  if(!photos.length){
+    if(empty)empty.style.display='block';
+    el.innerHTML='';return;
+  }
+  if(empty)empty.style.display='none';
+  el.innerHTML=photos.map(function(p,i){
+    return '<div style="position:relative;aspect-ratio:1;overflow:hidden;cursor:pointer" onclick="openPhoto('+i+')">'
+      +'<img src="'+p.url+'" style="width:100%;height:100%;object-fit:cover">'
+      +(p.caption?'<div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,.7));padding:4px 6px;font-size:9px;color:#fff">'+p.caption+'</div>':'')
+      +'</div>';
+  }).join('');
+}
+
+function addGaleriePhotos(event){
+  var files=Array.from(event.target.files);
+  if(!files.length)return;
+  var done=0;
+  files.forEach(function(file){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      if(!state.galerie)state.galerie=[];
+      state.galerie.unshift({url:e.target.result,date:new Date().toLocaleDateString('fr-FR'),caption:''});
+      done++;
+      if(done===files.length){sv();renderGalerie();notify(done+' photo'+(done>1?'s':'')+' ajoutée'+(done>1?'s':'')+'');vib([30]);}
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function openPhoto(idx){
+  var photos=state.galerie||[];
+  var p=photos[idx];if(!p)return;
+  var ex=document.getElementById('photo-viewer');if(ex)ex.remove();
+  var html='<div id="photo-viewer" style="position:fixed;inset:0;background:#000;z-index:2000;display:flex;flex-direction:column">';
+  html+='<div style="display:flex;justify-content:space-between;align-items:center;padding:env(safe-area-inset-top,14px) 14px 12px;background:rgba(0,0,0,.5)">';
+  html+='<div style="font-size:11px;color:var(--mut)">'+p.date+'</div>';
+  html+='<div style="display:flex;gap:8px">';
+  html+='<button onclick="deletePhoto('+idx+')" style="background:none;border:none;color:var(--red);font-size:14px;cursor:pointer;padding:4px 8px">Supprimer</button>';
+  html+='<button onclick="document.getElementById(\'photo-viewer\').remove()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer">✕</button>';
+  html+='</div></div>';
+  html+='<div style="flex:1;display:flex;align-items:center;justify-content:center;padding:14px">';
+  html+='<img src="'+p.url+'" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:8px">';
+  html+='</div>';
+  if(p.caption){html+='<div style="padding:12px 16px;font-size:13px;color:var(--txt)">'+p.caption+'</div>';}
+  html+='</div>';
+  document.body.insertAdjacentHTML('beforeend',html);
+}
+
+function deletePhoto(idx){
+  if(!confirm('Supprimer cette photo ?'))return;
+  state.galerie.splice(idx,1);sv();
+  var el=document.getElementById('photo-viewer');if(el)el.remove();
+  renderGalerie();notify('Photo supprimée');
 }
 
 function closeProfil(){document.getElementById('profil-ov').classList.remove('open');}
@@ -1956,6 +2576,36 @@ function deconnexion(){
   document.getElementById('auth-screen').style.display='flex';
 }
 
+function calcMacros(poids,taille,gender,objectif){
+  // Formule Harris-Benedict
+  var bmr;
+  if(gender==='femme'){
+    bmr=447.6+(9.25*poids)+(3.1*taille)-(4.33*30); // age 30 par défaut
+  }else{
+    bmr=88.36+(13.4*poids)+(4.8*taille)-(5.68*30);
+  }
+  // Facteur activité modérée (sport 3-5x/sem)
+  var tdee=Math.round(bmr*1.55);
+  var kcal,prot,lipides,glucides;
+  if(objectif==='perte'){
+    kcal=Math.round(tdee*0.80); // déficit 20%
+    prot=Math.round(poids*2.2); // 2.2g/kg — préserver muscle
+    lipides=Math.round(kcal*0.25/9);
+    glucides=Math.round((kcal-(prot*4)-(lipides*9))/4);
+  }else if(objectif==='prise'){
+    kcal=Math.round(tdee*1.12); // surplus 12%
+    prot=Math.round(poids*2.0);
+    lipides=Math.round(kcal*0.25/9);
+    glucides=Math.round((kcal-(prot*4)-(lipides*9))/4);
+  }else{ // maintien
+    kcal=tdee;
+    prot=Math.round(poids*1.8);
+    lipides=Math.round(kcal*0.28/9);
+    glucides=Math.round((kcal-(prot*4)-(lipides*9))/4);
+  }
+  return{kcal:Math.max(kcal,1200),prot:Math.max(prot,50),lipides:Math.max(lipides,30),glucides:Math.max(glucides,50)};
+}
+
 function saveProfilMensures(){
   var t=parseFloat(document.getElementById('edit-taille').value);
   var p=parseFloat(document.getElementById('edit-poids-profil').value);
@@ -1965,17 +2615,49 @@ function saveProfilMensures(){
   var imc=p/((t/100)*(t/100));
   var label,color;
   if(imc<18.5){label='Insuffisance pondérale';color='var(--blu)';}
-  else if(imc<25){label='Poids normal — continue !';color='var(--grn)';}
-  else if(imc<30){label='Surpoids — la recompo va tout changer.';color:'orange';}
-  else{label='Obésité — tu es au bon endroit.';color='var(--red)';}
+  else if(imc<25){label='Poids normal';color='var(--grn)';}
+  else if(imc<30){label='Surpoids — la recompo va tout changer';color:'#ff9500';}
+  else{label='Obésité — tu es au bon endroit';color='var(--red)';}
+
+  // Calculer les macros
+  var obj=state.profil.objectif||'maintien';
+  var gender=state.profil.gender||'homme';
+  var macros=calcMacros(p,t,gender,obj);
+  state.profil.macros=macros;
+  state.profil.imcVal=parseFloat(imc.toFixed(1));
+
+  // Mettre à jour KCAL_GOAL
+  KCAL_GOAL=macros.kcal;
+  PROT_GOAL=macros.prot;
+
   sv();
+
+  // Afficher IMC
   var res=document.getElementById('profil-imc-result');
   var val=document.getElementById('profil-imc-val');
   var lbl=document.getElementById('profil-imc-label');
   if(res){res.style.display='block';res.style.borderLeftColor=color;}
   if(val){val.textContent='IMC : '+imc.toFixed(1);val.style.color=color;}
   if(lbl)lbl.textContent=label;
-  notify('Mensures sauvegardées — IMC : '+imc.toFixed(1));vib([40,20,40]);
+
+  // Afficher macros calculées
+  var mr=document.getElementById('profil-macros-result');
+  if(mr){
+    mr.style.display='block';
+    var objLabels={perte:'📉 Perte',maintien:'📊 Maintien',prise:'📈 Prise'};
+    mr.innerHTML='<div style="background:var(--card);border-radius:12px;padding:14px;border:1px solid var(--acc)">'
+      +'<div style="font-size:10px;color:var(--acc);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">'+objLabels[obj]+' — Macros calculées</div>'
+      +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'
+      +'<div style="text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:#ff6b35">'+macros.kcal+'</div><div style="font-size:10px;color:var(--mut)">kcal/jour</div></div>'
+      +'<div style="text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc)">'+macros.prot+'g</div><div style="font-size:10px;color:var(--mut)">protéines</div></div>'
+      +'<div style="text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--blu)">'+macros.glucides+'g</div><div style="font-size:10px;color:var(--mut)">glucides</div></div>'
+      +'<div style="text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--grn)">'+macros.lipides+'g</div><div style="font-size:10px;color:var(--mut)">lipides</div></div>'
+      +'</div>'
+      +'<div style="font-size:10px;color:var(--mut);margin-top:10px;text-align:center">Ces valeurs sont maintenant appliquées à ton suivi nutrition</div>'
+      +'</div>';
+  }
+
+  notify('IMC '+imc.toFixed(1)+' · '+macros.kcal+' kcal · '+macros.prot+'g prot');vib([40,20,40]);
 }
 
 function saveAPIChoice(){
@@ -2238,10 +2920,12 @@ function confetti(){
 // BADGES
 // ============================================================
 function getBadge(n,list){
+  if(!list||!list.length)return null;
   var b=list[0];
   for(var i=0;i<list.length;i++){if(n>=list[i].min)b=list[i];else break;}
   return b;
 }
+function getBadgeXP(xp){return getBadge(xp,BADGES_XP);}
 function getRealStreak(){
   var dates=Object.keys(state.journal).filter(function(d){return state.journal[d]&&state.journal[d].seanceDone;})
     .sort(function(a,b){var pa=a.split('/'),pb=b.split('/');return new Date(pb[2],pb[1]-1,pb[0])-new Date(pa[2],pa[1]-1,pa[0]);});
@@ -2258,26 +2942,97 @@ function getTotalSess(){
   return Object.keys(state.journal).filter(function(k){return state.journal[k]&&state.journal[k].seanceDone;}).length;
 }
 function openBadges(type){
-  var total=getTotalSess(),streak=getRealStreak();
-  var isS=(type==='streak'),val=isS?streak:total,list=isS?BADGES_STR:BADGES_SESS;
-  var cur=getBadge(val,list),col=isS?'#ff6b35':'var(--acc)';
-  var title=isS?'JOURS DE SUITE':'SEANCES TOTALES';
+  var total=getTotalSess(),streak=getRealStreak(),xp=state.xp||0;
   var ex=document.getElementById('badge-ov');if(ex)ex.remove();
-  var html='<div style="position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:997;overflow-y:auto;padding:20px;padding-top:env(safe-area-inset-top,20px)" id="badge-ov">';
-  html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:'+col+'">'+title+'</div><button onclick="document.getElementById(\'badge-ov\').remove()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer">x</button></div>';
-  html+='<div style="background:var(--card);border-radius:14px;padding:16px;margin-bottom:14px;border:2px solid '+col+';text-align:center"><div style="font-size:46px;margin-bottom:5px">'+cur.ico+'</div><div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:'+col+'">'+cur.name+'</div><div style="font-size:12px;color:var(--mut);margin-top:3px">'+cur.desc+'</div><div style="font-size:11px;color:var(--mut);margin-top:5px">'+val+(isS?' jours de suite':' seances completes')+'</div></div>';
-  list.forEach(function(b){
-    var unlocked=val>=b.min,isCur=b.min===cur.min;
-    var next=null;for(var i=0;i<list.length;i++){if(list[i].min>val){next=list[i];break;}}
-    html+='<div style="display:flex;align-items:center;gap:11px;padding:11px;background:var(--card);border-radius:11px;margin-bottom:6px;border:1px solid '+(isCur?col:'var(--brd)')+(unlocked?'':';opacity:.3')+'">';
-    html+='<div style="font-size:24px;width:34px;text-align:center">'+b.ico+'</div><div style="flex:1">';
-    html+='<div style="font-size:13px;font-weight:500;color:'+(unlocked?'var(--txt)':'var(--mut)')+'">'+b.name+' <span style="font-size:10px;color:var(--mut)">'+b.min+'</span></div>';
-    html+='<div style="font-size:11px;color:var(--mut)">'+b.desc+'</div>';
-    if(isCur&&next){var prog=Math.round((val-b.min)/(next.min-b.min)*100);html+='<div style="margin-top:5px;height:4px;background:var(--fnt);border-radius:4px;overflow:hidden"><div style="height:4px;background:'+col+';width:'+prog+'%;border-radius:4px"></div></div><div style="font-size:10px;color:var(--mut);margin-top:2px">'+val+' / '+next.min+' - '+next.name+'</div>';}
-    html+='</div>'+(unlocked?'<span style="color:var(--grn)">&#10003;</span>':'<span style="color:var(--fnt)">&#x1F512;</span>')+'</div>';
+
+  function renderBadgeList(list,val,unit){
+    var cur=getBadge(val,list);
+    var next=null;
+    for(var i=0;i<list.length;i++){if(list[i].min>val){next=list[i];break;}}
+    var html='';
+    list.forEach(function(b){
+      var unlocked=val>=b.min;
+      var isCur=cur&&b.min===cur.min;
+      var col=TIER_COLORS[b.tier]||'var(--acc)';
+      var prog=0;
+      if(isCur&&next)prog=Math.min(100,Math.round((val-b.min)/(next.min-b.min)*100));
+      html+='<div style="display:flex;align-items:center;gap:12px;padding:13px;background:var(--card);border-radius:13px;margin-bottom:8px;border:1px solid '+(isCur?col:unlocked?'rgba(255,255,255,.08)':'var(--brd)')+(unlocked?'':';opacity:.28')+'">';
+      // Badge icon avec fond tier
+      html+='<div style="width:48px;height:48px;border-radius:12px;background:'+(unlocked?col+'22':'var(--fnt)')+';border:2px solid '+(unlocked?col:'var(--brd)')+';display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">'+b.ico+'</div>';
+      html+='<div style="flex:1;min-width:0">';
+      html+='<div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">';
+      html+='<div style="font-family:Bebas Neue,sans-serif;font-size:15px;color:'+(unlocked?col:'var(--mut)')+';letter-spacing:1px">'+b.name+'</div>';
+      html+='<div style="font-size:9px;padding:2px 6px;border-radius:10px;background:'+(unlocked?col+'33':'var(--fnt)')+';color:'+(unlocked?col:'var(--mut)')+';font-weight:600">'+b.rarity.toUpperCase()+'</div>';
+      html+='</div>';
+      html+='<div style="font-size:11px;color:var(--mut);line-height:1.4;margin-bottom:4px">'+b.desc+'</div>';
+      if(isCur&&next){
+        html+='<div style="height:3px;background:var(--fnt);border-radius:3px;overflow:hidden;margin-bottom:2px"><div style="height:3px;background:'+col+';width:'+prog+'%;border-radius:3px;transition:width .5s"></div></div>';
+        html+='<div style="font-size:9px;color:var(--mut)">'+val+' / '+next.min+' '+unit+' → '+next.name+'</div>';
+      }else if(unlocked&&!next){
+        html+='<div style="font-size:9px;color:'+col+'">★ MAXIMUM ATTEINT</div>';
+      }else if(!unlocked){
+        html+='<div style="font-size:9px;color:var(--mut)">'+b.min+' '+unit+' requis — encore '+(b.min-val)+'</div>';
+      }
+      html+='</div>';
+      html+=unlocked?'<span style="font-size:18px">✓</span>':'<span style="font-size:16px;color:var(--fnt)">🔒</span>';
+      html+='</div>';
+    });
+    return html;
+  }
+
+  var tabs=[
+    {id:'sess',label:'SÉANCES',val:total,unit:'séances',list:BADGES_SESS},
+    {id:'str',label:'STREAK',val:streak,unit:'jours',list:BADGES_STR},
+    {id:'xp',label:'XP',val:xp,unit:'XP',list:BADGES_XP}
+  ];
+  var activeTab=type==='streak'?'str':type==='xp'?'xp':'sess';
+
+  var html='<div id="badge-ov" style="position:fixed;inset:0;background:#000;z-index:1800;display:flex;flex-direction:column;overflow:hidden">';
+  // Header
+  html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:env(safe-area-inset-top,16px) 16px 12px;background:#0a0a0a;border-bottom:1px solid #1e1e1e;flex-shrink:0">';
+  html+='<div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc);letter-spacing:2px">BADGES G-SQUAD</div>';
+  html+='<button onclick="document.getElementById(\'badge-ov\').remove()" style="background:none;border:none;color:var(--mut);font-size:24px;cursor:pointer;padding:4px">✕</button>';
+  html+='</div>';
+
+  // Stats bar
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#1e1e1e;flex-shrink:0">';
+  html+='<div style="background:#0a0a0a;padding:10px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc)">'+total+'</div><div style="font-size:9px;color:var(--mut);text-transform:uppercase">Séances</div></div>';
+  html+='<div style="background:#0a0a0a;padding:10px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:#ff6b35">'+streak+'</div><div style="font-size:9px;color:var(--mut);text-transform:uppercase">Streak</div></div>';
+  html+='<div style="background:#0a0a0a;padding:10px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:#e8c84a">'+xp+'</div><div style="font-size:9px;color:var(--mut);text-transform:uppercase">XP Total</div></div>';
+  html+='</div>';
+
+  // Tabs
+  html+='<div style="display:flex;background:#0a0a0a;border-bottom:1px solid #1e1e1e;flex-shrink:0" id="badge-tabs">';
+  tabs.forEach(function(t){
+    var isActive=t.id===activeTab;
+    var unlockedCount=t.list.filter(function(b){return t.val>=b.min;}).length;
+    html+='<button onclick="switchBadgeTab(\''+t.id+'\')" id="btab-'+t.id+'" style="flex:1;padding:11px 4px;border:none;border-bottom:2px solid '+(isActive?'var(--acc)':'transparent')+';background:none;color:'+(isActive?'var(--acc)':'var(--mut)')+';font-family:DM Sans,sans-serif;font-size:11px;font-weight:500;cursor:pointer">';
+    html+=t.label+'<br><span style="font-size:9px;opacity:.7">'+unlockedCount+'/'+t.list.length+'</span>';
+    html+='</button>';
   });
   html+='</div>';
+
+  // Tab content
+  html+='<div style="flex:1;overflow-y:auto;padding:14px;-webkit-overflow-scrolling:touch" id="badge-content">';
+  tabs.forEach(function(t){
+    html+='<div id="bpanel-'+t.id+'" style="display:'+(t.id===activeTab?'block':'none')+'">';
+    html+=renderBadgeList(t.list,t.val,t.unit);
+    html+='</div>';
+  });
+  html+='</div>';
+  html+='</div>';
+
   document.body.insertAdjacentHTML('beforeend',html);
+}
+
+function switchBadgeTab(id){
+  ['sess','str','xp'].forEach(function(t){
+    var tab=document.getElementById('btab-'+t);
+    var panel=document.getElementById('bpanel-'+t);
+    var active=t===id;
+    if(tab){tab.style.borderBottomColor=active?'var(--acc)':'transparent';tab.style.color=active?'var(--acc)':'var(--mut)';}
+    if(panel)panel.style.display=active?'block':'none';
+  });
 }
 
 // ============================================================
@@ -2347,7 +3102,7 @@ function openQuickAction(){
   html+='<div style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc);margin-bottom:14px">ACTION RAPIDE</div>';
   html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">';
   html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();goTab(\'seance\',document.getElementById(\'nb-seance\'))" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">⚡</div>Lancer séance</button>';
-  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'marche\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">🚶</div>Marche GPS</button>';
+  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'marche\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">🏃</div>Course / Marche</button>';
   html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'exos\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">🏋️</div>Exercices</button>';
   html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'log\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">📊</div>Log manuel</button>';
   html+='</div>';
@@ -2356,15 +3111,21 @@ function openQuickAction(){
   document.body.insertAdjacentHTML('beforeend',html);
 }
 
+function closeSearchModal(){
+  var el=document.getElementById('search-modal');if(el)el.remove();
+}
 function openSearchModal(){
   var ex=document.getElementById('search-modal');if(ex)ex.remove();
-  var html='<div id="search-modal" style="position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1500;display:flex;flex-direction:column;padding:env(safe-area-inset-top,0) 0 0">';
-  html+='<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--sur);border-bottom:1px solid var(--brd)">';
+  var html='<div id="search-modal" style="position:fixed;inset:0;z-index:1500;background:rgba(0,0,0,.7)" onclick="closeSearchModal()">';
+  // Barre + résultats dans un bloc qui stoppe la propagation
+  html+='<div onclick="event.stopPropagation()" style="background:var(--sur);border-bottom:1px solid var(--brd);padding:env(safe-area-inset-top,10px) 14px 10px;display:flex;align-items:center;gap:10px">';
   html+='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
   html+='<input id="search-modal-inp" type="text" placeholder="Rechercher un ami (@username)…" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none" oninput="searchUsersModal(this.value)" autocomplete="off">';
-  html+='<button onclick="document.getElementById(\'search-modal\').remove()" style="background:none;border:none;color:var(--mut);font-size:16px;cursor:pointer;padding:6px 4px;font-family:DM Sans,sans-serif;white-space:nowrap">Fermer ✕</button>';
+  html+='<button onclick="closeSearchModal()" style="background:none;border:none;color:var(--mut);font-size:22px;cursor:pointer;padding:4px 8px;line-height:1">✕</button>';
   html+='</div>';
-  html+='<div id="search-modal-results" style="flex:1;overflow-y:auto;padding:14px"></div>';
+  // Résultats scrollables — stopPropagation aussi mais hauteur auto (pas 100%)
+  html+='<div onclick="event.stopPropagation()" id="search-modal-results" style="background:var(--bg);max-height:60vh;overflow-y:auto;padding:12px 14px"></div>';
+  // Backdrop invisible en dessous (tout le reste de l'écran est cliquable)
   html+='</div>';
   document.body.insertAdjacentHTML('beforeend',html);
   setTimeout(function(){var inp=document.getElementById('search-modal-inp');if(inp)inp.focus();},100);
@@ -2412,34 +3173,45 @@ function renderAccueil(){
   var friends=state.friends||[];
   var incoming=state.incomingRequests||[];
   var html='';
+
+  // Demandes en attente
   if(incoming.length){
-    html+='<div class="sec" style="color:var(--red)">Demandes en attente ('+incoming.length+')</div>';
+    html+='<div style="background:rgba(255,59,59,.08);border:1px solid rgba(255,59,59,.3);border-radius:14px;padding:14px;margin-bottom:14px">';
+    html+='<div style="font-size:10px;color:var(--red);font-weight:600;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🔔 '+incoming.length+' DEMANDE'+(incoming.length>1?'S':'')+' EN ATTENTE</div>';
     html+=incoming.map(function(r){
-      return '<div class="ucard" style="margin-bottom:8px">'
-        +'<div class="ucard-av">'+(r.from_name||'?').charAt(0).toUpperCase()+'</div>'
-        +'<div style="flex:1"><div class="ucard-name">'+(r.from_name||'Inconnu')+'</div>'
-        +'<div class="ucard-sub">'+(r.from_username?'@'+r.from_username:'')+'</div></div>'
+      return '<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid rgba(255,59,59,.15)">'
+        +'<div class="feed-av-v2">'+(r.from_name||'?').charAt(0).toUpperCase()+'</div>'
+        +'<div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--txt)">'+(r.from_name||'Inconnu')+'</div>'
+        +(r.from_username?'<div style="font-size:11px;color:var(--mut)">@'+r.from_username+'</div>':'')
+        +'</div>'
         +'<div style="display:flex;gap:6px">'
-        +'<button onclick="acceptFriend(\''+r.id+'\',\''+r.from_name+'\')" style="padding:7px 12px;border-radius:20px;background:var(--acc);border:none;color:#000;font-size:12px;cursor:pointer;font-weight:500">✓</button>'
-        +'<button onclick="rejectFriend(\''+r.id+'\')" style="padding:7px 12px;border-radius:20px;background:none;border:1px solid var(--brd);color:var(--mut);font-size:12px;cursor:pointer">✕</button>'
+        +'<button onclick="acceptFriend(\''+r.id+'\',\''+r.from_name+'\')" style="padding:7px 14px;border-radius:20px;background:var(--acc);border:none;color:#000;font-size:12px;cursor:pointer;font-weight:600">✓ OK</button>'
+        +'<button onclick="rejectFriend(\''+r.id+'\')" style="padding:7px 10px;border-radius:20px;background:none;border:1px solid var(--brd);color:var(--mut);font-size:12px;cursor:pointer">✕</button>'
         +'</div></div>';
     }).join('');
+    html+='</div>';
   }
+
+  // Empty state
   if(!friends.length&&!incoming.length){
-    html='<div style="text-align:center;padding:60px 20px">'
-      +'<div style="font-size:48px;margin-bottom:12px">👥</div>'
-      +'<div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc);margin-bottom:8px">REMPLIS TA SQUAD</div>'
-      +'<div style="font-size:13px;color:var(--mut);line-height:1.6;margin-bottom:20px">Trouve tes amis pour voir leurs séances, leurs badges et les encourager.</div>'
-      +'<button onclick="openSearchModal()" style="padding:14px 28px;border-radius:13px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer">RECHERCHER →</button>'
+    html='<div style="text-align:center;padding:60px 20px;animation:slideUp .3s ease">'
+      +'<div style="font-size:56px;margin-bottom:16px">👥</div>'
+      +'<div style="font-family:Bebas Neue,sans-serif;font-size:26px;color:var(--acc);margin-bottom:8px;letter-spacing:1px">REMPLIS TA SQUAD</div>'
+      +'<div style="font-size:13px;color:var(--mut);line-height:1.7;margin-bottom:24px;max-width:280px;margin-left:auto;margin-right:auto">Retrouve tes amis, vois leurs séances en temps réel et encourage-les.</div>'
+      +'<button onclick="openSearchModal()" class="btn-primary" style="width:auto;padding:14px 32px;font-size:17px">🔍 RECHERCHER</button>'
       +'</div>';
     el.innerHTML=html;return;
   }
+
+  // Feed amis
   if(friends.length){
-    html+='<div class="sec">Activité récente</div>';
-    html+='<div id="squad-activity-feed"></div>';
+    html+='<div class="sec-v2"><span class="label">ACTIVITÉ SQUAD ('+friends.length+' ami'+(friends.length>1?'s':'')+')</span>'
+      +'<button class="action" onclick="openSearchModal()">+ Ajouter</button></div>';
+    html+='<div id="squad-activity-feed"><div style="text-align:center;padding:24px;color:var(--mut);font-size:13px">Chargement...</div></div>';
   }
+
   el.innerHTML=html;
-  loadFriendsFeed();
+  if(friends.length) loadFriendsFeed();
 }
 
 function resetJour(){
@@ -2598,18 +3370,22 @@ function renderNutriPanel(){
 
   // EAU
   html+='<div class="ncard" style="border-left:4px solid var(--blu)">';
-  html+='<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px"><span style="font-size:11px;color:var(--blu);font-weight:500;text-transform:uppercase">💧 Eau</span><span style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--blu)">'+w.toFixed(1)+'<span style="font-size:11px;font-family:DM Sans,sans-serif;color:var(--mut)"> / 2,5 L</span></span></div>';
+  html+='<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">';
+  html+='<span style="font-size:11px;color:var(--blu);font-weight:500;text-transform:uppercase">💧 Hydratation</span>';
+  html+='<span style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--blu)">'+w.toFixed(2)+'<span style="font-size:11px;font-family:DM Sans,sans-serif;color:var(--mut)"> / 2,5 L</span></span>';
+  html+='</div>';
   html+='<div class="ntrack" style="margin-bottom:10px"><div class="nfill" style="width:'+Math.min(w/2.5*100,100)+'%;background:linear-gradient(90deg,var(--blu),#00cfff)"></div></div>';
   if(isToday){
-    var drops=8;
-    var filledDrops=Math.round(w/2.5*drops);
-    html+='<div style="display:flex;gap:6px;justify-content:space-between;align-items:center">';
-    for(var di=0;di<drops;di++){
-      var filled=di<filledDrops;
-      html+='<button onclick="setWaterDrops('+(di+1)+')" style="flex:1;height:38px;border-radius:10px;border:none;background:'+(filled?'var(--blu)':'var(--fnt)')+';cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;font-size:14px">'+(filled?'💧':'')+'</button>';
-    }
+    html+='<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:8px">';
+    html+='<button onclick="addN(\'w\',0.25)" style="padding:10px 4px;border-radius:10px;border:1px solid var(--brd);background:var(--fnt);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500">+25cl</button>';
+    html+='<button onclick="addN(\'w\',0.33)" style="padding:10px 4px;border-radius:10px;border:1px solid var(--brd);background:var(--fnt);color:var(--txt);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500">+33cl</button>';
+    html+='<button onclick="addN(\'w\',0.5)" style="padding:10px 4px;border-radius:10px;border:1px solid var(--blu);background:rgba(68,170,255,.1);color:var(--blu);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500">+50cl</button>';
+    html+='<button onclick="addN(\'w\',1)" style="padding:10px 4px;border-radius:10px;border:1px solid var(--blu);background:rgba(68,170,255,.15);color:var(--blu);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:700">+1L</button>';
     html+='</div>';
-    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:10px;color:var(--mut)">Appuie pour remplir (1 verre = 312ml)</span><button onclick="resetN(\'w\')" style="background:none;border:none;color:var(--mut);font-size:12px;cursor:pointer;padding:4px 8px;border-radius:8px;border:1px solid var(--brd)">Reset</button></div>';
+    html+='<div style="display:flex;gap:6px">';
+    html+='<div style="display:flex;flex:1;gap:4px;align-items:center"><input class="ninp" id="ni-w" type="number" step="0.1" placeholder="autre (L)" inputmode="decimal" style="flex:1"><button class="nadd" onclick="addNI(\'w\',\'ni-w\')">+</button></div>';
+    html+='<button onclick="resetN(\'w\')" style="background:none;border:1px solid var(--brd);color:var(--mut);border-radius:8px;padding:6px 10px;font-size:12px;cursor:pointer">↺</button>';
+    html+='</div>';
   }else if(nEditMode){
     html+='<input id="past-w" type="number" step="0.1" value="'+w+'" inputmode="decimal" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--acc);background:var(--bg);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-top:6px;-webkit-appearance:none">';
     html+='<div style="font-size:10px;color:var(--mut);margin-top:4px">En litres (ex : 2,5)</div>';
@@ -2795,9 +3571,9 @@ function renderSeance(){
   var nav=document.getElementById('exnav');if(nav){
     nav.innerHTML=d.exercises.map(function(_,i){
       var dk=!!checks[i],is=i===cEx;
-      if(dk)return '<button class="exdot dn" onclick="jumpEx('+i+')">✓</button>';
-      if(is)return '<button class="exdot cur" onclick="jumpEx('+i+')">'+(i+1)+'</button>';
-      return '<button class="exdot" onclick="jumpEx('+i+')">'+(i+1)+'</button>';
+      if(dk)return '<button class="ex-dot-v2 dn" onclick="jumpEx('+i+')">✓</button>';
+      if(is)return '<button class="ex-dot-v2 cur" onclick="jumpEx('+i+')">'+(i+1)+'</button>';
+      return '<button class="ex-dot-v2" onclick="jumpEx('+i+')">'+(i+1)+'</button>';
     }).join('');
   }
   // Hero
@@ -2824,8 +3600,21 @@ function markDone(){
     // Live badge update
     var _streak=getRealStreak(),_total=getTotalSess();
     var _tb=getBadge(_total,BADGES_SESS);
-    var _hb=document.getElementById('h-badge');if(_hb)_hb.innerHTML=_tb.ico;
+    var _hb=document.getElementById('h-badge');if(_hb&&_tb)_hb.innerHTML=_tb.ico;
     var _hxp=document.getElementById('h-xp');if(_hxp)_hxp.textContent=state.xp;
+    // Check XP badge unlock
+    var _prevXP=(state.xp||0)-10;
+    var _curXPBadge=getBadge(state.xp||0,BADGES_XP);
+    var _prevXPBadge=getBadge(_prevXP,BADGES_XP);
+    if(_curXPBadge&&_prevXPBadge&&_curXPBadge.min!==_prevXPBadge.min){
+      setTimeout(function(){showBadgeUnlock(_curXPBadge);},600);
+    }
+    // Check session badge unlock
+    var _prevSessBadge=getBadge(_total-1,BADGES_SESS);
+    var _curSessBadge=getBadge(_total,BADGES_SESS);
+    if(_curSessBadge&&_prevSessBadge&&_curSessBadge.min!==_prevSessBadge.min){
+      setTimeout(function(){showBadgeUnlock(_curSessBadge);},400);
+    }
     var d=DAYS[cDay],checks=state.checks[cDay];
     var allDone=d.exercises.every(function(_,j){return checks[j];});
     if(allDone){
@@ -2846,6 +3635,22 @@ function markDone(){
   var hxp=document.getElementById('h-xp');if(hxp)hxp.textContent=state.xp;
   renderSeance();renderDayBar();
 }
+function showBadgeUnlock(badge){
+  var col=TIER_COLORS[badge.tier]||'var(--acc)';
+  var ex=document.getElementById('badge-unlock-toast');if(ex)ex.remove();
+  var html='<div id="badge-unlock-toast" style="position:fixed;top:env(safe-area-inset-top,20px);left:12px;right:12px;z-index:2100;animation:badgeIn .4s cubic-bezier(.34,1.56,.64,1) forwards">';
+  html+='<div style="background:#121212;border:2px solid '+col+';border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,.6)">';
+  html+='<div style="width:48px;height:48px;border-radius:12px;background:'+col+'22;border:2px solid '+col+';display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">'+badge.ico+'</div>';
+  html+='<div style="flex:1"><div style="font-size:9px;color:'+col+';text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:2px">🏅 BADGE DÉBLOQUÉ</div>';
+  html+='<div style="font-family:Bebas Neue,sans-serif;font-size:18px;color:#fff;letter-spacing:1px">'+badge.name+'</div>';
+  html+='<div style="font-size:10px;color:var(--mut);margin-top:1px">'+badge.rarity+'</div></div>';
+  html+='<button onclick="document.getElementById(\'badge-unlock-toast\').remove()" style="background:none;border:none;color:var(--mut);font-size:18px;cursor:pointer;padding:4px">✕</button>';
+  html+='</div></div>';
+  document.body.insertAdjacentHTML('beforeend',html);
+  vib([40,20,80,20,120]);
+  setTimeout(function(){var t=document.getElementById('badge-unlock-toast');if(t)t.remove();},5000);
+}
+
 function nextEx(){cEx=Math.min(cEx+1,DAYS[cDay].exercises.length-1);sv();renderSeance();}
 function prevEx(){cEx=Math.max(cEx-1,0);sv();renderSeance();}
 function jumpEx(i){cEx=i;sv();renderSeance();}
@@ -3036,7 +3841,7 @@ function renderDayView(dateStr){
   var html='<div class="jcard'+(isToday?' today':'')+'">';
   html+='<div style="display:flex;justify-content:space-between;margin-bottom:10px"><div style="font-family:Bebas Neue,sans-serif;font-size:17px;color:'+(isToday?'var(--acc)':'var(--txt)')+'">'+dateStr+'</div><span style="font-size:11px;color:var(--mut)">'+dayLbl+(isToday?' - Aujourd hui':'')+'</span></div>';
   html+='<div class="jrow"><span class="jl">Eau</span><div style="text-align:right"><span class="jv" style="color:'+waterColor(w)+'">'+w.toFixed(2)+' L</span><div class="mbar"><div class="mbarfill" style="width:'+Math.min(w/2.5*100,100)+'%;background:var(--blu)"></div></div></div></div>';
-  html+='<div class="jrow"><span class="jl">Proteines</span><div style="text-align:right"><span class="jv" style="color:'+protColor(p)+'">'+p+' g</span><div class="mbar"><div class="mbarfill" style="width:'+Math.min(p/180*100,100)+'%;background:var(--acc)"></div></div></div></div>';
+  html+='<div class="jrow"><span class="jl">Proteines</span><div style="text-align:right"><span class="jv" style="color:'+protColor(p)+'">'+p+' g</span><div class="mbar"><div class="mbarfill" style="width:'+Math.min(p/PROT_GOAL*100,100)+'%;background:var(--acc)"></div></div></div></div>';
   html+='<div class="jrow"><span class="jl">Creatine</span><span class="jv '+(c>=5?'good':'bad')+'">'+(c>=5?'Prise':'Oubliee')+'</span></div>';
   if(data&&data.dureeSess)html+='<div class="jrow"><span class="jl">Duree seance</span><span class="jv good">'+data.dureeSess+'</span></div>';
   if(data&&data.dureeMarche)html+='<div class="jrow"><span class="jl">Duree marche</span><span class="jv good">'+data.dureeMarche+'</span></div>';
@@ -3348,7 +4153,7 @@ function stopGPSWalk(){
   stopSession();
   var el=document.getElementById('marche-gps-live');if(el)el.style.display='none';
   renderMarcheHist();
-  notify('Marche enregistrée — '+_gpsDistance.toFixed(2)+' km en '+durMin+' min ✓');vib([50,30,80]);
+  notify('Activité enregistrée — '+_gpsDistance.toFixed(2)+' km en '+durMin+' min ✓');vib([50,30,80]);
 }
 
 function saveMarche(){
@@ -3370,63 +4175,127 @@ function renderMarcheHist(){
 // ============================================================
 // PROGRAMME
 // ============================================================
-var PHASES=[
-  {
-    name:'Phase 1 — Fondations',dates:'Avr → Mai',color:'var(--acc)',
-    desc:'Force de base, recomposition corporelle, maitrise des mouvements. Priorite technique sur tout.',
-    focus:['Charges moderees - technique parfaite avant tout','Tractions avec bande -> progresser vers tractions libres','Cardio : marche 20 km 1x / semaine - Zone 2','Abdos : planche, ab wheel, releves de jambes','Recup : 48h entre groupes musculaires identiques'],
-    objectifs:'Maitriser tous les mouvements. Perdre 2-3 kg de gras. Sentir la difference.'
-  },
-  {
-    name:'Phase 2 — Volume',dates:'Jun → Jul',color:'#4af',
-    desc:'Augmentation du volume total, isolation des points faibles, abdos visibles.',
-    focus:['Ajouter 1 serie par exercice principal (+25% volume)','Isolation : fly cable, curl concentre, leg extension','Abdos : crunchs cable lestes, dragon flag, planche lestee','Cardio : 2x marche / semaine ou 1 run 5 km','Supprimer bande de resistance si tractions libres acquises'],
-    objectifs:'Gagner du volume. Abdos qui commencent a se dessiner. Charges en hausse.'
-  },
-  {
-    name:'Phase 3 — Pic Athletique',dates:'Aou → Nov',color:'var(--grn)',
-    desc:'Explosivite maximale, maintien masse, look athletique final 92 kg.',
-    focus:['Box jumps, sprints, sauts en contrebas - 2x / semaine','Seances plus courtes mais plus intenses','Charge maximale sur exercices composes','Reduire isolation - maintenir masse','Bilan photo final - compare avec le debut'],
-    objectifs:'92 kg. Explosif comme un basketteur. Fort comme un lutteur.'
+// PHASES générées dynamiquement selon l'objectif
+function buildPhases(objectif){
+  var now = new Date();
+  function addMonths(d,n){var r=new Date(d);r.setMonth(r.getMonth()+n);return r;}
+  function fmtDate(d){return d.toLocaleDateString('fr-FR',{month:'short',year:'2-digit'});}
+  var m0=fmtDate(now), m1=fmtDate(addMonths(now,1)), m2=fmtDate(addMonths(now,2)), m3=fmtDate(addMonths(now,3));
+
+  if(objectif==='perte'){
+    return [
+      {name:'Phase 1 — Déficit',dates:m0+' → '+m1,color:'var(--acc)',
+       desc:'Déficit calorique modéré (-20%), cardio Zone 2, maintien masse musculaire. Pas de rush.',
+       focus:['3-4 séances/sem — pas plus pour récupérer','Cardio Zone 2 : 2x marche/semaine 45min','Charges inchangées — objectif maintenir la masse','Protéines hautes : 2.2g/kg pour préserver les muscles','Sommeil prioritaire : la graisse part la nuit'],
+       objectifs:'Perdre 2-3kg de gras sans perdre de muscle. Poser les bases.'},
+      {name:'Phase 2 — Recompo',dates:m1+' → '+m2,color:'#4af',
+       desc:'Continuer le déficit, ajouter du HIIT ciblé, sculpter la silhouette.',
+       focus:['Ajouter 1 sprint ou HIIT court par semaine','Isolation : définition abdos, bras, fessiers','Tracker les calories — pas d\'à peu près','Adapter les charges si fatigue chronique','Bilan photos mi-parcours'],
+       objectifs:'Silhouette visible. -4 à -6kg total. Maintien force.'},
+      {name:'Phase 3 — Affinage',dates:m2+' → '+m3,color:'var(--grn)',
+       desc:'Pic de définition, recharge progressive, bilan final.',
+       focus:['Réintroduire glucides pré-séance pour performance','Cardio final : 3x/sem Zone 2 + 1 HIIT','Photos comparatives avant/après','Planifier la transition vers maintien ou prise','Célébrer les progrès — tu l\'as fait'],
+       objectifs:'Look final défini. Énergie revenue. Transition maintien.'}
+    ];
+  } else if(objectif==='prise'){
+    return [
+      {name:'Phase 1 — Fondations',dates:m0+' → '+m1,color:'var(--acc)',
+       desc:'Surplus calorique (+12%), technique parfaite, sobcharge progressive. La base solide.',
+       focus:['Technique parfaite avant d\'ajouter du poids','Progresser sur les fondamentaux : squat, deadlift, bench','Manger dans les 30min post-séance','Dormir 8h — c\'est là que tu grossis','Éviter le cardio excessif — ça mange tes gains'],
+       objectifs:'Maîtriser les mouvements. +1 à 1.5kg de masse propre.'},
+      {name:'Phase 2 — Volume',dates:m1+' → '+m2,color:'#4af',
+       desc:'Augmentation du volume (+25%), surcharge progressive, récupération optimisée.',
+       focus:['Ajouter 1 série par exercice compound','Surcharge progressive : +2.5kg toutes les 2 semaines','Isolation : biceps, triceps, épaules, mollets','Créatine 5g/jour sans interruption','Tracker le poids — viser +300g/semaine max'],
+       objectifs:'Volume visible. Charges en hausse. +2 à 3kg total.'},
+      {name:'Phase 3 — Pic Force',dates:m2+' → '+m3,color:'var(--grn)',
+       desc:'Intensité maximale, nouveaux records, bilan physique.',
+       focus:['Charges maximales sur composés — nouveaux PRs','Réduire l\'isolation pour se concentrer sur la force','Photos comparatives — la différence sera frappante','Planifier mini-cut si prise grasse excessive','Maintenir les acquis, ne rien perdre'],
+       objectifs:'Nouveaux records. Masse musculaire visible. Bilan final.'}
+    ];
+  } else { // maintien
+    return [
+      {name:'Phase 1 — Stabilisation',dates:m0+' → '+m1,color:'var(--acc)',
+       desc:'Calories à l\'entretien, performance stable, qualité de vie.',
+       focus:['Manger aux besoins — ni déficit ni surplus','3-4 séances par semaine à intensité modérée','Maintenir toutes les charges actuelles','Cardio léger 2x/sem pour la santé cardio','Focus sur la récupération et la mobilité'],
+       objectifs:'Maintenir le physique actuel. Énergie stable. Santé.'},
+      {name:'Phase 2 — Performance',dates:m1+' → '+m2,color:'#4af',
+       desc:'Améliorer les performances sans changer le poids.',
+       focus:['Progresser sur la technique et la coordination','Ajouter de l\'explosivité : box jumps, sprints courts','Tester de nouvelles variations d\'exercices','Objectif force sur 2-3 exercices clés','Mobilité et souplesse — la longévité d\'abord'],
+       objectifs:'Meilleure performance. Même poids, plus fort.'},
+      {name:'Phase 3 — Optimisation',dates:m2+' → '+m3,color:'var(--grn)',
+       desc:'Bilan, ajustements, décision pour la suite.',
+       focus:['Évaluer les progrès réels depuis le début','Décider : prise ou perte pour le prochain cycle ?','Intensité modérée — récupération prioritaire','Photos bilan — noter ce qui a changé','Préparer le prochain objectif'],
+       objectifs:'Corps optimisé. Clarté sur la prochaine étape.'}
+    ];
   }
-];
+}
+
+function getPHASES(){
+  var obj = (state.profil && state.profil.objectif) || 'maintien';
+  return buildPhases(obj);
+}
+// Alias pour compatibilité
+var PHASES = [];
+function initPhases(){ PHASES = getPHASES(); }
 
 var progPhaseIdx=0;
 
 function progNavPhase(dir){
+  var PHASES=getPHASES();
   progPhaseIdx=Math.max(0,Math.min(PHASES.length-1,progPhaseIdx+dir));
   renderProgBody();
 }
 
 function renderProgBody(){
   var el=document.getElementById('fl-prog-body');if(!el)return;
+  var PHASES=getPHASES();
+  progPhaseIdx=Math.min(progPhaseIdx,PHASES.length-1);
   var phase=PHASES[progPhaseIdx];
   var html='';
 
-  // Navigation phases
-  html+='<div style="display:flex;align-items:center;justify-content:space-between;background:var(--card);border-radius:12px;padding:10px 14px;margin-bottom:14px">';
-  html+='<button onclick="progNavPhase(-1)" style="background:none;border:none;color:'+(progPhaseIdx>0?phase.color:'var(--fnt)')+';font-size:24px;cursor:pointer;padding:4px 8px">&#8592;</button>';
-  html+='<div style="text-align:center;flex:1">';
-  html+='<div style="font-family:Bebas Neue,sans-serif;font-size:16px;color:'+phase.color+'">'+phase.name+'</div>';
-  html+='<div style="font-size:11px;color:var(--mut)">'+phase.dates+'</div>';
-  html+='<div style="display:flex;justify-content:center;gap:5px;margin-top:6px">';
-  for(var pi=0;pi<PHASES.length;pi++){
-    html+='<div style="width:8px;height:8px;border-radius:50%;background:'+(pi===progPhaseIdx?phase.color:'var(--fnt)')+'"></div>';
-  }
-  html+='</div></div>';
-  html+='<button onclick="progNavPhase(1)" style="background:none;border:none;color:'+(progPhaseIdx<PHASES.length-1?phase.color:'var(--fnt)')+';font-size:24px;cursor:pointer;padding:4px 8px">&#8594;</button>';
+  // Objectif actuel pill
+  var obj=(state.profil&&state.profil.objectif)||'maintien';
+  var objLabels={perte:'📉 Programme Perte',maintien:'📊 Programme Maintien',prise:'📈 Programme Prise'};
+  html+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">';
+  html+='<div style="font-size:13px;color:var(--acc);font-weight:500">'+objLabels[obj]+'</div>';
+  html+='<button onclick="switchProfilTab(\'reglages\');openProfil()" style="font-size:11px;color:var(--mut);background:none;border:1px solid var(--brd);border-radius:20px;padding:5px 10px;cursor:pointer;font-family:DM Sans,sans-serif">Changer →</button>';
   html+='</div>';
 
-  // Contenu phase
-  html+='<div class="card" style="border-left:4px solid '+phase.color+';margin-bottom:12px">';
-  html+='<div style="font-size:13px;color:var(--mut);margin-bottom:10px">'+phase.desc+'</div>';
-  html+='<div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Focus</div>';
-  html+=phase.focus.map(function(f){return '<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid var(--brd);font-size:13px"><span style="color:'+phase.color+'">&#8594;</span><span style="color:var(--txt)">'+f+'</span></div>';}).join('');
-  html+='<div style="margin-top:10px;padding:10px;background:var(--sur);border-radius:9px"><div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Objectif</div><div style="font-size:13px;color:'+phase.color+';font-weight:500">'+phase.objectifs+'</div></div>';
+  // Navigation phases
+  html+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">';
+  for(var pi=0;pi<PHASES.length;pi++){
+    var isActive=pi===progPhaseIdx;
+    html+='<button onclick="progNavPhase('+(pi-progPhaseIdx)+')" style="flex:1;padding:10px 4px;border-radius:10px;border:2px solid '+(isActive?phase.color:'var(--brd)')+';background:'+(isActive?phase.color+'15':'none')+';font-size:10px;color:'+(isActive?phase.color:'var(--mut)')+';cursor:pointer;font-family:DM Sans,sans-serif;font-weight:600">'+'P'+(pi+1)+'</button>';
+  }
   html+='</div>';
+  html+='<div style="margin-bottom:14px">';
+  html+='<div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:'+phase.color+';margin-bottom:2px">'+phase.name+'</div>';
+  html+='<div style="font-size:11px;color:var(--mut)">'+phase.dates+'</div>';
+  html+='</div>';
+
+  // Phase card
+  html+='<div class="prog-card" style="border-left:4px solid '+phase.color+';margin-bottom:14px">';
+  html+='<div style="font-size:13px;color:var(--mut);line-height:1.6;margin-bottom:12px">'+phase.desc+'</div>';
+  html+='<div class="t-label" style="margin-bottom:8px">FOCUS</div>';
+  html+=phase.focus.map(function(f){
+    return '<div style="display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--brd);font-size:13px;align-items:flex-start">'
+      +'<span style="color:'+phase.color+';font-size:10px;margin-top:2px;flex-shrink:0">▶</span>'
+      +'<span style="color:var(--txt);line-height:1.5">'+f+'</span></div>';
+  }).join('');
+  html+='<div style="margin-top:12px;padding:12px;background:var(--fnt);border-radius:10px">';
+  html+='<div class="t-label" style="margin-bottom:4px">OBJECTIF PHASE</div>';
+  html+='<div style="font-size:13px;color:'+phase.color+';font-weight:500;line-height:1.5">'+phase.objectifs+'</div>';
+  html+='</div></div>';
+
+  // Leaderboard CTA
+  html+='<button onclick="openLeaderboard()" style="width:100%;display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border-radius:14px;border:1px solid var(--brd);cursor:pointer;margin-bottom:16px;text-align:left">';
+  html+='<div style="font-size:24px">🏆</div>';
+  html+='<div><div style="font-size:14px;font-weight:500;color:var(--txt)">Mes records</div><div style="font-size:11px;color:var(--mut);margin-top:1px">Voir le classement par exercice</div></div>';
+  html+='<span style="margin-left:auto;color:var(--acc);font-size:18px">›</span>';
+  html+='</button>';
 
   // Semaine type
-  html+='<div class="sec">Semaine type</div>';
+  html+='<div class="sec-v2"><span class="label">PROGRAMME SEMAINE</span></div>';
   DAYS.forEach(function(d,di){
     html+='<div class="card"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><div><div style="font-family:Bebas Neue,sans-serif;font-size:18px">'+d.name+'</div><div style="font-size:11px;color:var(--mut)">'+d.type+' - '+d.dur+'</div></div><button onclick="editDay('+di+')" style="padding:6px 12px;border-radius:9px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer">Modifier</button></div>';
     html+=d.exercises.map(function(e){return '<div class="prog-ex"><span>'+e.n+'</span><span class="prog-sets">'+e.s+'</span></div>';}).join('');
@@ -3499,7 +4368,7 @@ var TOUR_STEPS=[
   {tab:'journal',sel:'#j-nav-date',pos:'bottom',title:'Navigation journal',text:'Navigue entre les jours avec les fleches pour consulter ou modifier un bilan passe. Tu peux changer le poids et ajouter une note sur n importe quel jour.'},
   {tab:'journal',sel:'.jvt',pos:'bottom',title:'Courbes de progression',text:'Trois courbes disponibles : Poids pour suivre ta progression vers 92 kg, Perf pour voir ta charge max evoluer sur un exercice, Nutrition pour visualiser eau, proteines et creatine. Filtre par Mois, Semaine ou Jour.'},
   // PLUS
-  {tab:'seance',sel:'.nav',pos:'top',title:'Menu Plus - Log, Marche, Programme, Exercices',text:'Le menu Plus donne accès à quatre sections. Log : enregistre poids, charge, reps et feeling. Marche : 3 parcours depuis chez toi avec Maps. Programme : les 3 phases avec navigation et modification des exercices. Exercices : bibliothèque complète de plus de 100 exercices classés par groupe musculaire avec vidéos YouTube.'},
+  {tab:'seance',sel:'.nav',pos:'top',title:'Menu Plus - Log, Marche, Programme, Exercices',text:'Le menu Plus donne accès à quatre sections. Log : enregistre poids, charge, reps et feeling. Course/Marche : tracking GPS automatique, distance et allure en temps réel. Programme : les 3 phases avec navigation et modification des exercices. Exercices : bibliothèque complète de plus de 100 exercices classés par groupe musculaire avec vidéos YouTube.'},
 ];
 
 var tourIdx=0;
@@ -3713,39 +4582,39 @@ function _distKm(lat1,lng1,lat2,lng2){
 }
 
 function findNearestGym(){
-  if(!navigator.geolocation){notify('Géolocalisation non disponible.');return;}
-  // Demande confirmation d'abord
-  var ok=confirm('G-SQUAD va accéder à ta position pour trouver la salle la plus proche. OK ?');
-  if(!ok)return;
+  var userGyms=(state.profil&&state.profil.gyms&&state.profil.gyms.length)
+    ? state.profil.gyms : Object.keys(GYMS_COORDS);
+  // Build a combined search query for Maps
+  var gymBrands=userGyms.filter(function(g){return g!=='autre';}).map(function(g){
+    return {basicfit:'Basic-Fit',fitnesspark:'Fitness Park',keepcool:'Keep Cool',onair:'On Air'}[g]||g;
+  });
+  var searchQuery=gymBrands.length?gymBrands[0]:'salle de sport';
+  var ua=navigator.userAgent;
+
+  if(!navigator.geolocation){
+    var url=/iPhone|iPad/.test(ua)
+      ?'https://maps.apple.com/?q='+encodeURIComponent(searchQuery)
+      :'https://www.google.com/maps/search/'+encodeURIComponent(searchQuery);
+    window.open(url,'_blank');
+    closeHamburger();
+    return;
+  }
+
   notify('Localisation en cours...');
   navigator.geolocation.getCurrentPosition(function(pos){
     var lat=pos.coords.latitude,lng=pos.coords.longitude;
-    var best=null,bestDist=Infinity;
-    var userGyms=(state.profil&&state.profil.gyms&&state.profil.gyms.length)
-      ? state.profil.gyms
-      : Object.keys(GYMS_COORDS);
-    userGyms.forEach(function(g){
-      (GYMS_COORDS[g]||[]).forEach(function(loc){
-        var d=_distKm(lat,lng,loc.lat,loc.lng);
-        if(d<bestDist){bestDist=d;best=loc;}
-      });
-    });
-    if(best){
-      var distStr=bestDist<1?(Math.round(bestDist*1000)+'m'):(bestDist.toFixed(1)+'km');
-      var ua=navigator.userAgent;
-      var url=/iPhone|iPad/.test(ua)
-        ?'https://maps.apple.com/?daddr='+best.lat+','+best.lng+'&dirflg=d'
-        :'https://www.google.com/maps/dir/?api=1&destination='+best.lat+','+best.lng;
-      if(confirm(best.name+' — à '+distStr+'\nOuvrir l\'itinéraire ?')){
-        window.open(url,'_blank');
-      }
-    }else{
-      notify('Aucune salle de ta liste trouvée près de toi.');
-    }
-  },function(err){
-    if(err.code===1)notify('Géolocalisation refusée. Autorise-la dans les réglages.');
-    else notify('Impossible d\'accéder à ta position.');
-  },{timeout:10000,maximumAge:30000,enableHighAccuracy:true});
+    var url=/iPhone|iPad/.test(ua)
+      ?'https://maps.apple.com/?q='+encodeURIComponent(searchQuery)+'&sll='+lat+','+lng+'&z=12'
+      :'https://www.google.com/maps/search/'+encodeURIComponent(searchQuery)+'/@'+lat+','+lng+',13z';
+    window.open(url,'_blank');
+    closeHamburger();
+  },function(){
+    var url=/iPhone|iPad/.test(ua)
+      ?'https://maps.apple.com/?q='+encodeURIComponent(searchQuery)
+      :'https://www.google.com/maps/search/'+encodeURIComponent(searchQuery);
+    window.open(url,'_blank');
+    closeHamburger();
+  },{timeout:5000,maximumAge:60000,enableHighAccuracy:false});
 }
 function openGym(gym){
   var urls={basicfit:'https://apps.apple.com/fr/app/basic-fit/id956598540',fitnesspark:'https://apps.apple.com/fr/app/fitness-park/id1044359087',keepcool:'https://apps.apple.com/fr/app/keep-cool/id1441979077',onair:'https://apps.apple.com/fr/app/on-air-fitness/id1437918549'};
@@ -3899,6 +4768,8 @@ function saveCoachMemory(){
 // 5. OBJECTIF CALORIQUE
 // ============================================================
 var KCAL_GOAL=2800;
+var PROT_GOAL=180;
+// Ces valeurs sont recalculées dynamiquement selon le profil IMC + objectif
 
 // ============================================================
 // 6. TIMER ARRIERE-PLAN — notification quand repos fini
@@ -4273,21 +5144,131 @@ var FEED_TYPES = {
 };
 
 function renderFeedItem(a) {
-  var type = FEED_TYPES[a.type] || { ico: '⚡', txt: function(p,n) { return n + ' a fait quelque chose'; } };
+  var ft = FEED_TYPES[a.type] || { ico: '⚡', txt: function(p,n) { return n + ' a fait quelque chose'; } };
   var payload = a.payload || {};
-  var name = a.user_name || 'Quelqu\'un';
-  var av = a.user_avatar ? '<img src="' + a.user_avatar + '">' : name.charAt(0).toUpperCase();
+  var name = a.user_name || "Quelqu'un";
+  var uname = a.user_username ? '@'+a.user_username : '';
+  var initiale = name.charAt(0).toUpperCase();
+  var avHtml = a.user_avatar
+    ? '<img src="' + a.user_avatar + '" style="width:100%;height:100%;object-fit:cover;border-radius:50%">'
+    : initiale;
   var time = '';
   if (a.created_at) {
     var diff = Math.floor((Date.now() - new Date(a.created_at)) / 60000);
-    time = diff < 60 ? diff + 'min' : Math.floor(diff/60) + 'h';
+    time = diff < 1 ? 'maintenant' : diff < 60 ? diff+'min' : diff < 1440 ? Math.floor(diff/60)+'h' : Math.floor(diff/1440)+'j';
   }
-  return '<div class="feed-item" style="border-left-color:' + (a.type.includes('badge') ? 'var(--grn)' : a.type.includes('pr') ? '#ff6b35' : 'var(--acc)') + '">'
-    + '<div class="feed-av">' + av + '</div>'
-    + '<div class="feed-txt">' + type.ico + ' ' + type.txt(payload, name) + '</div>'
-    + '<div class="feed-time">' + time + '</div>'
+  var accentColor = a.type && a.type.includes('badge') ? 'var(--grn)' : a.type && a.type.includes('pr') ? '#ff6b35' : 'var(--acc)';
+  var myReactions = state.myReactions || {};
+  var myR = a.id ? (myReactions[a.id] || '') : '';
+  var REACTS = [{k:'fire',i:'🔥'},{k:'check',i:'✅'},{k:'muscle',i:'💪'},{k:'party',i:'🥳'}];
+  var reactHtml = REACTS.map(function(r) {
+    var active = myR === r.k;
+    return '<button class="react-btn' + (active?' active':'') + '" onclick="toggleReaction(\''+a.id+'\',\''+r.k+'\')">'+r.i+'</button>';
+  }).join('');
+  return '<div class="feed-card" style="border-left:3px solid '+accentColor+';animation:slideUp .2s ease">'
+    + '<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">'
+    + '<div class="feed-av-v2">' + avHtml + '</div>'
+    + '<div style="flex:1;min-width:0">'
+    + '<div style="font-size:13px;color:var(--txt);line-height:1.5">' + ft.ico + ' ' + ft.txt(payload, name) + '</div>'
+    + (uname ? '<div style="font-size:11px;color:var(--acc);margin-top:1px">'+uname+'</div>' : '')
+    + '</div>'
+    + '<div style="font-size:10px;color:var(--mut);flex-shrink:0">' + time + '</div>'
+    + '</div>'
+    + (payload.xp ? '<div style="font-size:11px;color:var(--acc);margin-bottom:6px">+'+payload.xp+' XP</div>' : '')
+    + '<div style="display:flex;gap:6px;flex-wrap:wrap">' + reactHtml + '</div>'
     + '</div>';
 }
+
+function toggleReaction(activityId, reactionKey) {
+  if (!activityId) return;
+  if (!state.myReactions) state.myReactions = {};
+  var prev = state.myReactions[activityId] || '';
+  if (prev === reactionKey) { delete state.myReactions[activityId]; }
+  else { state.myReactions[activityId] = reactionKey; }
+  sv();
+  try { loadFriendsFeed(); } catch(e) {}
+  try { renderAccueil(); } catch(e) {}
+  vib([20]);
+}
+
+// ═══════════════════════════════════════════════════════
+// LEADERBOARD — classement par exercice depuis les logs
+// ═══════════════════════════════════════════════════════
+function openLeaderboard(){
+  var ex = document.getElementById('lb-ov'); if(ex) ex.remove();
+  // Construire classement depuis state.logs
+  var logs = state.logs || [];
+  var byEx = {};
+  logs.forEach(function(l){
+    if(!l.ex || !l.charge) return;
+    var key = l.ex.toLowerCase().trim();
+    if(!byEx[key]) byEx[key] = {name:l.ex, best:0, reps:0};
+    var c = parseFloat(l.charge) || 0;
+    var r = parseInt(l.reps) || 0;
+    if(c > byEx[key].best){ byEx[key].best = c; byEx[key].reps = r; }
+  });
+  var exercices = Object.values(byEx).sort(function(a,b){return b.best - a.best;});
+
+  var html = '<div id="lb-ov" style="position:fixed;inset:0;background:var(--bg);z-index:1800;display:flex;flex-direction:column;overflow:hidden">';
+  html += '<div class="fl-head-v2"><button class="fl-back" onclick="document.getElementById(\'lb-ov\').remove()">←</button><div class="fl-title-v2">LEADERBOARD</div></div>';
+  html += '<div style="flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px">';
+
+  if(!exercices.length){
+    html += '<div style="text-align:center;padding:60px 20px"><div style="font-size:48px;margin-bottom:12px">📊</div>';
+    html += '<div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--mut)">AUCUN LOG ENCORE</div>';
+    html += '<div style="font-size:13px;color:var(--mut);margin-top:8px">Logge tes sets pendant la séance pour apparaître ici</div></div>';
+  } else {
+    html += '<div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">TES RECORDS PERSONNELS</div>';
+    exercices.forEach(function(ex, i){
+      var rankClass = i===0?'gold':i===1?'silver':i===2?'bronze':'';
+      var rankColor = i===0?'#e8c84a':i===1?'#c0c0c0':i===2?'#cd7f32':'var(--mut)';
+      html += '<div class="lb-row">';
+      html += '<div class="lb-rank '+rankClass+'" style="color:'+rankColor+'">'+(i===0?'🥇':i===1?'🥈':i===2?'🥉':(i+1))+'</div>';
+      html += '<div style="flex:1"><div style="font-size:14px;font-weight:500;color:var(--txt)">'+ex.name+'</div>';
+      html += '<div style="font-size:11px;color:var(--mut);margin-top:2px">'+(ex.reps?ex.reps+' reps':'')+'</div></div>';
+      html += '<div style="font-family:Bebas Neue,sans-serif;font-size:22px;color:'+rankColor+'">'+ex.best+'<span style="font-size:12px;color:var(--mut)"> kg</span></div>';
+      html += '</div>';
+    });
+
+    // Si connecté, charger leaderboard global
+    if(_supa && _supaUser){
+      html += '<div id="lb-global-section" style="margin-top:20px">';
+      html += '<div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px">CLASSEMENT G-SQUAD</div>';
+      html += '<div id="lb-global-content"><div style="text-align:center;padding:20px;color:var(--mut);font-size:13px">Chargement...</div></div>';
+      html += '</div>';
+    }
+  }
+
+  html += '</div></div>';
+  document.body.insertAdjacentHTML('beforeend', html);
+
+  // Load global leaderboard async
+  if(_supa && _supaUser && exercices.length){
+    loadGlobalLeaderboard(exercices[0].name);
+  }
+}
+
+async function loadGlobalLeaderboard(exName){
+  var el = document.getElementById('lb-global-content');
+  if(!el || !_supa) return;
+  try{
+    var res = await _supa.from('leaderboards')
+      .select('user_id, exercise_name, max_weight_kg')
+      .eq('exercise_name', exName)
+      .order('max_weight_kg', {ascending:false})
+      .limit(10);
+    var rows = res.data || [];
+    if(!rows.length){ el.innerHTML = '<div style="color:var(--mut);font-size:13px;text-align:center;padding:12px">Aucun classement pour cet exercice</div>'; return; }
+    el.innerHTML = rows.map(function(r,i){
+      var isMe = r.user_id === _supaUser.id;
+      return '<div class="lb-row" style="'+(isMe?'border-color:var(--acc)':'')+'"><div class="lb-rank">'+(i+1)+'</div>'
+        +'<div style="flex:1;font-size:14px;color:'+(isMe?'var(--acc)':'var(--txt)')+'">'+r.user_id.slice(0,8)+'…'+(isMe?' (toi)':'')+'</div>'
+        +'<div style="font-family:Bebas Neue,sans-serif;font-size:20px;color:var(--acc)">'+r.max_weight_kg+'<span style="font-size:11px;color:var(--mut)"> kg</span></div>'
+        +'</div>';
+    }).join('');
+  }catch(e){ el.innerHTML = '<div style="color:var(--mut);font-size:13px;padding:12px">Erreur de chargement</div>'; }
+}
+  
 
 async function loadFriendsFeed() {
   var feedEl = document.getElementById('friends-feed-section');
@@ -4356,6 +5337,16 @@ function bootApp(){
   try{renderDayBar();}catch(e){console.error('renderDayBar error:',e);}
   try{renderSeance();}catch(e){console.error('renderSeance error:',e);}
   try{renderNutriAndSuppl();}catch(e){console.error('renderNutriAndSuppl error:',e);}
+  // Load saved macros + init phases
+  try{
+    var _p=state.profil||{};
+    if(_p.macros){KCAL_GOAL=_p.macros.kcal;PROT_GOAL=_p.macros.prot;}
+    PHASES=getPHASES();
+    if(_p.theme&&_p.theme!=='jaune'){
+      var _tc={rouge:'#ff3b3b',bleu:'#4af',violet:'#c84bff',vert:'#39ff14',blanc:'#f0f0f0'};
+      if(_tc[_p.theme])document.documentElement.style.setProperty('--acc',_tc[_p.theme]);
+    }
+  }catch(e){}
   // Init accueil feed + header default state
   try{renderAccueil();}catch(e){}
   // Default tab: seance — show daybar, hide logo
