@@ -45,11 +45,15 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .app{display:flex;flex-direction:column;height:100vh;height:100dvh}
 
 /* NAV */
-.nav{display:flex;background:var(--sur);border-top:1px solid var(--brd);padding-bottom:env(safe-area-inset-bottom,14px);flex-shrink:0}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 0;background:none;border:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:10px;cursor:pointer;position:relative}
+.nav{display:flex;align-items:flex-end;background:var(--sur);border-top:1px solid var(--brd);padding:0 4px;padding-bottom:env(safe-area-inset-bottom,10px);flex-shrink:0;position:relative}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 0 8px;background:none;border:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:9px;cursor:pointer;position:relative;-webkit-tap-highlight-color:transparent}
 .nb.act{color:var(--acc)}
-.nb.act::after{content:'';position:absolute;top:0;left:25%;right:25%;height:2px;background:var(--acc);border-radius:0 0 2px 2px}
+.nb.act::after{content:'';position:absolute;top:0;left:30%;right:30%;height:2px;background:var(--acc);border-radius:0 0 3px 3px}
 .ni{font-size:20px;line-height:1}
+.nb-plus{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:0 0 8px;background:none;border:none;cursor:pointer;-webkit-tap-highlight-color:transparent;padding-top:0}
+.nb-plus-ico{width:48px;height:48px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;margin-top:-20px;box-shadow:0 4px 20px rgba(232,255,71,.4);transition:transform .15s,box-shadow .15s}
+.nb-plus-ico:active{transform:scale(.92);box-shadow:0 2px 10px rgba(232,255,71,.3)}
+.nb-plus-lbl{font-size:9px;color:var(--mut);font-family:DM Sans,sans-serif;margin-top:3px}
 
 /* CONTENT */
 .content{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
@@ -300,6 +304,25 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 .crop-btn.confirm{background:var(--acc);color:#000}
 .crop-btn.cancel{background:none;border:1px solid var(--brd);color:var(--mut)}
 .crop-zoom{width:200px;margin-top:12px;accent-color:var(--acc)}
+
+/* RESPONSIVE FIXES */
+@media(max-width:375px){
+  .extitle{font-size:24px}
+  .bppct{font-size:36px}
+  .hv{font-size:18px}
+  .ob-logo{font-size:42px}
+  .nval{font-size:30px}
+  .auth-logo{font-size:44px}
+  .donebtn{font-size:20px;padding:15px}
+}
+.wrap{padding:12px;padding-top:env(safe-area-inset-top,12px);max-width:100%;overflow-x:hidden}
+.hud{gap:5px}
+.trow{flex-wrap:nowrap}
+.tb{min-width:0;padding:7px 4px;font-size:10px}
+/* Quick action button styles */
+.quick-action-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick-action-item{padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left;font-family:DM Sans,sans-serif}
+.quick-action-item:active{opacity:.7;transform:scale(.97)}
 </style>
 </head>
 <body>
@@ -561,10 +584,17 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
     <button onclick="closeFinov()" style="margin-top:24px;padding:14px 44px;border-radius:13px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:20px;border:none;cursor:pointer">FERMER</button>
   </div>
 
-  <div style="display:flex;align-items:center;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0">
-    <button onclick="openHamburger()" style="background:none;border:none;color:var(--txt);font-size:22px;cursor:pointer;padding:0 14px;flex-shrink:0">☰</button>
-    <div class="daybar" id="daybar" style="border:none;flex:1"></div>
-    <div id="topbar-avatar" onclick="openProfil()" style="padding:0 10px 0 4px;cursor:pointer;flex-shrink:0;display:flex;align-items:center"></div>
+  <div id="app-header" style="display:flex;align-items:center;background:var(--sur);border-bottom:1px solid var(--brd);flex-shrink:0;padding:0 14px;height:52px;padding-top:env(safe-area-inset-top,0)">
+    <button onclick="openHamburger()" style="background:none;border:none;color:var(--mut);font-size:20px;cursor:pointer;padding:4px;flex-shrink:0;display:flex;align-items:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <div id="header-logo" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc);letter-spacing:3px;cursor:default">G-SQUAD</div>
+      <div class="daybar" id="daybar" style="border:none;flex:0;display:none"></div>
+    </div>
+    <button onclick="openSearchModal()" style="background:none;border:none;color:var(--mut);padding:4px;cursor:pointer;flex-shrink:0;display:flex;align-items:center">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
   </div>
 
   <!-- BARRE TIMER SÉANCE / MARCHE -->
@@ -773,20 +803,43 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
       </div>
     </div>
 
+    <!-- ACCUEIL / SQUAD FEED -->
+    <div id="p-accueil" class="panel">
+      <div class="wrap">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+          <div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">MA SQUAD</div>
+          <button onclick="openSocial()" style="padding:8px 14px;border-radius:20px;border:1px solid var(--acc);background:rgba(232,255,71,.1);color:var(--acc);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;font-weight:500">+ Ajouter</button>
+        </div>
+        <div id="accueil-feed"></div>
+      </div>
+    </div>
+
   </div><!-- end content -->
 
   <!-- SQUAD BAR -->
-  <div id="squad-bar" onclick="toggleSocial()" style="display:flex;align-items:center;gap:10px;margin:0 14px 8px;padding:11px 16px;background:var(--card);border-radius:14px;border:1px solid var(--brd);cursor:pointer;transition:all .2s;-webkit-tap-highlight-color:transparent;position:relative;z-index:900">
-    <span style="font-size:18px">👥</span>
-    <span id="squad-bar-txt" style="flex:1;font-size:13px;color:var(--mut);font-family:DM Sans,sans-serif">Remplis ton squad</span>
-    <span id="squad-bar-arrow" style="font-size:11px;color:var(--acc);font-family:Bebas Neue,sans-serif;letter-spacing:1px;transition:transform .2s">RECHERCHER →</span>
-  </div>
-  <nav class="nav">
-    <button class="nb act" id="nb-seance" onclick="goTab('seance',this)"><span class="ni">⚡</span>Séance</button>
-    <button class="nb" id="nb-nutri" onclick="goTab('nutri',this)"><span class="ni">🥗</span>Nutri</button>
-    <button class="nb" id="nb-marche" onclick="openFL('marche')"><span class="ni">🚶</span>Marche</button>
-    <button class="nb" id="nb-exos" onclick="openFL('exos')"><span class="ni">🏋️</span>Exos</button>
-    <button class="nb" id="nb-journal" onclick="goTab('journal',this)"><span class="ni">📓</span>Journal</button>
+  <nav class="nav" id="main-nav">
+    <button class="nb act" id="nb-seance" onclick="goTab('seance',this)">
+      <svg class="ni" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      Séance
+    </button>
+    <button class="nb" id="nb-nutri" onclick="goTab('nutri',this)">
+      <svg class="ni" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      Nutri
+    </button>
+    <button class="nb-plus" id="nb-plus" onclick="openQuickAction()">
+      <div class="nb-plus-ico">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      </div>
+      <span class="nb-plus-lbl">Action</span>
+    </button>
+    <button class="nb" id="nb-squad" onclick="goTab('accueil',this)">
+      <svg class="ni" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Squad
+    </button>
+    <button class="nb" id="nb-profil" onclick="openProfil()">
+      <svg class="ni" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profil
+    </button>
   </nav>
 </div>
 
@@ -857,16 +910,18 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font
 <div class="flov" id="fl-marche">
   <div class="flhead"><button class="flcls" onclick="closeFL('marche')">&#8592;</button><div class="fltitle">MARCHE</div></div>
   <div class="flbody">
-    <div class="sec">Ouvrir l'itineraire</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
-      <a href="https://maps.apple.com/?saddr=4+Square+de+la+Germignonnerie,+Bondoufle&daddr=Lac+des+Trois+Parts,+Bondoufle&dirflg=w" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;background:var(--card);border:1px solid var(--brd);border-radius:12px;text-decoration:none;color:var(--txt);font-size:13px;font-weight:500">Plans Apple</a>
-      <a href="https://www.google.com/maps/dir/4+Square+de+la+Germignonnerie+Bondoufle/" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:7px;padding:13px;background:var(--card);border:1px solid var(--brd);border-radius:12px;text-decoration:none;color:var(--txt);font-size:13px;font-weight:500">Google Maps</a>
+    <div class="sec">Démarrer</div>
+    <div style="background:var(--card);border-radius:14px;padding:16px;margin-bottom:14px;border:1px solid var(--brd);text-align:center">
+      <div style="font-size:36px;margin-bottom:8px">🚶</div>
+      <div style="font-size:13px;color:var(--mut);margin-bottom:12px;line-height:1.5">Le tracking GPS démarre automatiquement.<br>Aucune adresse requise.</div>
+      <button onclick="startGPSWalk()" style="width:100%;padding:14px;border-radius:12px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:20px;border:none;cursor:pointer">▶ DÉMARRER GPS</button>
     </div>
-    <div class="sec">3 Parcours</div>
-    <div class="card" style="margin-bottom:8px"><div style="font-size:13px;font-weight:500">Lac + Berges de l'Essonne</div><div style="font-size:11px;color:var(--mut);margin-top:3px">Bondoufle - Lac - riviere - retour ~ 20 km</div></div>
-    <div class="card" style="margin-bottom:8px"><div style="font-size:13px;font-weight:500">Foret de Senart</div><div style="font-size:11px;color:var(--mut);margin-top:3px">Terrain varie, denivele ~ 18 km</div></div>
-    <div class="card" style="margin-bottom:14px"><div style="font-size:13px;font-weight:500">Urbain Evry</div><div style="font-size:11px;color:var(--mut);margin-top:3px">Bondoufle - Courcouronnes - Evry ~ 20 km</div></div>
-    <div class="sec">Enregistrer</div>
+    <div id="marche-gps-live" style="display:none;background:var(--card);border-radius:14px;padding:14px;margin-bottom:10px;border:1px solid var(--acc)">
+      <div style="font-size:10px;color:var(--acc);font-weight:500;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">🔴 GPS ACTIF</div>
+      <div id="marche-gps-stats"></div>
+      <button onclick="stopGPSWalk()" style="width:100%;padding:13px;border-radius:11px;background:var(--red);color:#fff;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer;margin-top:12px">■ TERMINER</button>
+    </div>
+    <div class="sec">Enregistrer manuellement</div>
     <div class="card">
       <div class="lfield"><label>Parcours</label>
         <select id="m-parc" style="width:100%;padding:12px;border-radius:11px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;-webkit-appearance:none">
@@ -1110,8 +1165,6 @@ function openFL(name){
   if(name==='programme')renderProgBody();
   if(name==='exos'){exosDayIdx=cDay;switchExoTab('mes');renderExosDay();}
 }
-
-function openChefIA(){openFL('chef');}
 
 function setExoTab(tab){switchExoTab(tab);}
 function setExoFilter(f,btn){setBibFilter(f,btn);}
@@ -1456,74 +1509,6 @@ var GROUPES_LABELS={pecs:'Pectoraux',dos:'Dos',epaules:'Epaules',biceps:'Biceps'
 var exosFilterGroup='';
 var exosTargetDay=-1;
 
-function openExos(dayIdx){
-  exosTargetDay=(dayIdx!==undefined)?dayIdx:-1;
-  exosFilterGroup='';
-  var el=document.getElementById('fl-exos');if(el)el.classList.add('open');
-  var gender=(state.profil&&state.profil.gender==='femme')?'femme':'homme';
-  var groupes=gender==='femme'?GROUPES_FEMME:GROUPES_HOMME;
-  var filEl=document.getElementById('exos-filters');
-  if(filEl){
-    filEl.innerHTML='<button onclick="setExosFilter(\'\')" id="ef-all" style="flex-shrink:0;padding:7px 14px;border-radius:20px;border:1px solid var(--acc);background:rgba(232,255,71,.15);color:var(--acc);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;white-space:nowrap">Tous</button>'
-      +groupes.map(function(g){return '<button onclick="setExosFilter(\''+g+'\')" id="ef-'+g+'" style="flex-shrink:0;padding:7px 14px;border-radius:20px;border:1px solid var(--brd);background:none;color:var(--mut);font-size:12px;font-family:DM Sans,sans-serif;cursor:pointer;white-space:nowrap">'+GROUPES_LABELS[g]+'</button>';}).join('');
-  }
-  renderExosList();
-}
-
-function setExosFilter(g){
-  exosFilterGroup=g;
-  document.querySelectorAll('[id^="ef-"]').forEach(function(el){
-    var isActive=(g===''&&el.id==='ef-all')||(el.id==='ef-'+g);
-    el.style.borderColor=isActive?'var(--acc)':'var(--brd)';
-    el.style.background=isActive?'rgba(232,255,71,.15)':'none';
-    el.style.color=isActive?'var(--acc)':'var(--mut)';
-  });
-  renderExosList();
-}
-
-function renderExosList(){
-  var el=document.getElementById('exos-list');if(!el)return;
-  var search=(document.getElementById('exos-search')||{}).value||'';
-  search=search.toLowerCase().trim();
-  var gender=(state.profil&&state.profil.gender==='femme')?'femme':'homme';
-  var groupes=gender==='femme'?GROUPES_FEMME:GROUPES_HOMME;
-  var list=EXOS_DB.filter(function(e){
-    if(exosFilterGroup&&e.g!==exosFilterGroup)return false;
-    if(search&&e.n.toLowerCase().indexOf(search)===-1&&e.muscles.toLowerCase().indexOf(search)===-1)return false;
-    return true;
-  }).sort(function(a,b){return groupes.indexOf(a.g)-groupes.indexOf(b.g);});
-  if(!list.length){el.innerHTML='<div style="text-align:center;color:var(--mut);padding:24px;font-size:13px">Aucun exercice trouve.</div>';return;}
-  var byGroup={};
-  list.forEach(function(e){if(!byGroup[e.g])byGroup[e.g]=[];byGroup[e.g].push(e);});
-  var html='';
-  groupes.forEach(function(g){
-    if(!byGroup[g])return;
-    html+='<div style="font-size:10px;font-weight:500;color:var(--mut);letter-spacing:.8px;text-transform:uppercase;margin:14px 0 8px;display:flex;align-items:center;gap:8px">'+GROUPES_LABELS[g]+'<span style="flex:1;height:1px;background:var(--brd);display:block"></span></div>';
-    html+=byGroup[g].map(function(e){
-      return '<div style="background:var(--card);border-radius:12px;padding:12px 14px;margin-bottom:7px;display:flex;align-items:center;gap:12px">'
-        +'<div style="flex:1"><div style="font-size:14px;font-weight:500;color:var(--txt)">'+e.n+'</div>'
-        +'<div style="font-size:11px;color:var(--mut);margin-top:2px">'+e.muscles+' &nbsp;·&nbsp; <span style="color:var(--acc)">'+e.type+'</span></div>'
-        +(e.note?'<div style="font-size:11px;color:var(--blu);margin-top:2px">'+e.note+'</div>':'')+'</div>'
-        +'<div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0">'
-        +'<a href="'+e.yt+'" target="_blank" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid rgba(255,68,68,.3);background:rgba(255,68,68,.05);text-decoration:none;font-size:14px;color:#ff4444">&#9654;</a>'
-        +(exosTargetDay>=0?'<button onclick="addExoToDay(\''+e.n.replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\',\''+e.yt+'\')" style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;border:1px solid var(--acc);background:rgba(232,255,71,.1);font-size:16px;cursor:pointer;color:var(--acc)">+</button>':'')
-        +'</div></div>';
-    }).join('');
-  });
-  el.innerHTML=html;
-}
-
-function addExoToDay(exoName,exoYt){
-  if(exosTargetDay<0)return;
-  var d=DAYS[exosTargetDay];
-  d.exercises.push({n:exoName,s:'3 x 10-12 reps',note:'',yt:exoYt||''});
-  if(!state.customDays)state.customDays={};
-  state.customDays[exosTargetDay]=d.exercises.map(function(ex){return{n:ex.n,s:ex.s};});
-  sv();notify(exoName+' ajoute a '+d.name+' !');vib([40,20,40]);
-  closeFL('exos');renderProgBody();
-  if(cDay===exosTargetDay)renderSeance();
-}
-
 var obGender='';
 var obGyms=[];
 
@@ -1617,10 +1602,10 @@ function toggleProfilGym(g){
 }
 
 var GYM_DATA={
-  basicfit:{name:'Basic-Fit',color:'#E2001A',url:'https://apps.apple.com/fr/app/basic-fit/id956598540'},
+  basicfit:{name:'Basic-Fit',color:'#FF6B00',url:'https://apps.apple.com/fr/app/basic-fit/id956598540'},
   fitnesspark:{name:'Fitness Park',color:'#43B02A',url:'https://apps.apple.com/fr/app/fitness-park/id1044359087'},
   keepcool:{name:'Keep Cool',color:'#004B8D',url:'https://apps.apple.com/fr/app/keep-cool/id1441979077'},
-  onair:{name:'OnAir',color:'#F7941D',url:'https://apps.apple.com/fr/app/on-air-fitness/id1437918549'},
+  onair:{name:'OnAir',color:'#CC0000',url:'https://apps.apple.com/fr/app/on-air-fitness/id1437918549'},
   autre:{name:'Autre / Maison',color:'var(--mut)',url:''}
 };
 
@@ -1640,14 +1625,17 @@ function updateHamburgerGyms(){
   var p=state.profil||{};
   var gyms=p.gyms||[];
   var gymData={
-    basicfit:{name:'Basic-Fit',color:'#E30613',bg:'#ee6f1e',logo:'data:image/jpeg;base64,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'},
+    basicfit:{name:'Basic-Fit',color:'#FF6B00',bg:'#ee6f1e',logo:'data:image/jpeg;base64,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'},
     fitnesspark:{name:'Fitness Park',color:'#2d2d2d',bg:'#3d4452',logo:'data:image/jpeg;base64,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'},
     keepcool:{name:'Keep Cool',color:'#C8006A',bg:'#ffffff',logo:'data:image/jpeg;base64,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'},
-    onair:{name:'On Air',color:'#8B0000',bg:'#ffffff',logo:'data:image/jpeg;base64,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'},
+    onair:{name:'On Air',color:'#CC0000',bg:'#ffffff',logo:'data:image/jpeg;base64,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'},
     autre:{name:'Ma salle',color:'var(--mut)',bg:'var(--card)',logo:''}
   };
-  if(!gyms.length){el.innerHTML='<div style="font-size:12px;color:var(--mut);padding:8px 4px">Aucune salle dans ton profil</div>';return;}
-  el.innerHTML=gyms.map(function(g){
+  var mapsBtn='<button class="ham-btn" onclick="closeHamburger();findNearestGym()" style="margin-bottom:4px">'
+    +'<span style="font-size:22px">🗺️</span><div><div class="ham-title">Salle la plus proche</div><div class="ham-sub">Ouvre l\'itinéraire Maps</div></div>'
+    +'</button>';
+  if(!gyms.length){el.innerHTML=mapsBtn+'<div style="font-size:12px;color:var(--mut);padding:8px 4px">Ajoute une salle dans ton profil pour accès direct.</div>';return;}
+  el.innerHTML=mapsBtn+gyms.map(function(g){
     var d=gymData[g]||gymData.autre;
     var onclick=g!=='autre'?"navigateToGym('"+g+"');closeHamburger()":'notify("Renseigne ta salle dans ton profil")';
     return '<button class="ham-btn" id="hamgym-'+g+'" onclick="'+onclick+'">'
@@ -2344,6 +2332,116 @@ function deleteMeal(i){
   if(m){state.water=Math.max(0,state.water-(m.water||0));state.prot=Math.max(0,state.prot-(m.prot||0));}
   state.nutriMeals.splice(i,1);sv();renderNutri();
 }
+function setWaterDrops(n){
+  resetNutriIfNewDay();
+  state.water=parseFloat((n*0.3125).toFixed(2));
+  sv();renderNutriPanel();
+  vib([30]);
+}
+
+function openQuickAction(){
+  var ex=document.getElementById('quick-action-ov');if(ex)ex.remove();
+  var html='<div id="quick-action-ov" style="position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:1500;display:flex;flex-direction:column;justify-content:flex-end" onclick="if(event.target===this)this.remove()">';
+  html+='<div style="background:var(--sur);border-radius:20px 20px 0 0;padding:20px 14px;padding-bottom:env(safe-area-inset-bottom,20px)">';
+  html+='<div style="width:36px;height:4px;background:var(--brd);border-radius:2px;margin:0 auto 20px"></div>';
+  html+='<div style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--acc);margin-bottom:14px">ACTION RAPIDE</div>';
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">';
+  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();goTab(\'seance\',document.getElementById(\'nb-seance\'))" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">⚡</div>Lancer séance</button>';
+  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'marche\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">🚶</div>Marche GPS</button>';
+  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'exos\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">🏋️</div>Exercices</button>';
+  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove();openFL(\'log\')" style="padding:16px 12px;background:var(--card);border:1px solid var(--brd);border-radius:14px;color:var(--txt);font-size:13px;cursor:pointer;text-align:left"><div style=\"font-size:22px;margin-bottom:6px\">📊</div>Log manuel</button>';
+  html+='</div>';
+  html+='<button onclick="document.getElementById(\'quick-action-ov\').remove()" style="width:100%;padding:14px;border-radius:12px;border:none;background:none;color:var(--mut);font-family:DM Sans,sans-serif;font-size:14px;cursor:pointer;margin-top:14px">Annuler</button>';
+  html+='</div></div>';
+  document.body.insertAdjacentHTML('beforeend',html);
+}
+
+function openSearchModal(){
+  var ex=document.getElementById('search-modal');if(ex)ex.remove();
+  var html='<div id="search-modal" style="position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1500;display:flex;flex-direction:column;padding:env(safe-area-inset-top,0) 0 0">';
+  html+='<div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--sur);border-bottom:1px solid var(--brd)">';
+  html+='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mut)" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+  html+='<input id="search-modal-inp" type="text" placeholder="Rechercher un ami (@username)…" style="flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--brd);background:var(--card);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;-webkit-appearance:none" oninput="searchUsersModal(this.value)" autocomplete="off">';
+  html+='<button onclick="document.getElementById(\'search-modal\').remove()" style="background:none;border:none;color:var(--mut);font-size:16px;cursor:pointer;padding:6px 4px;font-family:DM Sans,sans-serif;white-space:nowrap">Fermer ✕</button>';
+  html+='</div>';
+  html+='<div id="search-modal-results" style="flex:1;overflow-y:auto;padding:14px"></div>';
+  html+='</div>';
+  document.body.insertAdjacentHTML('beforeend',html);
+  setTimeout(function(){var inp=document.getElementById('search-modal-inp');if(inp)inp.focus();},100);
+}
+
+function searchUsersModal(query){
+  var el=document.getElementById('search-modal-results');
+  if(!query||query.length<2){el.innerHTML='<div style="text-align:center;padding:40px;color:var(--mut);font-size:13px">Tape au moins 2 caractères</div>';return;}
+  el.innerHTML='<div style="text-align:center;padding:20px;color:var(--mut);font-size:13px">Recherche...</div>';
+  clearTimeout(window._searchModalTimeout);
+  window._searchModalTimeout=setTimeout(async function(){
+    if(!_supa||!_supaUser){el.innerHTML='<div style="color:var(--mut);font-size:13px;padding:10px;text-align:center">Connexion requise.</div>';return;}
+    try{
+      var qLower=query.replace(/^@/,'').toLowerCase();
+      var res=await _supa.from('profiles').select('id,username,display_name,data').or('username.ilike.%'+qLower+'%,display_name.ilike.%'+qLower+'%').neq('id',_supaUser.id).limit(10);
+      var users=res.data||[];
+      if(!users.length){el.innerHTML='<div style="color:var(--mut);font-size:13px;padding:20px;text-align:center">Aucun utilisateur trouvé.</div>';return;}
+      var myReqsRes=await _supa.from('friend_requests').select('to_id,status').eq('from_id',_supaUser.id);
+      var myReqs=myReqsRes.data||[];
+      var friendIds=(state.friends||[]).map(function(f){return f.id;});
+      el.innerHTML=users.map(function(u){
+        var name=u.display_name||(u.data&&u.data.profil&&u.data.profil.name)||'Utilisateur';
+        var uname=u.username?'@'+u.username:'';
+        var isFriend=friendIds.includes(u.id);
+        var req=myReqs.find(function(r){return r.to_id===u.id;});
+        var isPending=req&&req.status==='pending';
+        var btnTxt=isFriend?'✓ Squad':isPending?'Envoyée':'+ Ajouter';
+        var btnClass=(isFriend||isPending)?'ucard-btn sent':'ucard-btn';
+        var disabled=(isFriend||isPending)?'disabled':'';
+        var initiale=name.charAt(0).toUpperCase();
+        // avatar sans base64 dans le onclick
+        return '<div class="ucard" style="margin-bottom:8px">'
+          +'<div class="ucard-av">'+initiale+'</div>'
+          +'<div style="flex:1"><div class="ucard-name">'+name+'</div>'
+          +'<div class="ucard-sub">'+(uname?'<span style="color:var(--acc)">'+uname+'</span>':'')+' </div></div>'
+          +'<button class="'+btnClass+'" '+disabled+' onclick="sendFriendRequest(\''+u.id+'\',\''+name.replace(/'/g,'')+'\',this)">'+btnTxt+'</button>'
+          +'</div>';
+      }).join('');
+    }catch(e){el.innerHTML='<div style="color:var(--red);font-size:13px;padding:10px">Erreur : '+e.message+'</div>';}
+  },400);
+}
+
+function renderAccueil(){
+  var el=document.getElementById('accueil-feed');if(!el)return;
+  var friends=state.friends||[];
+  var incoming=state.incomingRequests||[];
+  var html='';
+  if(incoming.length){
+    html+='<div class="sec" style="color:var(--red)">Demandes en attente ('+incoming.length+')</div>';
+    html+=incoming.map(function(r){
+      return '<div class="ucard" style="margin-bottom:8px">'
+        +'<div class="ucard-av">'+(r.from_name||'?').charAt(0).toUpperCase()+'</div>'
+        +'<div style="flex:1"><div class="ucard-name">'+(r.from_name||'Inconnu')+'</div>'
+        +'<div class="ucard-sub">'+(r.from_username?'@'+r.from_username:'')+'</div></div>'
+        +'<div style="display:flex;gap:6px">'
+        +'<button onclick="acceptFriend(\''+r.id+'\',\''+r.from_name+'\')" style="padding:7px 12px;border-radius:20px;background:var(--acc);border:none;color:#000;font-size:12px;cursor:pointer;font-weight:500">✓</button>'
+        +'<button onclick="rejectFriend(\''+r.id+'\')" style="padding:7px 12px;border-radius:20px;background:none;border:1px solid var(--brd);color:var(--mut);font-size:12px;cursor:pointer">✕</button>'
+        +'</div></div>';
+    }).join('');
+  }
+  if(!friends.length&&!incoming.length){
+    html='<div style="text-align:center;padding:60px 20px">'
+      +'<div style="font-size:48px;margin-bottom:12px">👥</div>'
+      +'<div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc);margin-bottom:8px">REMPLIS TA SQUAD</div>'
+      +'<div style="font-size:13px;color:var(--mut);line-height:1.6;margin-bottom:20px">Trouve tes amis pour voir leurs séances, leurs badges et les encourager.</div>'
+      +'<button onclick="openSearchModal()" style="padding:14px 28px;border-radius:13px;background:var(--acc);color:#000;font-family:Bebas Neue,sans-serif;font-size:18px;border:none;cursor:pointer">RECHERCHER →</button>'
+      +'</div>';
+    el.innerHTML=html;return;
+  }
+  if(friends.length){
+    html+='<div class="sec">Activité récente</div>';
+    html+='<div id="squad-activity-feed"></div>';
+  }
+  el.innerHTML=html;
+  loadFriendsFeed();
+}
+
 function resetJour(){
   state.water=0;state.prot=0;state.creat=0;state.nutriMeals=[];sv();renderNutri();
   notify('Nutrition remise a zero');vib([30]);
@@ -2431,7 +2529,6 @@ async function chefIA(){
   if(btn)btn.style.display='block';
   if(load)load.style.display='none';
 }
-function togSuppl(key){state.suppChecks[key]=!state.suppChecks[key];sv();vib([40]);renderSuppl();}
 function renderSuppl(){
   var today=new Date().toLocaleDateString('fr-FR');
   var el=document.getElementById('suppl-list');if(!el)return;
@@ -2501,12 +2598,18 @@ function renderNutriPanel(){
 
   // EAU
   html+='<div class="ncard" style="border-left:4px solid var(--blu)">';
-  html+='<div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:11px;color:var(--blu);font-weight:500;text-transform:uppercase">Eau</span><span style="font-size:11px;color:var(--mut)">/ 2,5 L</span></div>';
-  html+='<div class="nval" style="color:var(--blu)">'+w.toFixed(2)+' L</div>';
-  html+='<div class="ntrack"><div class="nfill" style="width:'+Math.min(w/2.5*100,100)+'%;background:linear-gradient(90deg,var(--blu),#00cfff)"></div></div>';
+  html+='<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px"><span style="font-size:11px;color:var(--blu);font-weight:500;text-transform:uppercase">💧 Eau</span><span style="font-family:Bebas Neue,sans-serif;font-size:18px;color:var(--blu)">'+w.toFixed(1)+'<span style="font-size:11px;font-family:DM Sans,sans-serif;color:var(--mut)"> / 2,5 L</span></span></div>';
+  html+='<div class="ntrack" style="margin-bottom:10px"><div class="nfill" style="width:'+Math.min(w/2.5*100,100)+'%;background:linear-gradient(90deg,var(--blu),#00cfff)"></div></div>';
   if(isToday){
-    html+='<div class="ninprow"><input class="ninp" id="ni-w" type="number" step="0.05" placeholder="ex: 0.33" inputmode="decimal"><span style="color:var(--mut);font-size:13px">L</span><button class="nadd" onclick="addNI(\'w\',\'ni-w\')">+ Ajouter</button><button class="nrst" onclick="resetN(\'w\')">&#8635;</button></div>';
-    html+='<div class="nbtns"><button class="nbtn" onclick="addN(\'w\',0.25)">+25cl</button><button class="nbtn" onclick="addN(\'w\',0.5)">+50cl</button><button class="nbtn" onclick="addN(\'w\',1)">+1L</button></div>';
+    var drops=8;
+    var filledDrops=Math.round(w/2.5*drops);
+    html+='<div style="display:flex;gap:6px;justify-content:space-between;align-items:center">';
+    for(var di=0;di<drops;di++){
+      var filled=di<filledDrops;
+      html+='<button onclick="setWaterDrops('+(di+1)+')" style="flex:1;height:38px;border-radius:10px;border:none;background:'+(filled?'var(--blu)':'var(--fnt)')+';cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;font-size:14px">'+(filled?'💧':'')+'</button>';
+    }
+    html+='</div>';
+    html+='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:10px;color:var(--mut)">Appuie pour remplir (1 verre = 312ml)</span><button onclick="resetN(\'w\')" style="background:none;border:none;color:var(--mut);font-size:12px;cursor:pointer;padding:4px 8px;border-radius:8px;border:1px solid var(--brd)">Reset</button></div>';
   }else if(nEditMode){
     html+='<input id="past-w" type="number" step="0.1" value="'+w+'" inputmode="decimal" style="width:100%;padding:10px;border-radius:9px;border:1px solid var(--acc);background:var(--bg);color:var(--txt);font-size:15px;font-family:DM Sans,sans-serif;margin-top:6px;-webkit-appearance:none">';
     html+='<div style="font-size:10px;color:var(--mut);margin-top:4px">En litres (ex : 2,5)</div>';
@@ -2718,6 +2821,11 @@ function markDone(){
   if(!was){
     vib([80,30,80]);fireXP(10);
     var hero=document.getElementById('hero');hero.classList.add('glowing');setTimeout(function(){hero.classList.remove('glowing');},500);
+    // Live badge update
+    var _streak=getRealStreak(),_total=getTotalSess();
+    var _tb=getBadge(_total,BADGES_SESS);
+    var _hb=document.getElementById('h-badge');if(_hb)_hb.innerHTML=_tb.ico;
+    var _hxp=document.getElementById('h-xp');if(_hxp)_hxp.textContent=state.xp;
     var d=DAYS[cDay],checks=state.checks[cDay];
     var allDone=d.exercises.every(function(_,j){return checks[j];});
     if(allDone){
@@ -3195,6 +3303,54 @@ function saveLog(){
 // ============================================================
 // MARCHE
 // ============================================================
+var _gpsWatchId=null,_gpsPoints=[],_gpsStart=null,_gpsDistance=0,_gpsLastPos=null;
+
+function startGPSWalk(){
+  if(_gpsWatchId){notify('Marche déjà en cours');return;}
+  if(!navigator.geolocation){notify('GPS non disponible sur ce navigateur');return;}
+  _gpsPoints=[];_gpsDistance=0;_gpsLastPos=null;_gpsStart=Date.now();
+  var marchePanelGPS=document.getElementById('marche-gps-live');
+  if(marchePanelGPS)marchePanelGPS.style.display='block';
+  _gpsWatchId=navigator.geolocation.watchPosition(function(pos){
+    var lat=pos.coords.latitude,lng=pos.coords.longitude;
+    _gpsPoints.push({lat:lat,lng:lng,t:Date.now()});
+    if(_gpsLastPos){
+      _gpsDistance+=_distKm(_gpsLastPos.lat,_gpsLastPos.lng,lat,lng);
+    }
+    _gpsLastPos={lat:lat,lng:lng};
+    updateGPSDisplay();
+  },function(err){notify('GPS: '+err.message);},{enableHighAccuracy:true,maximumAge:0,timeout:15000});
+  startSession('marche');
+}
+
+function updateGPSDisplay(){
+  var durMs=Date.now()-_gpsStart;
+  var durMin=Math.floor(durMs/60000);
+  var durSec=Math.floor((durMs%60000)/1000);
+  var pace=_gpsDistance>0.01?(durMs/60000/_gpsDistance).toFixed(1):'--';
+  var el=document.getElementById('marche-gps-stats');
+  if(el)el.innerHTML='<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;text-align:center">'
+    +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">'+_gpsDistance.toFixed(2)+'</div><div style="font-size:10px;color:var(--mut)">km</div></div>'
+    +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">'+durMin+':'+String(durSec).padStart(2,'0')+'</div><div style="font-size:10px;color:var(--mut)">durée</div></div>'
+    +'<div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">'+pace+'</div><div style="font-size:10px;color:var(--mut)">min/km</div></div>'
+    +'</div>';
+}
+
+function stopGPSWalk(){
+  if(_gpsWatchId)navigator.geolocation.clearWatch(_gpsWatchId);
+  _gpsWatchId=null;
+  var durMs=Date.now()-_gpsStart;
+  var durMin=Math.floor(durMs/60000);
+  // Save to state
+  var entry={date:new Date().toLocaleDateString('fr-FR'),km:parseFloat(_gpsDistance.toFixed(2)),dur:durMin,parcours:'GPS'};
+  if(!state.marches)state.marches=[];
+  state.marches.unshift(entry);sv();
+  stopSession();
+  var el=document.getElementById('marche-gps-live');if(el)el.style.display='none';
+  renderMarcheHist();
+  notify('Marche enregistrée — '+_gpsDistance.toFixed(2)+' km en '+durMin+' min ✓');vib([50,30,80]);
+}
+
 function saveMarche(){
   var parc=document.getElementById('m-parc')?document.getElementById('m-parc').value:'';
   var km=parseFloat((document.getElementById('m-km')?document.getElementById('m-km').value:'').replace(',','.'));
@@ -3489,27 +3645,21 @@ function toggleGuideSection(i){
 }
   var ex=document.getElementById('guide-ov');if(ex)ex.remove();
 
-function toggleGuideSection(i){
-  var sec=document.getElementById('guide-sec-'+i);
-  var arr=document.getElementById('guide-arr-'+i);
-  if(!sec)return;
-  var open=sec.style.display!=='none';
-  sec.style.display=open?'none':'block';
-  if(arr)arr.style.transform=open?'':'rotate(180deg)';
-}
-function renderNutriAndSuppl(){
-  renderNutri();
-  renderSuppl();
-}
 
 function goTab(name,el){
   document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('act');p.style.display='';});
-  document.querySelectorAll('.nb').forEach(function(b){b.classList.remove('act');});
+  document.querySelectorAll('.nb,.nb-plus').forEach(function(b){b.classList.remove('act');});
   var panel=document.getElementById('p-'+name);
   if(panel){panel.classList.add('act');if(name==='coach')panel.style.display='flex';}
   if(el)el.classList.add('act');
+  // Header: show daybar only on seance tab
+  var logoEl=document.getElementById('header-logo');
+  var daybarEl=document.getElementById('daybar');
+  if(name==='seance'){if(logoEl)logoEl.style.display='none';if(daybarEl)daybarEl.style.display='flex';}
+  else{if(logoEl)logoEl.style.display='block';if(daybarEl)daybarEl.style.display='none';}
   if(name==='seance'){renderSeance();renderDayBar();}
   if(name==='nutri'){renderNutri();renderSuppl();}
+  if(name==='accueil'){renderAccueil();}
   if(name==='journal')renderJournal();
 }
 function openHamburger(){
@@ -3921,7 +4071,8 @@ function searchUsers(query) {
         var av = (u.data && u.data.profil && u.data.profil.avatar)
           ? '<img src="' + u.data.profil.avatar + '">'
           : name.charAt(0).toUpperCase();
-        return '<div class="ucard" onclick="openFriendProfile(' + JSON.stringify(u).replace(/"/g, '&quot;') + ')" style="cursor:pointer">'
+        var safeU={id:u.id,name:name,username:u.username||'',xp:(u.data&&u.data.xp)||0};
+        return '<div class="ucard" onclick="openFriendProfile(' + JSON.stringify(safeU).replace(/"/g, '&quot;') + ')" style="cursor:pointer">'
           + '<div class="ucard-av">' + av + '</div>'
           + '<div style="flex:1"><div class="ucard-name">' + name + '</div>'
           + '<div class="ucard-sub">' + (uname ? '<span style="color:var(--acc)">' + uname + '</span> · ' : '') + xp + ' XP</div></div>'
@@ -4147,7 +4298,10 @@ async function loadFriendsFeed() {
   var res = await _supa.from('activity').select('*').in('user_id', ids).order('created_at', { ascending: false }).limit(20);
   var items = res.data || [];
   if (!items.length) { feedEl.innerHTML = ''; return; }
-  feedEl.innerHTML = '<div class="sec">Activité de ta squad</div>' + items.map(function(a) { return renderFeedItem(a); }).join('');
+  var feedHtml = items.map(function(a) { return renderFeedItem(a); }).join('');
+  feedEl.innerHTML = '<div class="sec">Activité de ta squad</div>' + feedHtml;
+  var feedEl2 = document.getElementById('squad-activity-feed');
+  if(feedEl2) feedEl2.innerHTML = feedHtml;
 }
 
 // ── LOG ACTIVITÉ (appelé depuis startSession/stopSession) ──────
@@ -4202,6 +4356,18 @@ function bootApp(){
   try{renderDayBar();}catch(e){console.error('renderDayBar error:',e);}
   try{renderSeance();}catch(e){console.error('renderSeance error:',e);}
   try{renderNutriAndSuppl();}catch(e){console.error('renderNutriAndSuppl error:',e);}
+  // Init accueil feed + header default state
+  try{renderAccueil();}catch(e){}
+  // Default tab: seance — show daybar, hide logo
+  var logoEl=document.getElementById('header-logo');
+  var daybarEl=document.getElementById('daybar');
+  if(logoEl)logoEl.style.display='none';
+  if(daybarEl)daybarEl.style.display='flex';
+  // Load friends for feed
+  try{loadFriendRequests();}catch(e){}
+  try{loadFriendsFeed();}catch(e){}
+  // Set api choice UI
+  try{updateAPIUI();}catch(e){}
 }
 
 document.addEventListener('DOMContentLoaded',function(){
