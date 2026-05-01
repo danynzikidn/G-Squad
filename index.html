@@ -616,11 +616,11 @@ button:active{transform:scale(.96);transition:transform .1s}
               <div id="prof-sess" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">0</div>
               <div style="font-size:10px;color:var(--mut)">Séances</div>
             </div>
-            <div onclick="openSocial()" style="cursor:pointer">
+            <div onclick="openFollowersList('followers')" style="cursor:pointer">
               <div id="prof-followers" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">0</div>
               <div style="font-size:10px;color:var(--mut)">Abonnés</div>
             </div>
-            <div onclick="openSocial()" style="cursor:pointer">
+            <div onclick="openFollowersList('following')" style="cursor:pointer">
               <div id="prof-following" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--txt)">0</div>
               <div style="font-size:10px;color:var(--mut)">Suivi(e)s</div>
             </div>
@@ -762,7 +762,7 @@ button:active{transform:scale(.96);transition:transform .1s}
 
       <!-- Ma salle -->
       <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Ma salle</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px" id="prof-gym-picker">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px" id="prof-gym-picker">
         <div class="ob-g" id="pg-basicfit" onclick="toggleProfilGym('basicfit')" style="padding:10px">
           <div style="font-size:11px;font-weight:600;color:#FF6B00">● Basic-Fit</div>
         </div>
@@ -777,6 +777,36 @@ button:active{transform:scale(.96);transition:transform .1s}
         </div>
         <div class="ob-g" id="pg-autre" onclick="toggleProfilGym('autre')" style="grid-column:span 2;padding:10px">
           <div style="font-size:11px;font-weight:600;color:var(--mut)">🏠 Autre / Maison</div>
+        </div>
+      </div>
+
+      <!-- Sports hors salle -->
+      <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px">Mon sport</div>
+      <div style="font-size:10px;color:var(--mut);margin-bottom:8px">Les sports hors salle ne participent pas au classement.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px" id="prof-sport-picker">
+        <div class="ob-g" id="ps-basket" onclick="toggleProfilSport('basket')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🏀 Basket</div>
+        </div>
+        <div class="ob-g" id="ps-foot" onclick="toggleProfilSport('foot')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">⚽ Football</div>
+        </div>
+        <div class="ob-g" id="ps-mma" onclick="toggleProfilSport('mma')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🥊 MMA</div>
+        </div>
+        <div class="ob-g" id="ps-jjb" onclick="toggleProfilSport('jjb')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🥋 JJB / Lutte</div>
+        </div>
+        <div class="ob-g" id="ps-tennis" onclick="toggleProfilSport('tennis')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🎾 Tennis</div>
+        </div>
+        <div class="ob-g" id="ps-rugby" onclick="toggleProfilSport('rugby')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🏉 Rugby</div>
+        </div>
+        <div class="ob-g" id="ps-footus" onclick="toggleProfilSport('footus')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🏈 Foot US</div>
+        </div>
+        <div class="ob-g" id="ps-escalade" onclick="toggleProfilSport('escalade')" style="padding:10px">
+          <div style="font-size:11px;font-weight:600;color:var(--txt)">🧗 Escalade</div>
         </div>
       </div>
 
@@ -857,12 +887,12 @@ button:active{transform:scale(.96);transition:transform .1s}
     </button>
     <div style="flex:1;display:flex;align-items:center;justify-content:center">
       <div id="header-logo" style="font-family:Bebas Neue,sans-serif;font-size:22px;color:var(--acc);letter-spacing:3px;cursor:default">G-SQUAD</div>
-      <div class="daybar" id="daybar" style="border:none;flex:0;display:none"></div>
     </div>
     <button onclick="openSearchModal()" style="background:none;border:none;color:var(--mut);padding:4px;cursor:pointer;flex-shrink:0;display:flex;align-items:center">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </button>
   </div>
+  <div class="daybar" id="daybar" style="display:none"></div>
 
   <!-- BARRE TIMER SÉANCE / MARCHE -->
   <div class="sess-bar" id="sess-bar">
@@ -1621,24 +1651,47 @@ function renderExosDay(){
   var dt=document.getElementById('exos-day-type');if(dt)dt.textContent=d.type+' — '+d.dur;
   var el=document.getElementById('exos-day-list');if(!el)return;
   if(!d.exercises.length){
-    el.innerHTML='<div style="text-align:center;color:var(--mut);padding:24px;font-size:14px">Aucun exercice — ajoutes-en un !</div>';
+    el.innerHTML='<div style="text-align:center;color:var(--mut);padding:24px;font-size:14px">Aucun exercice — appuie sur + pour en ajouter</div>';
     return;
   }
-  var total=d.exercises.length;
   el.innerHTML=d.exercises.map(function(ex,ei){
-    return '<div style="display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--brd)">'
-      +'<div style="display:flex;flex-direction:column;gap:2px;flex-shrink:0">'
-      +(ei>0?'<button onclick="moveExo('+exosDayIdx+','+ei+',-1)" style="background:none;border:1px solid var(--brd);color:var(--mut);border-radius:6px;padding:3px 7px;font-size:11px;cursor:pointer;line-height:1">▲</button>':'<div style="width:26px;height:20px"></div>')
-      +(ei<total-1?'<button onclick="moveExo('+exosDayIdx+','+ei+',1)" style="background:none;border:1px solid var(--brd);color:var(--mut);border-radius:6px;padding:3px 7px;font-size:11px;cursor:pointer;line-height:1">▼</button>':'<div style="width:26px;height:20px"></div>')
-      +'</div>'
+    return '<div style="display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--brd);cursor:grab;user-select:none"'
+      +' oncontextmenu="event.preventDefault();openExoMoveModal('+exosDayIdx+','+ei+')"'
+      +' ontouchstart="_exoLongPress=setTimeout(function(){openExoMoveModal('+exosDayIdx+','+ei+')},500)"'
+      +' ontouchend="clearTimeout(_exoLongPress)" ontouchmove="clearTimeout(_exoLongPress)">'
+      +'<div style="color:var(--mut);font-size:16px;flex-shrink:0">⠿</div>'
       +'<div style="flex:1;min-width:0">'
       +'<div style="font-size:14px;font-weight:500;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+ex.n+'</div>'
       +'<div style="font-size:12px;color:var(--mut);margin-top:2px">'+ex.s+'</div>'
       +'</div>'
-      +'<button onclick="removeExoFromDay('+exosDayIdx+','+ei+')" style="background:none;border:1px solid rgba(255,59,59,.4);color:var(--red);border-radius:8px;padding:6px 9px;font-size:12px;cursor:pointer;flex-shrink:0">✕</button>'
+      +'<button onclick="removeExoFromDay('+exosDayIdx+','+ei+')" style="background:none;border:none;color:var(--mut);font-size:16px;cursor:pointer;padding:4px 8px;flex-shrink:0">✕</button>'
       +'</div>';
   }).join('');
 }
+var _exoLongPress=null;
+function openExoMoveModal(di,ei){
+  vib([30]);
+  var exos=DAYS[di].exercises;
+  var ex=exos[ei];
+  var total=exos.length;
+  var ov=document.getElementById('exo-move-ov');if(ov)ov.remove();
+  var html='<div id="exo-move-ov" style="position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2000;display:flex;flex-direction:column;justify-content:flex-end" onclick="if(event.target===this)this.remove()">';
+  html+='<div onclick="event.stopPropagation()" style="background:var(--sur);border-radius:20px 20px 0 0;padding:20px 16px;padding-bottom:env(safe-area-inset-bottom,20px)">';
+  html+='<div style="width:36px;height:4px;background:var(--brd);border-radius:2px;margin:0 auto 16px"></div>';
+  html+='<div style="font-size:14px;font-weight:500;color:var(--txt);margin-bottom:4px">'+ex.n+'</div>';
+  html+='<div style="font-size:12px;color:var(--mut);margin-bottom:16px">'+ex.s+'</div>';
+  if(ei>0){
+    html+='<button onclick="moveExo('+di+','+ei+',-1);document.getElementById(\'exo-move-ov\').remove()" style="width:100%;padding:14px;border-radius:12px;background:var(--card);border:1px solid var(--brd);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">↑</span> Monter</button>';
+  }
+  if(ei<total-1){
+    html+='<button onclick="moveExo('+di+','+ei+',1);document.getElementById(\'exo-move-ov\').remove()" style="width:100%;padding:14px;border-radius:12px;background:var(--card);border:1px solid var(--brd);color:var(--txt);font-size:14px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">↓</span> Descendre</button>';
+  }
+  html+='<button onclick="removeExoFromDay('+di+','+ei+');document.getElementById(\'exo-move-ov\').remove()" style="width:100%;padding:14px;border-radius:12px;background:none;border:1px solid rgba(255,59,59,.4);color:var(--red);font-size:14px;font-family:DM Sans,sans-serif;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">✕</span> Retirer</button>';
+  html+='<button onclick="document.getElementById(\'exo-move-ov\').remove()" style="width:100%;padding:12px;border-radius:12px;background:none;border:none;color:var(--mut);font-size:13px;font-family:DM Sans,sans-serif;cursor:pointer">Annuler</button>';
+  html+='</div></div>';
+  document.body.insertAdjacentHTML('beforeend',html);
+}
+
 
 function removeExoFromDay(di,ei){
   DAYS[di].exercises.splice(ei,1);
@@ -2043,6 +2096,24 @@ function updateAPIUI(){
   var ep=document.getElementById('edit-poids-profil');
   if(ep&&p.poids)ep.value=p.poids;
 }
+var SPORTS_LABELS = {
+  basket:'🏀 Basket',foot:'⚽ Football',mma:'🥊 MMA',jjb:'🥋 JJB/Lutte',
+  tennis:'🎾 Tennis',rugby:'🏉 Rugby',footus:'🏈 Foot US',escalade:'🧗 Escalade'
+};
+// Sports hors salle — exclus du classement
+var SPORTS_HORS_SALLE = ['basket','foot','mma','jjb','tennis','rugby','footus','escalade'];
+
+function toggleProfilSport(s){
+  if(!state.profil)state.profil={};
+  if(!state.profil.sports)state.profil.sports=[];
+  var idx=state.profil.sports.indexOf(s);
+  if(idx>=0)state.profil.sports.splice(idx,1);
+  else state.profil.sports.push(s);
+  sv();
+  var el=document.getElementById('ps-'+s);
+  if(el)el.classList.toggle('sel',state.profil.sports.indexOf(s)>=0);
+}
+
 function toggleProfilGym(g){
   if(!state.profil)return;
   var idx=state.profil.gyms.indexOf(g);
@@ -2231,15 +2302,20 @@ function openProfil(){
   var us=document.getElementById('profil-username-sub');
   if(us)us.textContent=p.username?'@'+p.username:'';
 
-  // Salle tags
+  // Salle + sport tags
   var st=document.getElementById('profil-salle-tag');
   if(st){
     var gymColors={basicfit:'#FF6B00',fitnesspark:'#4CAF50',keepcool:'#C8006A',onair:'#CC0000',autre:'#555'};
     var gymNames={basicfit:'Basic-Fit',fitnesspark:'Fitness Park',keepcool:'Keep Cool',onair:'On Air',autre:'Maison'};
     var gyms=p.gyms||[];
-    st.innerHTML=gyms.map(function(g){
-      return '<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:'+gymColors[g]+'22;border:1px solid '+gymColors[g]+';color:'+gymColors[g]+';font-size:11px;font-weight:600;margin-right:4px">●&nbsp;'+(gymNames[g]||g)+'</span>';
+    var spts=p.sports||[];
+    var gymHtml=gyms.map(function(g){
+      return '<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:'+gymColors[g]+'22;border:1px solid '+gymColors[g]+';color:'+gymColors[g]+';font-size:11px;font-weight:600;margin-right:4px;margin-bottom:4px">●&nbsp;'+(gymNames[g]||g)+'</span>';
     }).join('');
+    var sptHtml=spts.map(function(s){
+      return '<span style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;background:var(--fnt);border:1px solid var(--brd);color:var(--mut);font-size:11px;font-weight:600;margin-right:4px;margin-bottom:4px">'+(SPORTS_LABELS[s]||s)+'</span>';
+    }).join('');
+    st.innerHTML=gymHtml+sptHtml;
   }
 
   // Réseaux sociaux
@@ -2326,6 +2402,11 @@ function openProfil(){
     var el=document.getElementById('pg-'+id);
     if(el)el.classList.toggle('sel',((p.gyms||[]).indexOf(id)!==-1));
   });
+  // Sports hors salle
+  ['basket','foot','mma','jjb','tennis','rugby','footus','escalade'].forEach(function(id){
+    var el=document.getElementById('ps-'+id);
+    if(el)el.classList.toggle('sel',((p.sports||[]).indexOf(id)!==-1));
+  });
 
   // API
   updateAPIUI();
@@ -2336,6 +2417,49 @@ function openProfil(){
   // Show profil
   switchProfilTab('stats');
   document.getElementById('profil-ov').classList.add('open');
+}
+
+function openFollowersList(type){
+  var title = type==='followers' ? 'ABONNÉS' : 'SUIVI(E)S';
+  var ex=document.getElementById('followers-ov');if(ex)ex.remove();
+  var html='<div id="followers-ov" style="position:fixed;inset:0;background:var(--bg);z-index:1900;display:flex;flex-direction:column">';
+  html+='<div class="fl-head-v2"><button class="fl-back" onclick="document.getElementById(\'followers-ov\').remove()">←</button><div class="fl-title-v2">'+title+'</div></div>';
+  html+='<div id="followers-list" style="flex:1;overflow-y:auto;padding:14px"><div style="text-align:center;padding:30px;color:var(--mut);font-size:13px">Chargement...</div></div>';
+  html+='</div>';
+  document.body.insertAdjacentHTML('beforeend',html);
+
+  if(!_supa||!_supaUser)return;
+  var query;
+  if(type==='followers'){
+    // Qui me suit
+    query=_supa.from('follows').select('follower_id').eq('following_id',_supaUser.id).eq('status','accepted');
+  }else{
+    // Qui je suis
+    query=_supa.from('follows').select('following_id').eq('follower_id',_supaUser.id).eq('status','accepted');
+  }
+  query.then(async function(res){
+    var el=document.getElementById('followers-list');if(!el)return;
+    var rows=res.data||[];
+    if(!rows.length){el.innerHTML='<div style="text-align:center;padding:40px;color:var(--mut);font-size:13px">Aucun '+(type==='followers'?'abonné':'abonnement')+'</div>';return;}
+    var ids=rows.map(function(r){return type==='followers'?r.follower_id:r.following_id;});
+    var profRes=await _supa.from('profiles').select('id,username,display_name,data').in('id',ids);
+    var profiles=profRes.data||[];
+    if(!profiles.length){el.innerHTML='<div style="color:var(--mut);font-size:13px;text-align:center;padding:20px">Aucun profil trouvé</div>';return;}
+    el.innerHTML=profiles.map(function(p){
+      var name=p.display_name||(p.data&&p.data.profil&&p.data.profil.name)||'Utilisateur';
+      var uname=p.username?'@'+p.username:'';
+      var initiale=name.charAt(0).toUpperCase();
+      var safeU={id:p.id,name:name,username:p.username||'',data:p.data||{}};
+      var safeJson=JSON.stringify(safeU).replace(/"/g,'&quot;');
+      return '<div class="ucard" style="margin-bottom:8px;cursor:pointer" onclick="document.getElementById(\'followers-ov\').remove();openFriendProfile('+safeJson+')">'
+        +'<div class="ucard-av">'+initiale+'</div>'
+        +'<div style="flex:1"><div class="ucard-name">'+name+'</div>'
+        +(uname?'<div class="ucard-sub"><span style="color:var(--acc)">'+uname+'</span></div>':'')
+        +'</div>'
+        +'<span style="color:var(--acc);font-size:18px">›</span>'
+        +'</div>';
+    }).join('');
+  });
 }
 
 function switchProfilTab(id){
@@ -3166,12 +3290,9 @@ function searchUsersModal(query){
         var btnClass=(isFriend||isPending)?'ucard-btn sent':'ucard-btn';
         var disabled=(isFriend||isPending)?'disabled':'';
         var initiale=name.charAt(0).toUpperCase();
-        // avatar sans base64 dans le onclick
-        return '<div class="ucard" style="margin-bottom:8px">'
-          +'<div class="ucard-av">'+initiale+'</div>'
-          +'<div style="flex:1"><div class="ucard-name">'+name+'</div>'
-          +'<div class="ucard-sub">'+(uname?'<span style="color:var(--acc)">'+uname+'</span>':'')+' </div></div>'
-          +'<button class="'+btnClass+'" '+disabled+' onclick="sendFriendRequest(\''+u.id+'\',\''+name.replace(/'/g,'')+'\',this)">'+btnTxt+'</button>'
+        var eid='u'+i;
+        window['_su_'+eid]={id:u.id,name:name,username:u.username||'',data:u.data||{}};
+        return '<div class="ucard" style="margin-bottom:8px;cursor:pointer" onclick="closeSearchModal();openFriendProfile(window[\'_su_'+eid+'\'])">'          +'<div class="ucard-av">'+initiale+'</div>'          +'<div style="flex:1"><div class="ucard-name">'+name+'</div>'          +'<div class="ucard-sub">'+(uname?'<span style="color:var(--acc)">'+uname+'</span>':'')+' </div></div>'          +'<button class="'+btnClass+'" '+disabled+' onclick="event.stopPropagation();window._addFriendId=\''+u.id+'\';window._addFriendName=\''+name+'\';sendFriendRequest(window._addFriendId,window._addFriendName,this)">'+ btnTxt+'</button>'
           +'</div>';
       }).join('');
     }catch(e){el.innerHTML='<div style="color:var(--red);font-size:13px;padding:10px">Erreur : '+e.message+'</div>';}
@@ -3523,12 +3644,22 @@ function isDayDone(i){
 }
 function renderDayBar(){
   var bar=document.getElementById('daybar');if(!bar)return;
-  bar.innerHTML=DAYS.map(function(d,i){
-    var done=isDayDone(i),cls='dp'+(i===cDay?' act':(done?' done':''));
-    return '<button class="'+cls+'" onclick="selDay('+i+')">'+(done&&i!==cDay?'✓ ':'')+d.name.charAt(0)+d.name.slice(1).toLowerCase()+'</button>';
-  }).join('');
+  var d=DAYS[cDay];
+  var done=isDayDone(cDay);
+  var nameStr=d.name.charAt(0)+d.name.slice(1).toLowerCase();
+  var typeStr=d.type||'';
+  bar.innerHTML=
+    '<button onclick="selDay('+(cDay-1)+')" style="background:none;border:none;color:'+(cDay>0?'var(--txt)':'#333')+';font-size:24px;cursor:pointer;padding:8px 14px;flex-shrink:0;line-height:1" '+(cDay===0?'disabled':'')+'>←</button>'
+    +'<div style="flex:1;text-align:center">'
+    +'<div style="font-family:Bebas Neue,sans-serif;font-size:18px;color:'+(done?'var(--grn)':'var(--acc)')+';letter-spacing:1px">'+(done?'✓ ':'')+nameStr+'</div>'
+    +'<div style="font-size:10px;color:var(--mut);margin-top:1px">'+typeStr+' · '+(cDay+1)+'/'+DAYS.length+'</div>'
+    +'</div>'
+    +'<button onclick="selDay('+(cDay+1)+')" style="background:none;border:none;color:'+(cDay<DAYS.length-1?'var(--txt)':'#333')+';font-size:24px;cursor:pointer;padding:8px 14px;flex-shrink:0;line-height:1" '+(cDay===DAYS.length-1?'disabled':'')+'>→</button>';
 }
-function selDay(i){cDay=i;cEx=0;sv();renderSeance();renderDayBar();}
+function selDay(i){
+  if(i<0||i>=DAYS.length)return;
+  cDay=i;cEx=0;sv();renderSeance();renderDayBar();
+}
 function saveQuickPoids(){
   var inp=document.getElementById('quick-poids');
   var val=parseFloat(inp.value.replace(',','.'));
@@ -4547,12 +4678,14 @@ function goTab(name,el){
   var panel=document.getElementById('p-'+name);
   if(panel){panel.classList.add('act');if(name==='coach')panel.style.display='flex';}
   if(el)el.classList.add('act');
-  // Header: show daybar only on seance tab
-  var logoEl=document.getElementById('header-logo');
+  // Daybar only on seance tab — logo always visible
   var daybarEl=document.getElementById('daybar');
-  if(name==='seance'){if(logoEl)logoEl.style.display='none';if(daybarEl)daybarEl.style.display='flex';}
-  else{if(logoEl)logoEl.style.display='block';if(daybarEl)daybarEl.style.display='none';}
-  if(name==='seance'){renderSeance();renderDayBar();}
+  if(name==='seance'){
+    if(daybarEl){daybarEl.style.display='flex';renderDayBar();}
+    renderSeance();
+  }else{
+    if(daybarEl)daybarEl.style.display='none';
+  }
   if(name==='nutri'){renderNutri();renderSuppl();}
   if(name==='accueil'){renderAccueil();}
   if(name==='journal')renderJournal();
@@ -5480,11 +5613,9 @@ function bootApp(){
   }catch(e){}
   // Init accueil feed + header default state
   try{renderAccueil();}catch(e){}
-  // Default tab: seance — show daybar, hide logo
-  var logoEl=document.getElementById('header-logo');
+  // Default tab: seance — show daybar
   var daybarEl=document.getElementById('daybar');
-  if(logoEl)logoEl.style.display='none';
-  if(daybarEl)daybarEl.style.display='flex';
+  if(daybarEl){daybarEl.style.display='flex';try{renderDayBar();}catch(e){}}
   // Load friends for feed
   try{loadFriendRequests();}catch(e){}
   try{loadFriendsFeed();}catch(e){}
