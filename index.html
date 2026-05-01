@@ -2267,9 +2267,17 @@ function openProfil(){
   var lastP=(state.logs||[]).filter(function(l){return l.poids;});
   if(pp)pp.textContent=lastP.length?lastP[lastP.length-1].poids:'--';
 
-  // Followers/following from state
+  // Followers/following depuis Supabase (async)
   var pf=document.getElementById('prof-followers');if(pf)pf.textContent=(state.friends||[]).length;
   var pfw=document.getElementById('prof-following');if(pfw)pfw.textContent=(state.friends||[]).length;
+  if(_supa&&_supaUser){
+    // Abonnés (qui me suivent)
+    _supa.from('follows').select('id',{count:'exact',head:true}).eq('following_id',_supaUser.id).eq('status','accepted')
+      .then(function(r){var el=document.getElementById('prof-followers');if(el&&r.count!=null)el.textContent=r.count;});
+    // Abonnements (qui je suis)
+    _supa.from('follows').select('id',{count:'exact',head:true}).eq('follower_id',_supaUser.id).eq('status','accepted')
+      .then(function(r){var el=document.getElementById('prof-following');if(el&&r.count!=null)el.textContent=r.count;});
+  }
 
   // Badges
   function renderBadgeStrip(list,val,type){
@@ -2900,7 +2908,9 @@ function notify(msg){
 }
 function vib(p){if(navigator.vibrate)navigator.vibrate(p);}
 function fireXP(amt){
-  state.xp=(state.xp||0)+amt;sv();
+  state.xp=(state.xp||0)+amt;
+  _sessionXP=(_sessionXP||0)+amt;
+  sv();
   var pop=document.getElementById('xppop');pop.textContent='+'+amt+' XP';
   pop.className='xppop';void pop.offsetWidth;pop.className='xppop fire';
   var hxp=document.getElementById('h-xp');if(hxp)hxp.textContent=state.xp;
@@ -3538,10 +3548,26 @@ function saveML(){
   var ex=DAYS[cDay].exercises[cEx];
   var isPR=charge?checkPR(ex.n,charge,reps):false;
   state.logs.push({date:new Date().toLocaleDateString('fr-FR'),poids:'',ex:ex.n,charge:charge,reps:reps,feel:'ok',auto:true});
-  sv();document.getElementById('ml-c').value='';document.getElementById('ml-r').value='';
+  sv();
+  document.getElementById('ml-c').value='';document.getElementById('ml-r').value='';
   document.getElementById('minilog').classList.remove('open');
   if(isPR){
-    notify('RECORD BATTU ! '+ex.n+' — '+charge+'kg');vib([100,30,100,30,200]);
+    notify('🏆 RECORD BATTU ! '+ex.n+' — '+charge+'kg');
+    vib([100,30,100,30,200]);
+    // Écrire dans leaderboards Supabase
+    upsertLeaderboard(ex.n, charge, reps);
+    // Log activité PR
+    logActivity('pr', {ex:ex.n, charge:charge, reps:reps, xp:20});
+    // Badge toast si nouveau badge XP
+    var _prevXP=(state.xp||0);
+    state.xp=(state.xp||0)+20;
+    sv();
+    var _curXPBadge=getBadge(state.xp,BADGES_XP);
+    var _prevXPBadge=getBadge(_prevXP,BADGES_XP);
+    if(_curXPBadge&&_prevXPBadge&&_curXPBadge.min!==_prevXPBadge.min){
+      setTimeout(function(){showBadgeUnlock(_curXPBadge);},500);
+    }
+    var _hxp=document.getElementById('h-xp');if(_hxp)_hxp.textContent=state.xp;
   }else{
     notify('Set enregistré — '+ex.n+(charge?' '+charge+'kg':'')+(reps?' x'+reps:''));vib([40,20,40]);
   }
@@ -4636,6 +4662,8 @@ function startSession(type){
   notify(type==='marche'?'Marche lancee !':'Seance lancee - au boulot !');
   var btn=document.getElementById('start-sess-btn');if(btn)btn.style.display='none';
   // Log activité
+  _sessionXP = 0;
+  _sessionElapsed = 0;
   logActivity(type==='marche'?'walk_start':'session_start',{});
 }
 function updateSessDisp(){
@@ -4666,7 +4694,16 @@ function stopSession(){
   sv();
   // Log activité fin
   var _endType = sessType;
-  logActivity(_endType==='marche'?'walk_end':'session_end', {dur: durStr});
+  logActivity(_endType==='marche'?'walk_end':'session_end', {dur: durStr, xp: _sessionXP||0});
+  // Écrire la séance complète dans workouts Supabase
+  if(_endType!=='marche'){
+    var _d=DAYS[cDay];
+    var _exDone=(_d&&_d.exercises)||[];
+    var _durSec=Math.floor((_sessionElapsed||0)/1000);
+    logWorkoutToSupabase(_d?_d.name:'',_d?_d.type:'',_durSec,_exDone.map(function(e){return{name:e.n,sets:e.s};}),_sessionXP||0);
+  }
+  // Sync profil Supabase (XP, séances)
+  setTimeout(syncProfileToSupabase, 2000);
   showFelicitations(_endType,durStr);
   sessVal=0;sessType='';
 }
@@ -5088,42 +5125,92 @@ function openFriendProfile(u) {
   var ov = document.getElementById('friend-ov');
   var body = document.getElementById('friend-profile-body');
   if (!ov || !body) return;
+
   var name = u.display_name || u.name || 'Ami';
   var uname = u.username || '';
   var xp = u.xp || (u.data && u.data.xp) || 0;
   var avatar = u.avatar || (u.data && u.data.profil && u.data.profil.avatar) || '';
-  var av = avatar ? '<img src="' + avatar + '" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--acc)">'
-    : '<div style="width:80px;height:80px;border-radius:50%;background:var(--card);border:3px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:36px;color:var(--acc)">' + name.charAt(0).toUpperCase() + '</div>';
-
   var d = u._fullData || u.data || {};
-  var streak = 0;
+  var profData = (d.profil) || {};
   var sessions = 0;
-  if (d.journal) {
-    Object.keys(d.journal).forEach(function(k) { if (d.journal[k] && d.journal[k].seanceDone) sessions++; });
+  if (d.journal) { Object.keys(d.journal).forEach(function(k){ if(d.journal[k]&&d.journal[k].seanceDone) sessions++; }); }
+
+  var avHtml = avatar
+    ? '<img src="'+avatar+'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid var(--acc)">'
+    : '<div style="width:80px;height:80px;border-radius:50%;background:var(--card);border:3px solid var(--acc);display:flex;align-items:center;justify-content:center;font-family:Bebas Neue,sans-serif;font-size:36px;color:var(--acc)">'+name.charAt(0).toUpperCase()+'</div>';
+
+  var gymColors={basicfit:'#FF6B00',fitnesspark:'#4CAF50',keepcool:'#C8006A',onair:'#CC0000',autre:'#555'};
+  var gymNames={basicfit:'Basic-Fit',fitnesspark:'Fitness Park',keepcool:'Keep Cool',onair:'On Air',autre:'Maison'};
+  var gyms=profData.gyms||[];
+  var gymHtml=gyms.map(function(g){
+    return '<span style="padding:3px 10px;border-radius:20px;background:'+gymColors[g]+'22;border:1px solid '+gymColors[g]+';color:'+gymColors[g]+';font-size:11px;font-weight:600;margin-right:4px">● '+(gymNames[g]||g)+'</span>';
+  }).join('');
+
+  var objLabels={perte:'📉 Perte',maintien:'📊 Maintien',prise:'📈 Prise'};
+  var objHtml=profData.objectif?'<span style="font-size:11px;color:var(--acc)">'+objLabels[profData.objectif]+'</span>':'';
+  var curBadge=getBadge(sessions,BADGES_SESS);
+  var badgeHtml=curBadge?'<span style="font-size:16px">'+curBadge.ico+'</span>':'';
+
+  // Réseaux sociaux
+  var socialLinks=[];
+  if(profData.instagram)socialLinks.push('<a href="https://instagram.com/'+profData.instagram.replace('@','')+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);color:var(--mut);font-size:11px;text-decoration:none;margin-right:6px">📸 '+profData.instagram+'</a>');
+  if(profData.tiktok)socialLinks.push('<a href="https://tiktok.com/@'+profData.tiktok.replace('@','')+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);color:var(--mut);font-size:11px;text-decoration:none;margin-right:6px">🎵 '+profData.tiktok+'</a>');
+  if(profData.snapchat)socialLinks.push('<a href="https://snapchat.com/add/'+profData.snapchat.replace('@','')+'" target="_blank" style="display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border-radius:20px;border:1px solid var(--brd);color:var(--mut);font-size:11px;text-decoration:none;margin-right:6px">👻 '+profData.snapchat+'</a>');
+
+  body.innerHTML =
+    '<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">'
+    +avHtml
+    +'<div style="flex:1">'
+    +'<div style="display:flex;align-items:center;gap:8px;margin-bottom:3px">'
+    +'<div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc)">'+name+'</div>'
+    +badgeHtml+'</div>'
+    +(uname?'<div style="font-size:12px;color:var(--acc);margin-bottom:4px">@'+uname+'</div>':'')
+    +(gymHtml?'<div style="margin-bottom:4px">'+gymHtml+'</div>':'')
+    +objHtml
+    +'</div></div>'
+    // Stats
+    +'<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--brd);border-radius:12px;overflow:hidden;margin-bottom:14px">'
+    +'<div style="background:var(--card);padding:12px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc)" id="fp-sessions">'+sessions+'</div><div style="font-size:10px;color:var(--mut);text-transform:uppercase">Séances</div></div>'
+    +'<div style="background:var(--card);padding:12px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc)">'+xp+'</div><div style="font-size:10px;color:var(--mut);text-transform:uppercase">XP</div></div>'
+    +'<div style="background:var(--card);padding:12px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:24px;color:var(--acc)" id="fp-followers">—</div><div style="font-size:10px;color:var(--mut);text-transform:uppercase">Abonnés</div></div>'
+    +'</div>'
+    // Réseaux
+    +(socialLinks.length?'<div style="margin-bottom:14px">'+socialLinks.join('')+'</div>':'')
+    // Badges
+    +'<div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px">Badges</div>'
+    +'<div id="fp-badges" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:none"></div>'
+    // Feed
+    +'<div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Activité récente</div>'
+    +'<div id="friend-activity-feed"><div style="text-align:center;padding:20px;color:var(--mut);font-size:13px">Chargement...</div></div>';
+
+  // Supabase: followers count
+  if(_supa&&u.id){
+    _supa.from('follows').select('id',{count:'exact',head:true}).eq('following_id',u.id).eq('status','accepted')
+      .then(function(r){var el=document.getElementById('fp-followers');if(el&&r.count!=null)el.textContent=r.count;});
   }
 
-  body.innerHTML = '<div style="display:flex;align-items:center;gap:16px;margin-bottom:24px">'
-    + av
-    + '<div><div style="font-family:Bebas Neue,sans-serif;font-size:28px;color:var(--acc)">' + name + '</div>'
-    + (uname ? '<div style="font-size:13px;color:var(--acc)">@' + uname + '</div>' : '')
-    + '</div></div>'
-    + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px">'
-    + '<div style="background:var(--card);border-radius:13px;padding:14px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">' + xp + '</div><div style="font-size:11px;color:var(--mut)">XP Total</div></div>'
-    + '<div style="background:var(--card);border-radius:13px;padding:14px;text-align:center"><div style="font-family:Bebas Neue,sans-serif;font-size:32px;color:var(--acc)">' + sessions + '</div><div style="font-size:11px;color:var(--mut)">Séances</div></div>'
-    + '</div>'
-    + '<div id="friend-activity-feed"></div>';
+  // Badges strip
+  var bEl=document.getElementById('fp-badges');
+  if(bEl){
+    bEl.innerHTML=BADGES_SESS.slice(0,6).map(function(b){
+      var unlocked=sessions>=b.min;
+      var col=TIER_COLORS[b.tier]||'var(--acc)';
+      return '<div style="flex-shrink:0;text-align:center">'
+        +'<div style="width:40px;height:40px;border-radius:10px;background:'+(unlocked?col+'22':'var(--fnt)')+';border:2px solid '+(unlocked?col:'#1e1e1e')+';display:flex;align-items:center;justify-content:center;font-size:18px;opacity:'+(unlocked?1:.2)+'">'+b.ico+'</div>'
+        +'<div style="font-size:8px;color:'+(unlocked?col:'var(--mut)')+';margin-top:2px;max-width:40px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+b.name+'</div>'
+        +'</div>';
+    }).join('');
+  }
 
-  // Load friend's recent activity
-  if (_supa && u.id) {
-    _supa.from('activity').select('*').eq('user_id', u.id).order('created_at', { ascending: false }).limit(10)
-      .then(function(res) {
-        var feedEl = document.getElementById('friend-activity-feed');
-        if (!feedEl) return;
-        var items = res.data || [];
-        if (!items.length) { feedEl.innerHTML = '<div style="color:var(--mut);font-size:13px;text-align:center;padding:20px">Aucune activité récente</div>'; return; }
-        feedEl.innerHTML = '<div class="sec">Activité récente</div>' + items.map(function(a) {
-          return renderFeedItem(a);
-        }).join('');
+  // Feed activité depuis Supabase
+  if(_supa&&u.id){
+    _supa.from('activity').select('*').eq('user_id',u.id).order('created_at',{ascending:false}).limit(15)
+      .then(function(res){
+        var feedEl=document.getElementById('friend-activity-feed');
+        if(!feedEl)return;
+        var items=res.data||[];
+        if(!items.length){feedEl.innerHTML='<div style="color:var(--mut);font-size:13px;text-align:center;padding:20px">Aucune activité récente</div>';return;}
+        feedEl.innerHTML=items.map(function(a){return renderFeedItem(a);}).join('');
       });
   }
 
@@ -5289,14 +5376,58 @@ async function loadFriendsFeed() {
 async function logActivity(type, payload) {
   if (!_supa || !_supaUser) return;
   var p = state.profil || {};
-  await _supa.from('activity').insert({
-    user_id: _supaUser.id,
-    user_name: p.name || _supaUser.email,
-    user_username: p.username || '',
-    user_avatar: p.avatar || '',
-    type: type,
-    payload: payload || {}
-  });
+  try {
+    await _supa.from('activity').insert({
+      user_id: _supaUser.id,
+      user_name: p.name || _supaUser.email,
+      user_username: p.username || '',
+      user_avatar: p.avatar || '',
+      type: type,
+      payload: payload || {}
+    });
+  } catch(e) { console.warn('logActivity error:', e); }
+}
+
+async function logWorkoutToSupabase(dayName, dayType, durationSecs, exercises, xpEarned) {
+  if (!_supa || !_supaUser) return;
+  try {
+    await _supa.from('workouts').insert({
+      user_id: _supaUser.id,
+      day_name: dayName,
+      day_type: dayType,
+      duration_seconds: durationSecs,
+      xp_earned: xpEarned || 0,
+      exercises: exercises || []
+    });
+  } catch(e) { console.warn('logWorkout error:', e); }
+}
+
+async function upsertLeaderboard(exName, weightKg, reps) {
+  if (!_supa || !_supaUser || !exName || !weightKg) return;
+  try {
+    var kg = parseFloat(weightKg);
+    if (!kg || kg <= 0 || kg > 500) return; // anti-cheat basique
+    await _supa.from('leaderboards').upsert({
+      user_id: _supaUser.id,
+      exercise_name: exName,
+      max_weight_kg: kg,
+      max_reps: parseInt(reps) || 0,
+      updated_at: new Date().toISOString()
+    }, { onConflict: 'user_id,exercise_name', ignoreDuplicates: false });
+  } catch(e) { console.warn('upsertLeaderboard error:', e); }
+}
+
+async function syncProfileToSupabase() {
+  if (!_supa || !_supaUser) return;
+  var p = state.profil || {};
+  try {
+    await _supa.from('profiles').upsert({
+      id: _supaUser.id,
+      display_name: p.name || '',
+      username: p.username || '',
+      data: state
+    }, { onConflict: 'id' });
+  } catch(e) { console.warn('syncProfile error:', e); }
 }
 
 // ── SYNC AU BOOT ──────────────────────────────────────────────
@@ -5357,6 +5488,8 @@ function bootApp(){
   // Load friends for feed
   try{loadFriendRequests();}catch(e){}
   try{loadFriendsFeed();}catch(e){}
+  // Sync profil Supabase en arrière-plan
+  setTimeout(syncProfileToSupabase, 3000);
   // Set api choice UI
   try{updateAPIUI();}catch(e){}
 }
